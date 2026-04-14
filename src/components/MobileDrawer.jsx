@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { site } from "../data/site";
 import { Icon } from "./ui/Icon";
-import { Button } from "./ui/Button";
-import { smoothScrollTo } from "../lib/smoothScroll";
+import { smoothScrollTo, handleAnchorClick } from "../lib/smoothScroll";
 
 export function MobileDrawer({ open, onClose }) {
   const reduced = useReducedMotion();
@@ -95,14 +94,16 @@ export function MobileDrawer({ open, onClose }) {
             </nav>
 
             <div className="p-5 border-t border-[var(--color-border)] space-y-3">
-              <Button
+              <a
                 href="#contatti"
-                variant="primary"
-                className="!w-full !justify-center"
-                onClick={() => setTimeout(() => onClose(), 100)}
+                onClick={(e) => {
+                  handleAnchorClick(e);
+                  setTimeout(() => onClose(), 100);
+                }}
+                className="btn-dark-pill !w-full !justify-center"
               >
                 Chiedi Preventivo
-              </Button>
+              </a>
               <a
                 href={site.whatsappLink}
                 target="_blank"

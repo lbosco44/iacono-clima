@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { site } from "../data/site";
 import { handleAnchorClick } from "../lib/smoothScroll";
 import { Icon } from "./ui/Icon";
+import { AnimatedButton } from "./ui/AnimatedButton";
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -90,15 +91,10 @@ export function Hero() {
                   Oltre 20 anni di esperienza e servizio chiavi in mano.
                 </p>
 
-                <div className="flex flex-wrap gap-3">
-                  <a
-                    href="#contatti"
-                    onClick={handleAnchorClick}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white text-[var(--color-dark)] font-semibold text-sm md:text-base hover:bg-[var(--color-bg-light)] transition-all"
-                  >
+                <div className="flex flex-wrap items-center gap-3">
+                  <AnimatedButton href="#contatti" tone="light">
                     Richiedi Preventivo
-                    <Icon name="arrowRight" size={16} stroke={2.4} />
-                  </a>
+                  </AnimatedButton>
                   <a
                     href={`tel:${site.phoneTel}`}
                     className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-white border border-white/30 font-semibold text-sm md:text-base hover:bg-white/10 transition-all"
