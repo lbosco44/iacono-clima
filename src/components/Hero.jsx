@@ -70,8 +70,12 @@ export function Hero() {
             <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-end">
               <motion.h1
                 variants={item}
-                className="text-white font-extrabold leading-[0.98] tracking-tight max-w-2xl"
-                style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)" }}
+                className="font-extrabold leading-[0.98] tracking-tight max-w-2xl bg-clip-text text-transparent"
+                style={{
+                  fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)",
+                  backgroundImage:
+                    "linear-gradient(135deg, #B4D4FA 0%, #E8F4FD 45%, #FFFFFF 100%)",
+                }}
               >
                 Aria fresca — <br />
                 installata bene.

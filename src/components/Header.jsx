@@ -31,21 +31,16 @@ export function Header() {
           <a
             href="#top"
             onClick={handleAnchorClick}
-            className="flex items-center gap-2.5 group"
+            className="inline-flex items-center group"
             aria-label="Iacono Clima — torna in cima"
           >
-            <span className="grid place-items-center h-10 w-10 md:h-11 md:w-11 rounded-xl bg-white p-1 ring-1 ring-[var(--color-border)]">
-              <img
-                src="/images/logo-removebg-preview.png"
-                alt="Iacono Clima"
-                className="h-full w-full object-contain"
-                loading="eager"
-                decoding="async"
-              />
-            </span>
-            <span className="font-extrabold text-base md:text-lg tracking-tight leading-none text-[var(--color-dark)]">
-              Iacono Clima
-            </span>
+            <img
+              src="/images/logo-removebg-preview.png"
+              alt="Iacono Clima"
+              className="h-9 md:h-11 w-auto object-contain"
+              loading="eager"
+              decoding="async"
+            />
           </a>
 
           <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">

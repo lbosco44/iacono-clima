@@ -66,16 +66,11 @@ export function MobileDrawer({ open, onClose }) {
             aria-label="Menu di navigazione"
           >
             <div className="flex items-center justify-between p-5 border-b border-[var(--color-border)]">
-              <div className="flex items-center gap-2">
-                <span className="grid place-items-center w-10 h-10 rounded-lg bg-white p-1">
-                  <img
-                    src="/images/logo-removebg-preview.png"
-                    alt="Iacono Clima"
-                    className="h-full w-full object-contain"
-                  />
-                </span>
-                <span className="font-black text-[var(--color-primary)]">Iacono Clima</span>
-              </div>
+              <img
+                src="/images/logo-removebg-preview.png"
+                alt="Iacono Clima"
+                className="h-9 w-auto object-contain"
+              />
               <button
                 ref={closeBtnRef}
                 type="button"
