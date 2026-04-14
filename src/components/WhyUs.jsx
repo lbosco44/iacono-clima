@@ -20,9 +20,21 @@ export function WhyUs() {
           {reasons.map((r) => (
             <RevealItem key={r.title}>
               <div className="relative h-full text-center md:text-left p-2 md:p-4">
-                <div className="inline-grid place-items-center w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[var(--color-accent)] text-[var(--color-primary)] mb-5">
-                  <Icon name={r.icon} size={36} stroke={1.8} />
-                </div>
+                {r.image ? (
+                  <div className="inline-grid place-items-center w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-white ring-2 ring-[var(--color-accent)] mb-5 p-2 shadow-[var(--shadow-card)]">
+                    <img
+                      src={r.image}
+                      alt={r.imageAlt || r.title}
+                      className="max-h-full max-w-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                ) : (
+                  <div className="inline-grid place-items-center w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[var(--color-accent)] text-[var(--color-primary)] mb-5">
+                    <Icon name={r.icon} size={36} stroke={1.8} />
+                  </div>
+                )}
                 <h3 className="text-xl md:text-2xl font-extrabold text-[var(--color-dark)]">
                   {r.title}
                 </h3>

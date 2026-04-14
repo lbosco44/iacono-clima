@@ -1,6 +1,8 @@
 export const reasons = [
   {
     icon: "shield",
+    image: "/images/certificazione-fgas.jpg",
+    imageAlt: "Certificazione F-GAS",
     title: "Certificazione F-GAS",
     text: "Non tutti possono farlo. Noi sì — per legge. Manipoliamo gas fluorurati con operatori abilitati e tracciabilità completa dell'intervento.",
   },

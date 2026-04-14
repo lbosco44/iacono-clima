@@ -32,28 +32,26 @@ export function Header() {
           <a
             href="#top"
             onClick={handleAnchorClick}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2.5 group"
             aria-label="Iacono Clima — torna in cima"
           >
             <span
               className={cn(
-                "grid place-items-center w-10 h-10 rounded-xl transition-colors",
-                scrolled ? "bg-[var(--color-accent)]" : "bg-white/20 backdrop-blur-sm"
+                "grid place-items-center h-11 w-11 md:h-12 md:w-12 rounded-xl transition-colors p-1",
+                scrolled ? "bg-white" : "bg-white/95 backdrop-blur-sm"
               )}
             >
-              <Icon
-                name="snowflake"
-                size={22}
-                stroke={2}
-                className={cn(
-                  "transition-colors",
-                  scrolled ? "text-[var(--color-primary)]" : "text-white"
-                )}
+              <img
+                src="/images/logo-removebg-preview.png"
+                alt="Iacono Clima"
+                className="h-full w-full object-contain"
+                loading="eager"
+                decoding="async"
               />
             </span>
             <span
               className={cn(
-                "font-black text-lg md:text-xl tracking-tight transition-colors",
+                "font-black text-base md:text-xl tracking-tight transition-colors leading-none",
                 scrolled ? "text-[var(--color-primary)]" : "text-white"
               )}
             >

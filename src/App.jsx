@@ -4,6 +4,7 @@ import { Hero } from "./components/Hero";
 import { Stats } from "./components/Stats";
 import { Services } from "./components/Services";
 import { WhyUs } from "./components/WhyUs";
+import { BeforeAfter } from "./components/BeforeAfter";
 import { About } from "./components/About";
 import { Brands } from "./components/Brands";
 import { ServiceArea } from "./components/ServiceArea";
@@ -21,6 +22,7 @@ function App() {
         <Stats />
         <Services />
         <WhyUs />
+        <BeforeAfter />
         <About />
         <Brands />
         <ServiceArea />

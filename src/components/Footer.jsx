@@ -18,9 +18,13 @@ export function Footer() {
       <div className="container-x">
         <div className="grid md:grid-cols-3 gap-10 md:gap-12 pb-12 border-b border-white/10">
           <div>
-            <div className="flex items-center gap-2 mb-5">
-              <span className="grid place-items-center w-10 h-10 rounded-xl bg-[var(--color-primary)]/20">
-                <Icon name="snowflake" size={22} stroke={2} className="text-[var(--color-primary)]" />
+            <div className="flex items-center gap-2.5 mb-5">
+              <span className="grid place-items-center h-12 w-12 rounded-xl bg-white p-1.5">
+                <img
+                  src="/images/logo-removebg-preview.png"
+                  alt="Iacono Clima"
+                  className="h-full w-full object-contain"
+                />
               </span>
               <span className="font-black text-xl text-white">Iacono Clima</span>
             </div>

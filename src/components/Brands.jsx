@@ -3,13 +3,15 @@ import { RevealGroup, RevealItem, Reveal } from "./ui/Reveal";
 
 const brands = [
   {
-    name: "CARRIER",
+    name: "Carrier",
+    logo: "/images/Carrier.png",
     since: "Dal 1915",
     text: "Oltre 100 anni di innovazione nella climatizzazione. Leader mondiale riconosciuto per affidabilità e performance in qualsiasi applicazione — dalla singola abitazione al grande impianto industriale.",
     points: ["Garanzia ufficiale", "Ricambi originali", "Tecnologia brevettata"],
   },
   {
     name: "MAXA",
+    logo: "/images/maxa-logo-removebg-preview.png",
     since: "Dal 1992",
     text: "Progettazione italiana di qualità. Gamma completa per residenziale, commerciale e industriale, con soluzioni idroniche avanzate e un'attenzione artigianale ai dettagli.",
     points: ["Made in Italy", "Gamma completa", "Rapporto qualità-prezzo"],
@@ -43,19 +45,24 @@ export function Brands() {
           {brands.map((b) => (
             <RevealItem key={b.name}>
               <article className="h-full bg-[var(--color-dark-card)] rounded-2xl p-8 md:p-10 border border-white/5 hover:border-[var(--color-primary)]/40 transition-colors">
-                <div className="flex items-baseline justify-between mb-4">
-                  <h3
-                    className="text-white font-black tracking-tight"
-                    style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)" }}
-                  >
-                    {b.name}
-                  </h3>
-                  <span className="text-xs font-bold tracking-widest text-white/90 uppercase">
+                <div className="flex items-center justify-between gap-4 mb-5">
+                  <div className="bg-white rounded-xl p-4 md:p-5 h-20 md:h-24 flex items-center justify-center flex-1">
+                    <img
+                      src={b.logo}
+                      alt={`Logo ${b.name}`}
+                      className="max-h-full max-w-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <span className="shrink-0 text-xs font-bold tracking-widest text-white/90 uppercase">
                     {b.since}
                   </span>
                 </div>
 
-                <div className="h-[3px] w-12 rounded-full bg-[var(--color-primary)] mb-6" />
+                <div className="h-[3px] w-12 rounded-full bg-[var(--color-primary)] mb-5" />
+
+                <h3 className="sr-only">{b.name}</h3>
 
                 <p className="text-white/70 leading-relaxed text-[15px]">
                   {b.text}
