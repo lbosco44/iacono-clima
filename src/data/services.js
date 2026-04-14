@@ -1,0 +1,58 @@
+export const services = [
+  {
+    id: "residenziale",
+    icon: "home",
+    title: "Installazione residenziale",
+    description: "Monosplit e multisplit per appartamenti e ville. Studio dei carichi termici e posizionamento ottimale.",
+    tech: "fino a 9 unità interne",
+  },
+  {
+    id: "commerciale",
+    icon: "store",
+    title: "Impianti commerciali",
+    description: "Climatizzazione per negozi, uffici e centri commerciali. Soluzioni silenziose e ad alto rendimento.",
+    tech: "progettazione su misura",
+  },
+  {
+    id: "industriale",
+    icon: "factory",
+    title: "Impianti industriali",
+    description: "Sistemi idronici e VRF per grandi volumi. Gestione centralizzata e massima efficienza energetica.",
+    tech: "idronica e VRF",
+  },
+  {
+    id: "manutenzione",
+    icon: "tool",
+    title: "Manutenzione periodica",
+    description: "Controllo stagionale, sanificazione e pulizia. Prolunga la vita dell'impianto e riduce i consumi.",
+    tech: "contratti annuali",
+  },
+  {
+    id: "assistenza",
+    icon: "wrench",
+    title: "Assistenza e riparazione",
+    description: "Interventi su tutte le marche. Diagnosi rapida, pezzi di ricambio originali, trasparenza sui costi.",
+    tech: "multimarca",
+  },
+  {
+    id: "preventivo",
+    icon: "clipboard",
+    title: "Sopralluogo gratuito",
+    description: "Veniamo da te a valutare. Preventivo chiaro, senza sorprese, nessun impegno.",
+    tech: "entro 24h",
+  },
+  {
+    id: "chiavi-in-mano",
+    icon: "key",
+    title: "Servizio chiavi in mano",
+    description: "Ci occupiamo di tutto: consulenza, scelta del modello, installazione, collaudo e assistenza post-vendita.",
+    tech: "gestione completa",
+  },
+  {
+    id: "f-gas",
+    icon: "gas",
+    title: "Ricarica gas F-GAS",
+    description: "Operatori certificati per la manipolazione dei gas fluorurati. Intervento tracciato e a norma di legge.",
+    tech: "certificazione F-GAS",
+  },
+];
