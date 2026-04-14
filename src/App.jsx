@@ -3,11 +3,11 @@ import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Stats } from "./components/Stats";
 import { Services } from "./components/Services";
-import { WhyUs } from "./components/WhyUs";
+import { Process } from "./components/Process";
+import { Trust } from "./components/Trust";
 import { BeforeAfter } from "./components/BeforeAfter";
-import { About } from "./components/About";
-import { Brands } from "./components/Brands";
 import { ServiceArea } from "./components/ServiceArea";
+import { Faq } from "./components/Faq";
 import { Testimonials } from "./components/Testimonials";
 import { ContactForm } from "./components/ContactForm";
 import { Footer } from "./components/Footer";
@@ -21,11 +21,11 @@ function App() {
         <Hero />
         <Stats />
         <Services />
-        <WhyUs />
+        <Process />
+        <Trust />
         <BeforeAfter />
-        <About />
-        <Brands />
         <ServiceArea />
+        <Faq />
         <Testimonials />
         <ContactForm />
       </main>

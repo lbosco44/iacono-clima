@@ -16,7 +16,6 @@ const TYPES = [
   { value: "residenziale", label: "Installazione residenziale" },
   { value: "commerciale", label: "Installazione commerciale" },
   { value: "manutenzione", label: "Manutenzione / Assistenza" },
-  { value: "industriale", label: "Impianto industriale" },
   { value: "altro", label: "Altro" },
 ];
 
@@ -63,72 +62,74 @@ export function ContactForm() {
   ];
 
   return (
-    <section
-      id="contatti"
-      className="section-y bg-[var(--color-dark)] text-white relative overflow-hidden"
-    >
-      <div
-        className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-20 pointer-events-none"
-        style={{ background: "radial-gradient(circle, var(--color-primary) 0%, transparent 70%)" }}
-        aria-hidden="true"
-      />
-
-      <div className="container-x relative">
-        <div className="grid md:grid-cols-[1fr_1.1fr] gap-10 md:gap-14">
-          <Reveal>
-            <span className="eyebrow !text-[var(--color-accent)]">Contatti</span>
+    <section id="contatti" className="section-cinematic bg-[var(--color-bg-light)]">
+      <div className="container-narrow">
+        <Reveal className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-12 mb-10 md:mb-14">
+          <div>
+            <span className="eyebrow">Contatti</span>
             <h2
-              className="text-white font-black leading-tight"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+              className="h-display max-w-xl"
+              style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
             >
-              Richiedi il tuo <br />
-              <span className="text-[var(--color-primary)]">preventivo gratuito.</span>
+              Parliamo del<br />
+              tuo progetto.
             </h2>
-            <p className="mt-5 text-white/70 text-[15px] md:text-base leading-relaxed">
-              Sopralluogo gratuito e senza impegno. Ti ricontattiamo entro poche ore
-              con un preventivo chiaro.
-            </p>
+          </div>
+          <p className="text-[var(--color-text-muted)] max-w-sm text-sm md:text-base leading-relaxed">
+            Sopralluogo gratuito, preventivo chiaro, zero pressione. Ti ricontattiamo entro poche ore.
+          </p>
+        </Reveal>
 
-            <div className="mt-8 space-y-4">
-              {infoRows.map((row) => (
-                <a
-                  key={row.label}
-                  href={row.href}
-                  target={row.href.startsWith("http") ? "_blank" : undefined}
-                  rel={row.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="group flex items-start gap-4 p-3 -mx-3 rounded-xl hover:bg-white/5 transition-colors"
-                >
-                  <div className="shrink-0 grid place-items-center w-10 h-10 rounded-lg bg-[var(--color-primary)]/15 text-[var(--color-primary)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
-                    <Icon name={row.icon} size={18} stroke={2} />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-xs uppercase tracking-wider text-white/50 font-semibold">
-                      {row.label}
-                    </div>
-                    <div className="text-white font-semibold truncate">{row.value}</div>
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-white/10">
-              <div className="flex items-center gap-2 text-white/60 text-sm">
-                <Icon name="clock" size={16} stroke={2} />
-                <span className="font-semibold">Orari:</span>
-              </div>
-              <ul className="mt-2 space-y-1 text-white/75 text-sm">
-                {site.hours.map((h) => (
-                  <li key={h.days} className="flex justify-between max-w-xs">
-                    <span>{h.days}</span>
-                    <span className="font-semibold text-white">{h.time}</span>
+        <div className="grid md:grid-cols-[1fr_1.1fr] gap-6 md:gap-10 items-start">
+          <Reveal className="min-w-0">
+            <div className="bg-white rounded-3xl p-6 md:p-8 ring-1 ring-[var(--color-border)]">
+              <h3 className="text-[var(--color-dark)] font-bold text-lg md:text-xl mb-5">
+                Scrivici subito
+              </h3>
+              <ul className="space-y-3">
+                {infoRows.map((row) => (
+                  <li key={row.label}>
+                    <a
+                      href={row.href}
+                      target={row.href.startsWith("http") ? "_blank" : undefined}
+                      rel={row.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="group flex items-start gap-3 p-3 -mx-3 rounded-xl hover:bg-[var(--color-bg-light)] transition-colors"
+                    >
+                      <div className="shrink-0 grid place-items-center w-10 h-10 rounded-lg bg-[var(--color-accent)] text-[var(--color-primary)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
+                        <Icon name={row.icon} size={18} stroke={2} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-xs uppercase tracking-wider text-[var(--color-text-muted)] font-semibold">
+                          {row.label}
+                        </div>
+                        <div className="text-[var(--color-dark)] font-semibold truncate">
+                          {row.value}
+                        </div>
+                      </div>
+                    </a>
                   </li>
                 ))}
               </ul>
+
+              <div className="mt-6 pt-6 border-t border-[var(--color-border)]">
+                <div className="flex items-center gap-2 text-[var(--color-text-muted)] text-sm font-semibold mb-2">
+                  <Icon name="clock" size={16} stroke={2} />
+                  Orari
+                </div>
+                <ul className="space-y-1 text-sm">
+                  {site.hours.map((h) => (
+                    <li key={h.days} className="flex justify-between">
+                      <span className="text-[var(--color-text-muted)]">{h.days}</span>
+                      <span className="font-semibold text-[var(--color-dark)]">{h.time}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+          <Reveal delay={0.1} className="min-w-0">
+            <div className="bg-[var(--color-dark)] text-white rounded-3xl p-6 md:p-8 relative overflow-hidden">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -141,19 +142,18 @@ export function ContactForm() {
                     role="status"
                     aria-live="polite"
                   >
-                    <div className="mx-auto w-16 h-16 rounded-full bg-[var(--color-accent)] grid place-items-center text-[var(--color-primary)] mb-5" aria-hidden="true">
+                    <div
+                      className="mx-auto w-16 h-16 rounded-full bg-[var(--color-primary)] grid place-items-center text-white mb-5"
+                      aria-hidden="true"
+                    >
                       <Icon name="check" size={32} stroke={2.5} />
                     </div>
-                    <h3 className="text-[var(--color-dark)] text-xl md:text-2xl font-extrabold">
-                      Grazie!
-                    </h3>
-                    <p className="mt-2 text-[var(--color-text-muted)]">
-                      Ti ricontattiamo entro poche ore.
-                    </p>
+                    <h3 className="text-white text-xl md:text-2xl font-extrabold">Grazie!</h3>
+                    <p className="mt-2 text-white/70">Ti ricontattiamo entro poche ore.</p>
                     <button
                       type="button"
                       onClick={reset}
-                      className="mt-6 text-[var(--color-primary)] font-semibold text-sm hover:underline"
+                      className="mt-6 text-[var(--color-primary-soft)] font-semibold text-sm hover:text-white hover:underline"
                     >
                       Invia un'altra richiesta
                     </button>
@@ -169,6 +169,10 @@ export function ContactForm() {
                     noValidate
                     className="space-y-4"
                   >
+                    <h3 className="text-white font-bold text-lg md:text-xl mb-2">
+                      Richiedi un preventivo
+                    </h3>
+
                     <Field
                       id="f-nome"
                       label="Nome e cognome"
@@ -227,7 +231,7 @@ export function ContactForm() {
                           {...p}
                           value={form.tipo}
                           onChange={(e) => update("tipo", e.target.value)}
-                          className={`${p.className} appearance-none bg-white`}
+                          className={`${p.className} appearance-none`}
                         >
                           <option value="">Scegli un'opzione</option>
                           {TYPES.map((t) => (
@@ -254,12 +258,15 @@ export function ContactForm() {
                       )}
                     />
 
-                    <button type="submit" className="btn-primary !w-full !justify-center">
+                    <button
+                      type="submit"
+                      className="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-full bg-white text-[var(--color-dark)] font-bold hover:bg-[var(--color-primary-soft)] transition-colors"
+                    >
                       Invia Richiesta
-                      <Icon name="arrowRight" size={18} />
+                      <Icon name="arrowRight" size={18} stroke={2.4} />
                     </button>
 
-                    <p className="text-xs text-[var(--color-text-muted)] text-center pt-2">
+                    <p className="text-xs text-white/50 text-center pt-1">
                       Inviando il modulo accetti di essere ricontattato.
                     </p>
                   </motion.form>
@@ -273,19 +280,27 @@ export function ContactForm() {
       <style>{`
         .field-input {
           width: 100%;
-          padding: 0.75rem 1rem;
-          border-radius: 10px;
-          border: 1.5px solid var(--color-border);
-          background: white;
-          color: var(--color-text);
+          padding: 0.85rem 1rem;
+          border-radius: 12px;
+          border: 1.5px solid rgba(255,255,255,0.12);
+          background: rgba(255,255,255,0.06);
+          color: white;
           font-size: 0.9375rem;
           font-family: inherit;
-          transition: border-color 0.15s ease, box-shadow 0.15s ease;
+          transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+        }
+        .field-input::placeholder {
+          color: rgba(255,255,255,0.4);
         }
         .field-input:focus {
           outline: none;
-          border-color: var(--color-primary);
-          box-shadow: 0 0 0 3px rgba(26,115,232,0.15);
+          border-color: var(--color-primary-soft);
+          background: rgba(255,255,255,0.1);
+          box-shadow: 0 0 0 3px rgba(180,212,250,0.18);
+        }
+        .field-input option {
+          color: var(--color-dark);
+          background: white;
         }
       `}</style>
     </section>
@@ -306,18 +321,18 @@ function Field({ id, label, required, error, render }) {
 
   return (
     <div className="block">
-      <label htmlFor={fieldId} className="block text-sm font-semibold text-[var(--color-dark)] mb-1.5">
+      <label htmlFor={fieldId} className="block text-xs font-semibold text-white/70 mb-1.5 uppercase tracking-wider">
         {label}
         {required && (
           <>
-            <span className="text-[var(--color-primary)] ml-0.5" aria-hidden="true">*</span>
+            <span className="text-[var(--color-primary-soft)] ml-0.5" aria-hidden="true">*</span>
             <span className="sr-only"> (richiesto)</span>
           </>
         )}
       </label>
       {render(inputProps)}
       {error && (
-        <span id={errorId} role="alert" className="block text-xs text-red-600 mt-1 font-semibold">
+        <span id={errorId} role="alert" className="block text-xs text-red-300 mt-1 font-semibold">
           {error}
         </span>
       )}

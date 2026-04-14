@@ -2,16 +2,20 @@
 
 @theme {
   --color-bg: #FFFFFF;
-  --color-bg-light: #F0F7FF;
+  --color-bg-light: #F4F8FC;
   --color-primary: #1A73E8;
   --color-primary-dark: #1557B0;
-  --color-dark: #0A2540;
-  --color-darker: #060D1A;
-  --color-dark-card: #1E3A5F;
-  --color-accent: #E8F4FD;
-  --color-text: #1A1A2E;
+  --color-primary-soft: #B4D4FA;
+  --color-dark: #0F1114;
+  --color-darker: #000000;
+  --color-dark-card: #1A1D22;
+  --color-dark-panel: #0A0C0F;
+  --color-accent: #E8F2FE;
+  --color-text: #111318;
   --color-text-muted: #6B7280;
-  --color-border: #E2E8F0;
+  --color-text-soft: #9CA3AF;
+  --color-border: #E5E7EB;
+  --color-border-dark: #232529;
   --color-star: #F59E0B;
   --color-whatsapp: #25D366;
 
@@ -148,13 +152,114 @@
   }
 
   .eyebrow {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-primary);
     margin-bottom: 0.75rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-primary);
+  }
+
+  .h-display {
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--color-dark);
+  }
+
+  .section-cinematic {
+    padding-block: 5rem;
+  }
+  @media (min-width: 768px) {
+    .section-cinematic {
+      padding-block: 8rem;
+    }
+  }
+
+  .container-narrow {
+    width: 100%;
+    max-width: 1120px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-narrow {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9375rem 1.75rem;
+    border-radius: 999px;
+    background: var(--color-dark);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: transform 0.2s var(--ease-smooth), background 0.2s var(--ease-smooth);
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+  }
+  .btn-dark:hover {
+    transform: scale(1.03);
+    background: #000;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9375rem 1.75rem;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-dark);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border: 1.5px solid var(--color-border);
+    transition: transform 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth), background 0.2s var(--ease-smooth);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-ghost:hover {
+    transform: scale(1.03);
+    border-color: var(--color-dark);
+    background: var(--color-bg-light);
+  }
+
+  .btn-dark-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    background: var(--color-dark);
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: transform 0.2s var(--ease-smooth), background 0.2s var(--ease-smooth);
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+  }
+  .btn-dark-pill:hover {
+    transform: scale(1.03);
+    background: var(--color-primary);
   }
 }
 

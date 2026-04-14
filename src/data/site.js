@@ -27,7 +27,6 @@ export const site = {
 
   nav: [
     { label: "Servizi", href: "#servizi" },
-    { label: "Chi Siamo", href: "#chi-siamo" },
     { label: "Marchi", href: "#marchi" },
     { label: "Contatti", href: "#contatti" },
   ],
