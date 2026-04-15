@@ -49,23 +49,30 @@ export function Process() {
                       : "bg-[var(--color-bg-light)] text-[var(--color-dark)] hover:bg-[var(--color-accent)]"
                   )}
                 >
-                  {/* REST state — big numeral */}
-                  <motion.span
+                  {/* REST state — big numeral + title */}
+                  <motion.div
                     initial={false}
                     animate={{
                       opacity: isActive ? 0 : 1,
                       scale: isActive ? 0.6 : 1,
                     }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 grid place-items-center font-black leading-none pointer-events-none select-none text-[var(--color-primary)]"
-                    style={{
-                      fontSize: "clamp(7rem, 18vw, 13rem)",
-                      fontVariantNumeric: "tabular-nums",
-                    }}
+                    className="absolute inset-0 flex flex-col items-center justify-center px-3 pointer-events-none select-none text-[var(--color-primary)]"
                     aria-hidden="true"
                   >
-                    {i + 1}
-                  </motion.span>
+                    <span
+                      className="font-black leading-none"
+                      style={{
+                        fontSize: "clamp(5rem, 14vw, 9rem)",
+                        fontVariantNumeric: "tabular-nums",
+                      }}
+                    >
+                      {i + 1}
+                    </span>
+                    <span className="mt-3 md:mt-4 font-bold tracking-wide text-sm md:text-base text-center text-[var(--color-dark)]/85">
+                      {step.title}
+                    </span>
+                  </motion.div>
 
                   {/* HOVER / ACTIVE state — full detail */}
                   <motion.div
