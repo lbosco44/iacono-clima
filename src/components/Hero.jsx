@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { site } from "../data/site";
 import { handleAnchorClick } from "../lib/smoothScroll";
 import { Icon } from "./ui/Icon";
-import { AnimatedButton } from "./ui/AnimatedButton";
+import { SendButton } from "./ui/SendButton";
 import { LayoutTextFlip } from "./ui/layout-text-flip";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -95,9 +95,9 @@ export function Hero() {
                 </p>
 
                 <div className="flex flex-wrap items-center gap-3">
-                  <AnimatedButton href="#contatti" tone="light">
+                  <SendButton href="#contatti">
                     Richiedi Preventivo
-                  </AnimatedButton>
+                  </SendButton>
                   <a
                     href={`tel:${site.phoneTel}`}
                     className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-white border border-white/30 font-semibold text-sm md:text-base hover:bg-white/10 transition-all"
