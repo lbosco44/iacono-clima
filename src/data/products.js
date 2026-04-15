@@ -61,7 +61,7 @@ export const productCategories = [
         name: "SOFFITTO PAVIMENTO DC",
         type: "Soffitto/Pavimento",
         short: "Versatile: soffitto o pavimento",
-        image: "/images/soffitto-pavimento.webp",
+        image: "/images/soffitto-pavimento.png",
         specs: ["Installazione flessibile", "DC Inverter", "Resa uniforme"],
         pdf: "/docs/commerciale-soffitto-pavimento.pdf",
       },
