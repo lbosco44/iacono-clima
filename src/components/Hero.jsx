@@ -81,7 +81,6 @@ export function Hero() {
                     words={["fresca", "pulita", "silenziosa", "sana", "garantita"]}
                     duration={2000}
                   />
-                  <span className="text-gradient-cool">—</span>
                 </span>
                 <span className="text-gradient-cool">installata bene.</span>
               </motion.h1>
