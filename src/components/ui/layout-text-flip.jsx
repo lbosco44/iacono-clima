@@ -23,10 +23,15 @@ export const LayoutTextFlip = ({
       layout
       transition={{ type: "spring", stiffness: 280, damping: 28 }}
       className={cn(
-        "relative inline-flex items-center overflow-hidden rounded-xl md:rounded-2xl bg-white px-3 md:px-5 py-0.5 md:py-1 font-extrabold tracking-tight text-[var(--color-dark)] shadow-[0_8px_32px_rgba(26,115,232,0.25)] ring-1 ring-white/40 leading-[1]",
+        "relative inline-flex items-center overflow-hidden rounded-xl md:rounded-2xl px-3 md:px-5 py-0.5 md:py-1 font-extrabold tracking-tight text-white shadow-[0_10px_36px_rgba(26,115,232,0.5)] ring-1 ring-white/30 leading-[1]",
         className
       )}
-      style={{ fontSize: "0.8em" }}
+      style={{
+        fontSize: "0.8em",
+        backgroundImage:
+          "linear-gradient(135deg, #4A95EE 0%, #1A73E8 55%, #0D4FA0 100%)",
+        textShadow: "0 1px 2px rgba(10,17,20,0.35)",
+      }}
     >
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span

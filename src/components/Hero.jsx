@@ -79,7 +79,7 @@ export function Hero() {
                   <span className="text-gradient-cool">Aria</span>
                   <LayoutTextFlip
                     words={["fresca", "pulita", "silenziosa", "sana", "garantita"]}
-                    duration={2400}
+                    duration={2000}
                   />
                   <span className="text-gradient-cool">—</span>
                 </span>
