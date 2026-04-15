@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 import { site } from "../data/site";
 import { handleAnchorClick } from "../lib/smoothScroll";
 import { Icon } from "./ui/Icon";
@@ -10,6 +11,20 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { scrollY } = useScroll();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const onLogoClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === "/") {
+      if (location.hash) {
+        navigate("/", { replace: true });
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/");
+    }
+  };
 
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 20);
@@ -36,14 +51,9 @@ export function Header() {
           <div className="flex items-center justify-between py-2.5 md:py-3 pl-4 md:pl-5 pr-2 md:pr-3">
             <a
               href="/"
-              onClick={(e) => {
-                if (window.location.pathname === "/") {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }
-              }}
+              onClick={onLogoClick}
               className="inline-flex items-center group shrink-0"
-              aria-label="Iacono Clima — torna in cima"
+              aria-label="Iacono Clima — torna alla home"
             >
               <img
                 src="/images/logo-removebg-preview.png"
