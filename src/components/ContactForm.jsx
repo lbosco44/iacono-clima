@@ -68,8 +68,8 @@ export function ContactForm() {
           <div>
             <span className="eyebrow">Contatti</span>
             <h2
-              className="h-display max-w-xl"
-              style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+              className="h-display max-w-3xl"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
             >
               Parliamo del<br />
               tuo progetto.

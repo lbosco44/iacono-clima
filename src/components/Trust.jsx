@@ -1,4 +1,13 @@
 import { Reveal } from "./ui/Reveal";
+import { LogoMarquee } from "./ui/LogoMarquee";
+
+const PARTNER_LOGOS = [
+  { src: "/images/Carrier.png", alt: "Carrier", heightRem: 2.2 },
+  { src: "/images/maxa-logo-removebg-preview.png", alt: "MAXA", heightRem: 1.8 },
+  { src: "/images/DAIKIN_logo.svg", alt: "Daikin", heightRem: 1.8 },
+  { src: "/images/herman-saunier-duval_logo.png", alt: "Hermann Saunier Duval", heightRem: 2.6 },
+  { src: "/images/sinclair_logo.png", alt: "Sinclair", heightRem: 1.8 },
+];
 
 export function Trust() {
   return (
@@ -7,8 +16,8 @@ export function Trust() {
         <Reveal className="mb-10 md:mb-14">
           <span className="eyebrow">Partner e certificazioni</span>
           <h2
-            className="h-display max-w-2xl"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+            className="h-display max-w-4xl"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
           >
             Certificati F-GAS.<br />
             Rivenditori ufficiali.
@@ -56,6 +65,15 @@ export function Trust() {
               text="Progettazione italiana di qualità. Gamma completa residenziale, commerciale e industriale."
             />
           </div>
+        </Reveal>
+
+        <Reveal delay={0.15} className="mt-16 md:mt-24">
+          <div className="text-center mb-6 md:mb-8">
+            <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-muted)]">
+              Lavoriamo anche con
+            </span>
+          </div>
+          <LogoMarquee logos={PARTNER_LOGOS} speed={38} />
         </Reveal>
       </div>
     </section>

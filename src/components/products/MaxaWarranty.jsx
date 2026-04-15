@@ -40,7 +40,7 @@ export function MaxaWarranty() {
             </span>
             <h2
               className="font-extrabold text-white leading-[1.05] tracking-tight"
-              style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
             >
               Garanzia <span className="text-[var(--color-primary-soft)]">MAXA</span>,<br />
               senza sorprese.

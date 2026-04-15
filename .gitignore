@@ -26,3 +26,4 @@ dist-ssr
 # Reference mockups (local only)
 public/images/esempio-video.mp4
 public/images/esempio.webp
+_refs/

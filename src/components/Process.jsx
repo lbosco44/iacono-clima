@@ -19,8 +19,8 @@ export function Process() {
           <div>
             <span className="eyebrow">Come lavoriamo</span>
             <h2
-              className="h-display max-w-xl"
-              style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+              className="h-display max-w-3xl"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
             >
               Dalla chiamata al<br />
               clima fresco in 5 passi.

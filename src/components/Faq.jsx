@@ -33,8 +33,8 @@ export function Faq() {
           <div>
             <span className="eyebrow !text-[var(--color-primary-soft)]">Domande frequenti</span>
             <h2
-              className="font-extrabold text-white leading-[1.05] tracking-tight max-w-xl"
-              style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+              className="font-extrabold text-white leading-[1.05] tracking-tight max-w-3xl"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
             >
               Chiarezza prima<br />
               di qualunque clic.
