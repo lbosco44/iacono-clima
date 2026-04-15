@@ -21,9 +21,11 @@ export function SendButton({
 }) {
   const content = (
     <>
-      <span className="send-btn__wrapper" aria-hidden="true">
-        <span className="send-btn__icon">
-          <PaperPlane />
+      <span className="send-btn__wrapper-outer" aria-hidden="true">
+        <span className="send-btn__wrapper-inner">
+          <span className="send-btn__icon">
+            <PaperPlane />
+          </span>
         </span>
       </span>
       <span className="send-btn__text">{children}</span>

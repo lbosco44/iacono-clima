@@ -272,16 +272,16 @@
 
 /* Send button — paper plane reveal on hover (Uiverse-inspired) */
 .send-btn {
+  position: relative;
   font-family: inherit;
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   background: var(--color-primary);
   color: white;
-  padding: 0.85em 1.4em;
+  padding: 0.85em 1.4em 0.85em 2.8em;
   display: inline-flex;
   align-items: center;
-  gap: 0.45em;
   border: none;
   border-radius: 14px;
   overflow: hidden;
@@ -306,8 +306,17 @@
   outline-offset: 3px;
 }
 
-.send-btn__wrapper {
-  display: inline-block;
+.send-btn__wrapper-outer {
+  position: absolute;
+  top: 50%;
+  left: 1em;
+  transform: translateY(-50%);
+  transition: left 0.35s ease-in-out, transform 0.35s ease-in-out;
+  display: block;
+}
+
+.send-btn__wrapper-inner {
+  display: block;
 }
 
 .send-btn__icon {
@@ -330,12 +339,17 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.send-btn:hover .send-btn__wrapper {
+.send-btn:hover .send-btn__wrapper-outer {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.send-btn:hover .send-btn__wrapper-inner {
   animation: send-fly 0.6s ease-in-out infinite alternate;
 }
 
 .send-btn:hover .send-btn__icon {
-  transform: translateX(1.6em) rotate(45deg) scale(1.15);
+  transform: rotate(45deg) scale(1.15);
 }
 
 .send-btn:hover .send-btn__text {
@@ -351,10 +365,10 @@
   .send-btn,
   .send-btn__icon,
   .send-btn__text,
-  .send-btn__wrapper {
+  .send-btn__wrapper-outer,
+  .send-btn__wrapper-inner {
     animation: none !important;
     transition: background 0.2s ease !important;
-    transform: none !important;
   }
   .send-btn:hover .send-btn__icon,
   .send-btn:hover .send-btn__text {
