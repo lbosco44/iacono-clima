@@ -32,11 +32,11 @@ function StatItem({ stat, started }) {
 }
 
 export function Stats() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.3 });
+  const gridRef = useRef(null);
+  const inView = useInView(gridRef, { once: true, amount: 0.5 });
 
   return (
-    <section ref={ref} className="section-cinematic bg-white">
+    <section className="section-cinematic bg-white">
       <div className="container-narrow">
         <Reveal className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-12 mb-10 md:mb-14">
           <div>
@@ -54,7 +54,10 @@ export function Stats() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 md:gap-x-10 pt-6 md:pt-8 border-t border-[var(--color-border)]">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 md:gap-x-10 pt-6 md:pt-8 border-t border-[var(--color-border)]"
+        >
           {stats.map((s) => (
             <StatItem key={s.label} stat={s} started={inView} />
           ))}

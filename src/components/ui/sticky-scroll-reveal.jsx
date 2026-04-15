@@ -34,7 +34,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
             return (
               <div
                 key={item.title + index}
-                className="min-h-[55vh] lg:min-h-[70vh] flex flex-col justify-center py-10"
+                className="min-h-[32vh] lg:min-h-[42vh] flex flex-col justify-center py-6 md:py-8"
               >
                 <motion.h3
                   initial={false}
