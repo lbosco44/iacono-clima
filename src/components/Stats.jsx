@@ -43,7 +43,7 @@ export function Stats() {
             <span className="eyebrow">I nostri numeri</span>
             <h2
               className="h-display max-w-2xl"
-              style={{ fontSize: "clamp(1.875rem, 4vw, 3.125rem)" }}
+              style={{ fontSize: "clamp(2.375rem, 5vw, 3.9rem)" }}
             >
               Oltre vent'anni,<br />
               al servizio del clima.
