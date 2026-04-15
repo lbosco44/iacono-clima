@@ -38,7 +38,7 @@ export function Stats() {
   return (
     <section ref={ref} className="section-cinematic bg-white">
       <div className="container-narrow">
-        <Reveal className="grid md:grid-cols-[1fr_auto] md:items-start gap-6 md:gap-12 mb-10 md:mb-14">
+        <Reveal className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-12 mb-10 md:mb-14">
           <div>
             <span className="eyebrow">I nostri numeri</span>
             <h2
@@ -49,7 +49,7 @@ export function Stats() {
               al servizio del clima.
             </h2>
           </div>
-          <p className="text-[var(--color-text-muted)] max-w-md text-lg md:text-2xl leading-snug md:pt-11">
+          <p className="text-[var(--color-text-muted)] max-w-sm text-sm md:text-base leading-relaxed">
             Non numeri per marketing. Anni, clienti, comuni e lavori che abbiamo fatto davvero — verificabili.
           </p>
         </Reveal>
