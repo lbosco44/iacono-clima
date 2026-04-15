@@ -44,7 +44,7 @@ export function Services() {
             <span className="eyebrow">I nostri servizi</span>
             <h2
               className="h-display max-w-3xl"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+              style={{ fontSize: "clamp(2rem, 4.8vw, 4rem)" }}
             >
               Tutto quello che<br />
               serve al tuo clima.
