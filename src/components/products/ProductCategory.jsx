@@ -75,50 +75,74 @@ export function ProductCategory({ category, index }) {
 
 function ProductCard({ product }) {
   return (
-    <article className="group h-full bg-white rounded-2xl p-6 md:p-7 border border-[var(--color-border)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 transition-all duration-300 flex flex-col">
-      <div className="text-[11px] font-bold tracking-[0.18em] uppercase text-[var(--color-text-muted)]">
-        {product.type}
-      </div>
-      <h3 className="mt-1.5 text-xl md:text-2xl font-extrabold text-[var(--color-dark)] leading-tight">
-        {product.name}
-      </h3>
-      <p className="mt-2 text-[var(--color-text-muted)] text-sm md:text-[15px] leading-relaxed">
-        {product.short}
-      </p>
-
-      <ul className="mt-5 space-y-1.5">
-        {product.specs.map((s) => (
-          <li
-            key={s}
-            className="flex items-start gap-2 text-xs md:text-sm text-[var(--color-dark)]/85"
-          >
-            <span
-              className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"
-              aria-hidden="true"
-            />
-            {s}
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-auto pt-6 border-t border-[var(--color-border)] mt-6">
-        {product.pdf ? (
-          <a
-            href={product.pdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors"
-          >
-            <Icon name="clipboard" size={16} stroke={2.2} />
-            Scarica catalogo
-            <Icon name="arrowRight" size={14} stroke={2.4} />
-          </a>
+    <article className="group relative h-full bg-white rounded-2xl border border-[var(--color-border)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 transition-all duration-400 flex flex-col overflow-hidden">
+      <div className="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-[var(--color-accent)] via-white to-[var(--color-bg-light)]">
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={`${product.name} — ${product.type}`}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-contain p-5 transition-transform duration-500 ease-[var(--ease-smooth)] group-hover:scale-[1.08]"
+          />
         ) : (
-          <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-muted)]">
-            <Icon name="phone" size={14} stroke={2.2} />
-            Scheda su richiesta
-          </span>
+          <div className="absolute inset-0 grid place-items-center text-[var(--color-primary)]/30">
+            <Icon name="snowflake" size={64} stroke={1.5} />
+          </div>
         )}
+
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-white/0 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+          aria-hidden="true"
+        />
+
+        <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[10px] font-bold tracking-[0.14em] uppercase text-[var(--color-dark)] shadow-sm">
+          {product.type}
+        </span>
+      </div>
+
+      <div className="flex flex-col flex-1 p-5 md:p-6">
+        <h3 className="text-xl md:text-2xl font-extrabold text-[var(--color-dark)] leading-tight">
+          {product.name}
+        </h3>
+        <p className="mt-2 text-[var(--color-text-muted)] text-sm md:text-[15px] leading-relaxed">
+          {product.short}
+        </p>
+
+        <ul className="mt-4 space-y-1.5">
+          {product.specs.map((s) => (
+            <li
+              key={s}
+              className="flex items-start gap-2 text-xs md:text-sm text-[var(--color-dark)]/85"
+            >
+              <span
+                className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"
+                aria-hidden="true"
+              />
+              {s}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-auto pt-5 border-t border-[var(--color-border)] mt-5">
+          {product.pdf ? (
+            <a
+              href={product.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors"
+            >
+              <Icon name="clipboard" size={16} stroke={2.2} />
+              Scarica catalogo
+              <Icon name="arrowRight" size={14} stroke={2.4} />
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-muted)]">
+              <Icon name="phone" size={14} stroke={2.2} />
+              Scheda su richiesta
+            </span>
+          )}
+        </div>
       </div>
     </article>
   );
