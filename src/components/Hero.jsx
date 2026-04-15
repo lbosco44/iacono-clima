@@ -82,7 +82,7 @@ export function Hero() {
                     duration={2000}
                   />
                 </span>
-                <span className="text-gradient-cool">installata bene.</span>
+                <span className="text-gradient-cool">installata per voi.</span>
               </motion.h1>
 
               <motion.div

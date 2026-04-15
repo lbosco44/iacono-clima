@@ -2,7 +2,7 @@ export function smoothScrollTo(hash) {
   if (!hash || !hash.startsWith("#")) return;
   const el = document.querySelector(hash);
   if (!el) return;
-  const headerOffset = 72;
+  const headerOffset = 96;
   const rect = el.getBoundingClientRect();
   const top = rect.top + window.scrollY - headerOffset;
   window.scrollTo({ top, behavior: "smooth" });

@@ -36,12 +36,12 @@ export function ProductsNav() {
     e.preventDefault();
     const el = document.getElementById(id);
     if (!el) return;
-    const top = el.getBoundingClientRect().top + window.scrollY - 140;
+    const top = el.getBoundingClientRect().top + window.scrollY - 170;
     window.scrollTo({ top, behavior: "smooth" });
   };
 
   return (
-    <div className="sticky top-20 z-30 bg-[var(--color-bg-light)]/85 backdrop-blur-md border-b border-[var(--color-border)]">
+    <div className="sticky top-24 z-30 bg-[var(--color-bg-light)]/85 backdrop-blur-md border-b border-[var(--color-border)]">
       <div className="container-narrow py-3 md:py-4">
         <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
           {NAV_ITEMS.map((item) => {

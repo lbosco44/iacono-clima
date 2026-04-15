@@ -19,7 +19,7 @@ export function HomePage() {
       setTimeout(() => {
         const el = document.querySelector(hash);
         if (el) {
-          const top = el.getBoundingClientRect().top + window.scrollY - 72;
+          const top = el.getBoundingClientRect().top + window.scrollY - 96;
           window.scrollTo({ top, behavior: "smooth" });
         }
       }, 120);
