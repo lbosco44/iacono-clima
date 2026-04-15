@@ -9,9 +9,10 @@ export function Footer() {
     {
       title: "Sito",
       links: [
-        { label: "Servizi", href: "#servizi" },
-        { label: "Marchi", href: "#marchi" },
-        { label: "Contatti", href: "#contatti" },
+        { label: "Servizi", href: "/#servizi" },
+        { label: "Prodotti", href: "/prodotti" },
+        { label: "Marchi", href: "/#marchi" },
+        { label: "Contatti", href: "/#contatti" },
       ],
     },
     {

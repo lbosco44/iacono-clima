@@ -1,0 +1,140 @@
+export const productCategories = [
+  {
+    id: "residenziale",
+    eyebrow: "Linea residenziale",
+    title: "Monosplit e multisplit",
+    description:
+      "Climatizzazione per abitazioni: unità singole ad alta efficienza o sistemi multisplit fino a 9 unità interne. Tutte a marchio MAXA con tecnologia inverter e gas R410A.",
+    brand: "MAXA",
+    products: [
+      {
+        name: "SETTE&MEZZO",
+        type: "Monosplit",
+        short: "Alta efficienza, classe A++",
+        specs: ["SEER 7.5", "Classe A++", "Cold Plasma"],
+        pdf: "/docs/residenziale-sette-e-mezzo.pdf",
+      },
+      {
+        name: "AVION",
+        type: "Monosplit",
+        short: "Efficienza a costi contenuti",
+        specs: ["Inverter DC", "Cold Plasma", "Risparmio energetico"],
+        pdf: "/docs/residenziale-avion.pdf",
+      },
+      {
+        name: "LIGHT",
+        type: "Monosplit",
+        short: "Leggero e compatto",
+        specs: ["DC Inverter", "R410A", "Dimensioni contenute"],
+        pdf: "/docs/residenziale-light.pdf",
+      },
+      {
+        name: "MULTISPLIT",
+        type: "Multisplit",
+        short: "Fino a 9 unità interne",
+        specs: ["Compressore rotativo", "DC Inverter", "Zone indipendenti"],
+        pdf: null,
+      },
+    ],
+  },
+  {
+    id: "commerciale",
+    eyebrow: "Linea commerciale",
+    title: "Negozi, uffici, locali pubblici",
+    description:
+      "Soluzioni silenziose ad alto rendimento per ambienti business. Cassette, canalizzati, colonne e unità universali MAXA con tecnologia DC Inverter.",
+    brand: "MAXA",
+    products: [
+      {
+        name: "MONO CASSETTA DC",
+        type: "Cassetta a controsoffitto",
+        short: "Silenziosa ed elegante",
+        specs: ["Installazione incassata", "DC Inverter", "Ideale per uffici"],
+        pdf: "/docs/commerciale-cassetta.pdf",
+      },
+      {
+        name: "SOFFITTO PAVIMENTO DC",
+        type: "Soffitto/Pavimento",
+        short: "Versatile: soffitto o pavimento",
+        specs: ["Installazione flessibile", "DC Inverter", "Resa uniforme"],
+        pdf: "/docs/commerciale-soffitto-pavimento.pdf",
+      },
+      {
+        name: "MONO CANALIZZATO DC",
+        type: "Canalizzato",
+        short: "Distribuzione a canalizzazione",
+        specs: ["Aria uniforme", "Controsoffitto", "Silenzioso"],
+        pdf: "/docs/commerciale-canalizzato.pdf",
+      },
+      {
+        name: "MONO COLONNA",
+        type: "Colonna",
+        short: "Per grandi spazi commerciali",
+        specs: ["Negozi e ristoranti", "Centri commerciali", "Studi medici"],
+        pdf: "/docs/commerciale-colonna.pdf",
+      },
+      {
+        name: "CONSOLE",
+        type: "Console",
+        short: "Alte prestazioni freddo/caldo",
+        specs: ["Installazione a parete bassa", "Compatta", "Silenziosa"],
+        pdf: "/docs/commerciale-console.pdf",
+      },
+      {
+        name: "UNIVERSAL DC",
+        type: "Inverter Super DC",
+        short: "Fino al 70% di risparmio",
+        specs: ["Classe A", "Super DC", "-70% consumo vs tradizionale"],
+        pdf: "/docs/commerciale-universal.pdf",
+      },
+    ],
+  },
+  {
+    id: "monoblocchi",
+    eyebrow: "Monoblocchi",
+    title: "Senza unità esterna o portatili",
+    description:
+      "Soluzioni alternative al classico split: 'IL BELLO' elimina l'unità esterna, il 'Portatile' non richiede installazione fissa. Ideali dove non si può installare l'esterno.",
+    brand: "MAXA",
+    products: [
+      {
+        name: "IL BELLO",
+        type: "Monoblocco senza esterno",
+        short: "Tutto in un'unità",
+        specs: ["Niente unità esterna", "Installazione a parete", "Design compatto"],
+        pdf: "/docs/monoblocco-il-bello.pdf",
+      },
+      {
+        name: "PORTATILE",
+        type: "Climatizzatore portatile",
+        short: "Mobilità e semplicità",
+        specs: ["Nessuna installazione", "Design elegante", "Eco-friendly"],
+        pdf: "/docs/monoblocco-portatile.pdf",
+      },
+    ],
+  },
+  {
+    id: "industriale",
+    eyebrow: "Linea industriale",
+    title: "Carrier — idronica e VRF",
+    description:
+      "Per grandi volumi, stabilimenti e centri commerciali: sistemi idronici (acqua calda/fredda) e VRF (Variable Refrigerant Flow) a marchio Carrier, leader mondiale del settore.",
+    brand: "CARRIER",
+    products: [
+      {
+        name: "Carrier Idronico",
+        type: "Sistema idronico",
+        short: "Chiller, pompe di calore, fan-coil",
+        specs: ["Grandi volumi", "Acqua come vettore", "Alta efficienza"],
+        pdf: "/docs/industriale-carrier-idronico.pdf",
+      },
+      {
+        name: "Carrier VRF",
+        type: "Variable Refrigerant Flow",
+        short: "Gestione centralizzata multi-zona",
+        specs: ["Controllo per zona", "Alta flessibilità", "Recupero di calore"],
+        pdf: null,
+      },
+    ],
+  },
+];

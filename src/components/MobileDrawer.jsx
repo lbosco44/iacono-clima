@@ -36,7 +36,22 @@ export function MobileDrawer({ open, onClose }) {
 
   const go = (href) => {
     onClose();
-    setTimeout(() => smoothScrollTo(href), 220);
+    if (!href) return;
+    if (href.startsWith("#")) {
+      setTimeout(() => smoothScrollTo(href), 220);
+      return;
+    }
+    if (href.startsWith("/#")) {
+      if (window.location.pathname === "/") {
+        setTimeout(() => smoothScrollTo(href.slice(1)), 220);
+      } else {
+        window.location.href = href;
+      }
+      return;
+    }
+    if (href.startsWith("/")) {
+      window.location.href = href;
+    }
   };
 
   return (
@@ -95,7 +110,7 @@ export function MobileDrawer({ open, onClose }) {
 
             <div className="p-5 border-t border-[var(--color-border)] space-y-3">
               <a
-                href="#contatti"
+                href="/#contatti"
                 onClick={(e) => {
                   handleAnchorClick(e);
                   setTimeout(() => onClose(), 100);

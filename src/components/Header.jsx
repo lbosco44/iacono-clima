@@ -29,8 +29,13 @@ export function Header() {
       >
         <div className="container-narrow flex items-center justify-between py-4">
           <a
-            href="#top"
-            onClick={handleAnchorClick}
+            href="/"
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
             className="inline-flex items-center group"
             aria-label="Iacono Clima — torna in cima"
           >
@@ -65,7 +70,7 @@ export function Header() {
               {site.phone}
             </a>
             <a
-              href="#contatti"
+              href="/#contatti"
               onClick={handleAnchorClick}
               className="btn-dark-pill !py-2.5 !px-4 !text-sm hidden md:inline-flex"
             >
