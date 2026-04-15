@@ -3,6 +3,7 @@ import { site } from "../data/site";
 import { handleAnchorClick } from "../lib/smoothScroll";
 import { Icon } from "./ui/Icon";
 import { AnimatedButton } from "./ui/AnimatedButton";
+import { LayoutTextFlip } from "./ui/layout-text-flip";
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -71,15 +72,18 @@ export function Hero() {
             <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-end">
               <motion.h1
                 variants={item}
-                className="font-extrabold leading-[0.98] tracking-tight max-w-2xl bg-clip-text text-transparent"
-                style={{
-                  fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)",
-                  backgroundImage:
-                    "linear-gradient(135deg, #B4D4FA 0%, #E8F4FD 45%, #FFFFFF 100%)",
-                }}
+                className="font-extrabold leading-[1] tracking-tight max-w-2xl flex flex-col gap-2 md:gap-3"
+                style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)" }}
               >
-                Aria fresca — <br />
-                installata bene.
+                <span className="inline-flex flex-wrap items-center gap-x-3 md:gap-x-4 gap-y-2">
+                  <span className="text-gradient-cool">Aria</span>
+                  <LayoutTextFlip
+                    words={["fresca", "pulita", "silenziosa", "sana", "garantita"]}
+                    duration={2400}
+                  />
+                  <span className="text-gradient-cool">—</span>
+                </span>
+                <span className="text-gradient-cool">installata bene.</span>
               </motion.h1>
 
               <motion.div

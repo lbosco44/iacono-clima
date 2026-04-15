@@ -151,6 +151,13 @@
     white-space: nowrap;
   }
 
+  .text-gradient-cool {
+    background-image: linear-gradient(135deg, #B4D4FA 0%, #E8F4FD 45%, #FFFFFF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
   .eyebrow {
     display: inline-flex;
     align-items: center;
