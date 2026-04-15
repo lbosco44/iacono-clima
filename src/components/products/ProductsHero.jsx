@@ -1,6 +1,4 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { Icon } from "../ui/Icon";
-import { handleAnchorClick } from "../../lib/smoothScroll";
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -20,7 +18,7 @@ export function ProductsHero() {
       };
 
   return (
-    <section className="relative overflow-hidden pt-24 md:pt-32 pb-12 md:pb-20 bg-[var(--color-bg-light)]">
+    <section className="relative overflow-hidden pt-24 md:pt-32 pb-10 md:pb-14 bg-[var(--color-bg-light)]">
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
         aria-hidden="true"
@@ -58,43 +56,6 @@ export function ProductsHero() {
           Consulta le schede e scarica i cataloghi tecnici ufficiali.
         </motion.p>
 
-        <motion.div
-          variants={item}
-          className="mt-8 flex flex-wrap justify-center gap-3"
-        >
-          <a
-            href="#residenziale"
-            onClick={handleAnchorClick}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-dark)] text-white text-sm font-semibold hover:bg-[var(--color-primary)] transition-colors"
-          >
-            <Icon name="home" size={16} stroke={2.2} />
-            Residenziale
-          </a>
-          <a
-            href="#commerciale"
-            onClick={handleAnchorClick}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[var(--color-dark)] border border-[var(--color-border)] text-sm font-semibold hover:border-[var(--color-dark)] transition-colors"
-          >
-            <Icon name="store" size={16} stroke={2.2} />
-            Commerciale
-          </a>
-          <a
-            href="#monoblocchi"
-            onClick={handleAnchorClick}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[var(--color-dark)] border border-[var(--color-border)] text-sm font-semibold hover:border-[var(--color-dark)] transition-colors"
-          >
-            <Icon name="key" size={16} stroke={2.2} />
-            Monoblocchi
-          </a>
-          <a
-            href="#industriale"
-            onClick={handleAnchorClick}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[var(--color-dark)] border border-[var(--color-border)] text-sm font-semibold hover:border-[var(--color-dark)] transition-colors"
-          >
-            <Icon name="factory" size={16} stroke={2.2} />
-            Industriale
-          </a>
-        </motion.div>
       </motion.div>
     </section>
   );

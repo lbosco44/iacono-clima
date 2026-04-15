@@ -9,22 +9,38 @@ const BRAND_COLORS = {
 
 export function ProductCategory({ category, index }) {
   const isAlt = index % 2 === 1;
+  const watermark = category.id.toUpperCase();
 
   return (
     <section
       id={category.id}
       className={cn(
-        "section-cinematic relative",
+        "section-cinematic relative overflow-hidden",
         isAlt ? "bg-[var(--color-bg-light)]" : "bg-white"
       )}
+      style={{ scrollMarginTop: "8rem" }}
     >
-      <div className="container-narrow">
-        <Reveal className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-12 mb-10 md:mb-14">
+      {/* Giant transparent watermark */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-2 md:top-4 flex justify-center select-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <span
+          className="font-black uppercase tracking-tighter leading-[0.85] text-[var(--color-primary)]/[0.07] whitespace-nowrap"
+          style={{
+            fontSize: "clamp(5rem, 18vw, 16rem)",
+          }}
+        >
+          {watermark}
+        </span>
+      </div>
+
+      <div className="container-narrow relative">
+        <Reveal className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-12 mb-10 md:mb-14 mt-12 md:mt-20">
           <div>
-            <span className="eyebrow">{category.eyebrow}</span>
             <h2
               className="h-display max-w-2xl"
-              style={{ fontSize: "clamp(1.875rem, 4.5vw, 3.25rem)" }}
+              style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
             >
               {category.title}
             </h2>
@@ -32,7 +48,7 @@ export function ProductCategory({ category, index }) {
           <div className="flex flex-col gap-3 md:items-end">
             <span
               className={cn(
-                "inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--color-accent)] text-xs font-bold tracking-[0.18em] uppercase",
+                "inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--color-accent)] text-xs font-bold tracking-[0.18em] uppercase shadow-sm",
                 BRAND_COLORS[category.brand] || "text-[var(--color-primary)]"
               )}
             >
