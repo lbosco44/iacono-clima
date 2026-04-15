@@ -5,30 +5,28 @@ import { useCountUp } from "../hooks/useCountUp";
 import { Reveal } from "./ui/Reveal";
 import { ImagePlaceholder } from "./ui/ImagePlaceholder";
 
-function BigStat({ stat, started }) {
+function StatItem({ stat, started }) {
   const value = useCountUp(stat.value, { duration: 2, start: started });
   return (
-    <div className="grid md:grid-cols-[auto_1fr] items-baseline gap-4 md:gap-8 py-6 md:py-10 border-b border-[var(--color-border)]">
+    <div className="flex flex-col items-start">
       <div
         className="text-[var(--color-primary)] font-extrabold leading-none tracking-tight"
         style={{
-          fontSize: "clamp(4rem, 11vw, 9rem)",
+          fontSize: "clamp(3rem, 6vw, 5.5rem)",
           fontVariantNumeric: "tabular-nums",
         }}
       >
         {value}
-        <span className="text-[var(--color-primary)]">{stat.suffix}</span>
+        <span>{stat.suffix}</span>
       </div>
-      <div className="md:pb-4">
-        <div className="text-[var(--color-dark)] font-bold text-base md:text-lg">
-          {stat.label}
+      <div className="mt-3 md:mt-4 text-[var(--color-dark)] font-bold text-sm md:text-base leading-tight">
+        {stat.label}
+      </div>
+      {stat.sub && (
+        <div className="text-[var(--color-text-muted)] text-xs md:text-sm mt-0.5">
+          {stat.sub}
         </div>
-        {stat.sub && (
-          <div className="text-[var(--color-text-muted)] text-sm mt-1">
-            {stat.sub}
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }
@@ -40,7 +38,7 @@ export function Stats() {
   return (
     <section ref={ref} className="section-cinematic bg-white">
       <div className="container-narrow">
-        <Reveal className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-12 mb-10 md:mb-16">
+        <Reveal className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-12 mb-10 md:mb-14">
           <div>
             <span className="eyebrow">I nostri numeri</span>
             <h2
@@ -56,9 +54,9 @@ export function Stats() {
           </p>
         </Reveal>
 
-        <div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 md:gap-x-10 pt-6 md:pt-8 border-t border-[var(--color-border)]">
           {stats.map((s) => (
-            <BigStat key={s.label} stat={s} started={inView} />
+            <StatItem key={s.label} stat={s} started={inView} />
           ))}
         </div>
 
