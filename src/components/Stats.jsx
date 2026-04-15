@@ -42,14 +42,14 @@ export function Stats() {
           <div>
             <span className="eyebrow">I nostri numeri</span>
             <h2
-              className="h-display max-w-3xl"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+              className="h-display max-w-2xl"
+              style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.5rem)" }}
             >
               Oltre vent'anni,<br />
               al servizio del clima.
             </h2>
           </div>
-          <p className="text-[var(--color-text-muted)] max-w-sm text-sm md:text-base leading-relaxed">
+          <p className="text-[var(--color-text-muted)] max-w-md text-lg md:text-2xl leading-snug">
             Non numeri per marketing. Anni, clienti, comuni e lavori che abbiamo fatto davvero — verificabili.
           </p>
         </Reveal>
