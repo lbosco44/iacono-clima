@@ -6,6 +6,7 @@ export const services = [
     short: "Case e appartamenti",
     description:
       "Monosplit e multisplit per abitazioni. Studio dei carichi termici, posizionamento ottimale, canaline nascoste.",
+    stat: { value: "9", label: "unità interne max" },
     bullets: [
       "Monosplit 9000-24000 BTU",
       "Multisplit fino a 9 unità interne",
@@ -20,6 +21,7 @@ export const services = [
     short: "Negozi, uffici, centri",
     description:
       "Climatizzazione silenziosa e ad alto rendimento per spazi business. Progettazione su misura secondo volumi e flussi.",
+    stat: { value: "A", label: "classe energetica" },
     bullets: [
       "Canalizzati e cassette",
       "Sistemi VRF multi-zona",
@@ -34,6 +36,7 @@ export const services = [
     short: "Controllo, ricariche, riparazioni",
     description:
       "Interventi su tutte le marche. Controllo stagionale, sanificazione, ricarica gas F-GAS certificata.",
+    stat: { value: "24h", label: "tempo di intervento" },
     bullets: [
       "Controllo periodico",
       "Sanificazione e pulizia",
