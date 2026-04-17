@@ -27,14 +27,14 @@ export function Services() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (v < 0.38) setActiveIndex(0);
-    else if (v < 0.7) setActiveIndex(1);
+    if (v < 0.3) setActiveIndex(0);
+    else if (v < 0.65) setActiveIndex(1);
     else setActiveIndex(2);
   });
 
-  const opacity0 = useTransform(scrollYProgress, [0, 0.3, 0.42], [1, 1, 0]);
-  const opacity1 = useTransform(scrollYProgress, [0.3, 0.42, 0.62, 0.74], [0, 1, 1, 0]);
-  const opacity2 = useTransform(scrollYProgress, [0.62, 0.74, 1], [0, 1, 1]);
+  const opacity0 = useTransform(scrollYProgress, [0, 0.22, 0.32], [1, 1, 0]);
+  const opacity1 = useTransform(scrollYProgress, [0.22, 0.32, 0.55, 0.65], [0, 1, 1, 0]);
+  const opacity2 = useTransform(scrollYProgress, [0.55, 0.65, 1], [0, 1, 1]);
   const opacities = [opacity0, opacity1, opacity2];
 
   if (reduced) {
@@ -73,7 +73,7 @@ export function Services() {
 
   return (
     <section id="servizi" className="bg-[var(--color-bg-light)] relative">
-      <div ref={trackRef} style={{ height: "300vh" }}>
+      <div ref={trackRef} style={{ height: "500vh" }}>
         <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
           <div className="container-narrow w-full py-10 md:py-16">
             <SectionHeader />
