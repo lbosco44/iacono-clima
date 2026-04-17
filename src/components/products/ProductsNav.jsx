@@ -11,6 +11,22 @@ const NAV_ITEMS = [
 
 export function ProductsNav() {
   const [active, setActive] = useState("residenziale");
+  const [inZone, setInZone] = useState(false);
+
+  // Track whether ANY product section is in viewport
+  useEffect(() => {
+    const zoneObserver = new IntersectionObserver(
+      (entries) => {
+        setInZone(entries.some((e) => e.isIntersecting));
+      },
+      { threshold: 0 }
+    );
+    NAV_ITEMS.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) zoneObserver.observe(el);
+    });
+    return () => zoneObserver.disconnect();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,8 +81,14 @@ export function ProductsNav() {
         </div>
       </div>
 
-      {/* Mobile: vertical sidebar on the right */}
-      <div className="md:hidden fixed right-3 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end gap-3">
+      {/* Mobile: vertical sidebar on the right — only visible when product sections are in viewport */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: inZone ? 1 : 0, x: inZone ? 0 : 20 }}
+        transition={{ duration: 0.25 }}
+        className="md:hidden fixed right-3 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end gap-3"
+        style={{ pointerEvents: inZone ? "auto" : "none" }}
+      >
         {NAV_ITEMS.map((item) => {
           const isActive = active === item.id;
           return (
@@ -102,7 +124,7 @@ export function ProductsNav() {
             </a>
           );
         })}
-      </div>
+      </motion.div>
     </>
   );
 }
