@@ -28,7 +28,7 @@ export function ProductCategory({ category, index }) {
         <span
           className="font-black uppercase tracking-tighter leading-[0.85] text-[var(--color-primary)]/[0.07] whitespace-nowrap"
           style={{
-            fontSize: "clamp(5rem, 18vw, 16rem)",
+            fontSize: "clamp(2.5rem, 14vw, 16rem)",
           }}
         >
           {watermark}
