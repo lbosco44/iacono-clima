@@ -139,7 +139,7 @@ export const productCategories = [
         name: "Carrier Idronico",
         type: "Sistema idronico",
         short: "Chiller, pompe di calore, fan-coil",
-        image: null,
+        image: "/images/carrier-xp-energy.png",
         specs: ["Grandi volumi", "Acqua come vettore", "Alta efficienza"],
         pdf: "/docs/industriale-carrier-idronico.pdf",
       },
