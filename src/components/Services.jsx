@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import {
+  AnimatePresence,
   motion,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
-  useTransform,
 } from "framer-motion";
 import { services } from "../data/services";
 import { Reveal } from "./ui/Reveal";
@@ -27,115 +27,83 @@ export function Services() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (v < 0.3) setActiveIndex(0);
-    else if (v < 0.65) setActiveIndex(1);
-    else setActiveIndex(2);
+    const idx = Math.min(
+      services.length - 1,
+      Math.floor(v * services.length)
+    );
+    setActiveIndex(idx);
   });
 
-  const opacity0 = useTransform(scrollYProgress, [0, 0.22, 0.32], [1, 1, 0]);
-  const opacity1 = useTransform(scrollYProgress, [0.22, 0.32, 0.55, 0.65], [0, 1, 1, 0]);
-  const opacity2 = useTransform(scrollYProgress, [0.55, 0.65, 1], [0, 1, 1]);
-  const opacities = [opacity0, opacity1, opacity2];
+  const active = services[activeIndex];
+  const img = IMAGE_MAP[active.id];
 
-  if (reduced) {
-    return (
-      <section id="servizi" className="bg-[var(--color-bg-light)] section-cinematic">
-        <div className="container-narrow">
-          <SectionHeader />
-          <div className="space-y-16 mt-10">
-            {services.map((s, i) => {
-              const img = IMAGE_MAP[s.id];
-              return (
-                <div key={s.id} className="grid md:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <h3 className="font-extrabold text-[var(--color-dark)] text-3xl">{s.title}</h3>
-                    <p className="mt-3 text-[var(--color-text-muted)] text-sm">{s.description}</p>
-                    <ul className="mt-4 space-y-2">
-                      {s.bullets.map((b) => (
-                        <li key={b} className="flex items-start gap-2 text-sm text-[var(--color-dark)]/85">
-                          <Icon name="check" size={14} stroke={2.6} className="mt-0.5 shrink-0 text-[var(--color-primary)]" />
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="rounded-3xl overflow-hidden aspect-[4/3]">
-                    <img src={img.src} alt={img.alt} loading="lazy" className="w-full h-full object-cover" />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-    );
-  }
+  if (reduced) return <FallbackStatic />;
 
   return (
     <section id="servizi" className="bg-[var(--color-bg-light)] relative">
-      <div ref={trackRef} style={{ height: "500vh" }}>
+      <div ref={trackRef} style={{ height: `${services.length * 150}vh` }}>
         <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-          <div className="container-narrow w-full py-10 md:py-16">
+          <div className="container-narrow w-full py-8 md:py-12">
             <SectionHeader />
 
-            <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 md:gap-14 items-center mt-8 md:mt-12">
-              {/* LEFT — text + stat */}
-              <div className="relative min-h-[32vh] md:min-h-[38vh]">
-                {services.map((s, i) => (
+            <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 md:gap-14 items-center mt-8 md:mt-10">
+              {/* LEFT — text, switches instantly */}
+              <div className="relative min-h-[34vh] md:min-h-[40vh]">
+                <AnimatePresence mode="wait">
                   <motion.div
-                    key={s.id}
-                    style={{ opacity: opacities[i] }}
-                    className="absolute inset-0 flex flex-col justify-center"
+                    key={activeIndex}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -16 }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex flex-col justify-center"
                   >
                     <h3
                       className="font-extrabold text-[var(--color-dark)] leading-[1.02] tracking-tight"
                       style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
                     >
-                      {s.title}
+                      {active.title}
                     </h3>
                     <p className="mt-3 md:mt-4 max-w-md text-[var(--color-text-muted)] text-sm md:text-base leading-relaxed">
-                      {s.description}
+                      {active.description}
                     </p>
                     <ul className="mt-4 md:mt-5 grid grid-cols-2 gap-x-4 gap-y-2 max-w-md">
-                      {s.bullets.map((b) => (
+                      {active.bullets.map((b) => (
                         <li key={b} className="flex items-start gap-2 text-xs md:text-sm text-[var(--color-dark)]/85">
                           <Icon name="check" size={14} stroke={2.6} className="mt-0.5 shrink-0 text-[var(--color-primary)]" />
                           {b}
                         </li>
                       ))}
                     </ul>
-
                     <div className="mt-8 md:mt-10">
                       <div
                         className="font-extrabold text-[var(--color-dark)] leading-none tracking-tight"
                         style={{ fontSize: "clamp(3.5rem, 7vw, 6rem)", fontVariantNumeric: "tabular-nums" }}
                       >
-                        {s.stat.value}
+                        {active.stat.value}
                       </div>
                       <div className="text-[var(--color-text-muted)] text-sm md:text-base font-semibold mt-1">
-                        {s.stat.label}
+                        {active.stat.label}
                       </div>
                     </div>
                   </motion.div>
-                ))}
+                </AnimatePresence>
               </div>
 
-              {/* RIGHT — single image */}
+              {/* RIGHT — single image, switches instantly */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white" style={{ aspectRatio: "4/3" }}>
-                {services.map((s, i) => {
-                  const img = IMAGE_MAP[s.id];
-                  return (
-                    <motion.img
-                      key={s.id}
-                      src={img.src}
-                      alt={img.alt}
-                      loading={i === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      style={{ opacity: opacities[i] }}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                  );
-                })}
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeIndex}
+                    src={img.src}
+                    alt={img.alt}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </AnimatePresence>
               </div>
             </div>
 
@@ -181,5 +149,39 @@ function ProgressDots({ count, active }) {
         />
       ))}
     </div>
+  );
+}
+
+function FallbackStatic() {
+  return (
+    <section id="servizi" className="bg-[var(--color-bg-light)] section-cinematic">
+      <div className="container-narrow">
+        <SectionHeader />
+        <div className="space-y-16 mt-10">
+          {services.map((s) => {
+            const img = IMAGE_MAP[s.id];
+            return (
+              <div key={s.id} className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 className="font-extrabold text-[var(--color-dark)] text-3xl">{s.title}</h3>
+                  <p className="mt-3 text-[var(--color-text-muted)] text-sm">{s.description}</p>
+                  <ul className="mt-4 space-y-2">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-sm text-[var(--color-dark)]/85">
+                        <Icon name="check" size={14} stroke={2.6} className="mt-0.5 shrink-0 text-[var(--color-primary)]" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-3xl overflow-hidden aspect-[4/3]">
+                  <img src={img.src} alt={img.alt} loading="lazy" className="w-full h-full object-cover" />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }
