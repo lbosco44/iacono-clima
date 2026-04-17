@@ -78,13 +78,18 @@ function ProductCard({ product }) {
     <article className="group relative h-full bg-white rounded-2xl border border-[var(--color-border)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 transition-all duration-400 flex flex-col overflow-hidden">
       <div className="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-[var(--color-accent)] via-white to-[var(--color-bg-light)]">
         {product.image ? (
-          <img
-            src={product.image}
-            alt={`${product.name} — ${product.type}`}
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-contain p-5 transition-transform duration-500 ease-[var(--ease-smooth)] group-hover:scale-[1.08]"
-          />
+          <div
+            className="absolute inset-0 flex items-center justify-center p-5"
+            style={product.imageScale ? { transform: `scale(${product.imageScale})` } : undefined}
+          >
+            <img
+              src={product.image}
+              alt={`${product.name} — ${product.type}`}
+              loading="lazy"
+              decoding="async"
+              className="max-w-full max-h-full object-contain transition-transform duration-500 ease-[var(--ease-smooth)] group-hover:scale-[1.08]"
+            />
+          </div>
         ) : (
           <div className="absolute inset-0 grid place-items-center text-[var(--color-primary)]/30">
             <Icon name="snowflake" size={64} stroke={1.5} />
