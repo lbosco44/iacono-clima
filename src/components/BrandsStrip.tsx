@@ -1,42 +1,29 @@
-import { secondaryBrands } from "@/data/brands";
-import { LogoLoop, type LogoItem } from "./LogoLoop";
-
-const logoItems: LogoItem[] = secondaryBrands.map((b) => ({
-  src: b.logo,
-  alt: b.name,
-  title: b.name,
-}));
+import { brands } from "@/data/brands";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function BrandsStrip() {
   return (
-    <div className="container-x">
-      <div className="border-t border-[var(--color-line)] pt-8">
-        <p
-          aria-hidden="true"
-          className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-[var(--color-mute)] mb-5 text-center"
-        >
-          Altri marchi disponibili
+    <Reveal>
+      <div className="border-t border-[var(--color-line)]">
+        <p className="pt-6 pb-8 font-mono text-[10.5px] uppercase tracking-[0.16em] text-[var(--color-mute)] text-center">
+          Brand partner
         </p>
-
-        <LogoLoop
-          logos={logoItems}
-          speed={55}
-          direction="left"
-          logoHeight={28}
-          gap={56}
-          hoverSpeed={0}
-          fadeOut
-          fadeOutColor="#F8F8F6"
-          ariaLabel="Altri marchi disponibili: Daikin, Sinclair, Hermann Saunier Duval"
-        />
-
-        {/* Lista testuale per screen reader */}
-        <ul className="sr-only">
-          {secondaryBrands.map((b) => (
-            <li key={b.id}>{b.name}</li>
+        <div className="grid grid-cols-3 lg:grid-cols-5 divide-x divide-y lg:divide-y-0 divide-[var(--color-line)]">
+          {brands.map((brand) => (
+            <div
+              key={brand.id}
+              className="flex items-center justify-center px-6 py-8 lg:px-10 lg:py-10"
+            >
+              <img
+                src={brand.logo}
+                alt={brand.name}
+                loading="lazy"
+                className="h-7 lg:h-9 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              />
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
-    </div>
+    </Reveal>
   );
 }
