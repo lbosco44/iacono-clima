@@ -18,18 +18,15 @@ export function HeroSistema() {
       aria-labelledby="hero-heading"
     >
       {/* ── Hero fullscreen ─────────────────────────────────── */}
-      <div className="relative min-h-svh flex flex-col pt-[68px] lg:pt-[80px]">
-        {/* Background image */}
-        <div
-          className="absolute inset-0"
-          aria-hidden="true"
-          style={{
-            backgroundImage: "url('/images/hero3.jpeg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        />
+      <div
+        className="relative min-h-svh flex flex-col pt-[68px] lg:pt-[80px]"
+        style={{
+          backgroundImage: "url(/images/hero3.jpeg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
 
         {/* Overlay scuro per leggibilità del testo */}
         <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
