@@ -1,13 +1,13 @@
 .animated-gradient-text {
   position: relative;
   display: inline;
-  padding-right: 0.1em; /* compensa lo sforamento del corsivo */
 }
 
 .animated-gradient-text .text-content {
   display: inline;
+  padding-right: 0.15em; /* il background-clip vive qui — il padding include l'overhang del corsivo */
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow: none; /* blocca l'ereditarietà del text-shadow del parent */
+  text-shadow: none;
 }
