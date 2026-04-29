@@ -220,17 +220,9 @@ export function Header() {
           <a
             href={`tel:${site.phoneTel}`}
             aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
-            className="btn-fly shrink-0 inline-flex items-center gap-2 h-10 px-4 bg-[var(--color-accent)] text-white font-semibold text-[13.5px] rounded-[5px] shadow-[0_4px_16px_-4px_rgba(0,102,204,0.4)] hover:shadow-[0_6px_20px_-4px_rgba(0,102,204,0.6)] active:scale-[0.98] transition-shadow"
+            className="inline-flex items-center justify-center w-9 h-9 bg-[var(--color-accent)] text-white rounded-[5px] shadow-[0_4px_16px_-4px_rgba(0,102,204,0.4)] hover:shadow-[0_6px_20px_-4px_rgba(0,102,204,0.6)] hover:scale-105 active:scale-95 transition-all"
           >
-            <span className="btn-icon">
-              <Phone size={14} strokeWidth={2.5} aria-hidden="true" />
-            </span>
-            <span className="btn-text">{site.phone}</span>
-            <span className="btn-icon-center" aria-hidden="true">
-              <span className="btn-icon-bob">
-                <Phone size={16} strokeWidth={2.5} />
-              </span>
-            </span>
+            <Phone size={15} strokeWidth={2.5} aria-hidden="true" />
           </a>
         </div>
       </motion.div>
