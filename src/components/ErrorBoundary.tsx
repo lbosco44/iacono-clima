@@ -1,17 +1,17 @@
 import { Component, type ReactNode, type ErrorInfo } from "react";
 
 type Props = { children: ReactNode };
-type State = { hasError: boolean; message: string };
+type State = { hasError: boolean; message: string; stack: string };
 
 export class ErrorBoundary extends Component<Props, State> {
-  state: State = { hasError: false, message: "" };
+  state: State = { hasError: false, message: "", stack: "" };
 
   static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, message: error.message };
+    return { hasError: true, message: error.message, stack: error.stack ?? "" };
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.error("[ErrorBoundary]", error, info.componentStack);
+    this.setState((s) => ({ ...s, stack: (info.componentStack ?? "") + "\n" + (error.stack ?? "") }));
   }
 
   render() {
@@ -55,6 +55,23 @@ export class ErrorBoundary extends Component<Props, State> {
           >
             Ricarica la pagina
           </button>
+          {this.state.stack && (
+            <pre style={{
+              marginTop: "1.5rem",
+              padding: "1rem",
+              background: "#0f1b2d",
+              color: "#f8f8f6",
+              fontSize: "0.65rem",
+              textAlign: "left",
+              borderRadius: "4px",
+              maxWidth: "90vw",
+              overflow: "auto",
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-all",
+            }}>
+              {this.state.stack}
+            </pre>
+          )}
         </div>
       );
     }
