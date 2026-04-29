@@ -20,14 +20,15 @@ export function HeroSistema() {
       {/* ── Hero fullscreen ─────────────────────────────────── */}
       <div className="relative min-h-svh flex flex-col pt-[68px] lg:pt-[80px]">
         {/* Background image */}
-        <img
-          src="/images/hero3.jpeg"
-          alt=""
+        <div
+          className="absolute inset-0"
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-          decoding="sync"
+          style={{
+            backgroundImage: "url('/images/hero3.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
         />
 
         {/* Overlay scuro per leggibilità del testo */}
