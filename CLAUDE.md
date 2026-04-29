@@ -1,111 +1,129 @@
 # Iacono Clima — progetto
 
-Sito single-page per **Iacono Climatizzazione S.R.L.**, azienda di installazione climatizzatori a Siracusa (oltre 20 anni, certificata F-GAS, rivenditore Carrier e MAXA). Sostituisce `www.iaconoclim.it`.
+Sito single-page (con catalogo `/prodotti` come pagina secondaria) per **Iacono Climatizzazione S.r.l.**, azienda di installazione climatizzatori a Siracusa (oltre 20 anni, certificata F-GAS, rivenditore Carrier e MAXA). Sostituisce `www.iaconoclim.it`.
 
 ## Stack
 
-- **React 19** + **Vite**
+- **React 19** + **Vite 8** + **TypeScript 5**
 - **Tailwind CSS v4** (plugin `@tailwindcss/vite`, token in `@theme` dentro `src/index.css` — niente `tailwind.config.js`)
-- **Framer Motion** + **react-intersection-observer** per animazioni scroll
-- `react-router-dom` installato ma **non importato** (single-page con anchor scroll)
-- `clsx` via `src/lib/cn.js`
-- Nessun backend, nessuna libreria di toast: il form è solo frontend (AnimatePresence per lo stato di successo)
+- **Framer Motion** + **react-intersection-observer** per reveal/stagger
+- **GSAP** + **ScrollTrigger** per: pinning step "Come lavoriamo", timeline orizzontale "Sistema Iacono"
+- **Lenis** smooth scroll globale (lerp 0.08), integrato con `ScrollTrigger.update`
+- **react-countup** per animazione "20+"
+- **Leaflet** + tile Carto Light (OSM, no API key) per la mappa nel "Briefing"
+- **react-router-dom** per le 2 route: `/` e `/prodotti`
+- Nessun backend: il form è solo frontend (`AnimatePresence` per success state)
 
-## Design system — concept "Freddo Pulito"
+## Design system — concept "Sistema"
 
 Tutti i token vivono in `src/index.css` dentro `@theme`:
 
 | Token | Valore | Uso |
 |---|---|---|
-| `--color-primary` | `#1A73E8` | Blu brand, CTA, accent |
-| `--color-primary-dark` | `#1557B0` | Hover su primary |
-| `--color-bg` | `#FFFFFF` | Sfondo base |
-| `--color-bg-light` | `#F0F7FF` | Sezioni alternate |
-| `--color-dark` | `#0A2540` | Sezioni scure (Stats, Brands, Contatti) |
-| `--color-darker` | `#060D1A` | Footer |
-| `--color-dark-card` | `#1E3A5F` | Card su sfondo scuro |
-| `--color-accent` | `#E8F4FD` | Pill badge, icon backgrounds, placeholder |
-| `--color-text` / `--color-text-muted` | `#1A1A2E` / `#6B7280` | Corpo / secondario |
-| `--color-whatsapp` | `#25D366` | FAB WhatsApp |
-| `--color-star` | `#F59E0B` | Stelle recensioni |
+| `--color-bg` | `#F8F8F6` | Off-white sfondo principale |
+| `--color-ink` | `#0F1B2D` | Navy notte — sezioni scure / testi forti |
+| `--color-accent` | `#E8763A` | Arancione tramonto siciliano — CTA, link, accenti |
+| `--color-mute` | `#4A4A4A` | Grigio testi tecnici secondari |
+| `--color-ink-soft` | `#1A2842` | Card su sfondo scuro |
+| `--color-bg-warm` | `#F2F0EA` | Sezioni alternate |
+| `--color-accent-soft` | `#FBE8DC` | Tag bg tenue |
+| `--color-accent-deep` | `#C45F28` | Hover accent |
+| `--color-line` | `#E5E2DA` | Bordi sottili |
+| `--color-line-strong` | `#C9C4B6` | Divisori |
 
-**Font**: Montserrat (400 regular, 700/800 bold, 900 black) caricato via `<link>` in `index.html`.
+**Font**:
+- Display: `Neue Haas Grotesk Display Pro` (Adobe Fonts) → fallback **Geist Variable** (già caricato via `@fontsource-variable/geist`).
+- Body: `Inter` (Google Fonts, 400/500/600).
+- Mono (dati/tag IDE-style): `JetBrains Mono` (Google Fonts, 500/700).
 
-**Radius**: card 16px (`rounded-2xl`), bottoni 8px (`rounded-lg`), pill 999px.
+> Per attivare il font Adobe vero: creare un Web Project su Adobe Fonts che includa "Neue Haas Grotesk Display Pro", poi in `index.html` decommentare lo `<link>` Typekit e sostituire `PROJECT_ID`. Finché Adobe non è configurato, il sito gira identico con Geist.
 
-**Shadow**: `--shadow-card` base, `--shadow-card-hover` al hover, `--shadow-btn-glow` per CTA.
+**Radius**: tag IDE 3px (`rounded-[3px]`), card 4px, pill 999px.
 
-**Easing**: `--ease-smooth: cubic-bezier(0.22, 1, 0.36, 1)` su tutte le transizioni.
+**Easing**: `cubic-bezier(0.22, 1, 0.36, 1)` (quiet) su tutte le transizioni di reveal/hover.
 
 ## Struttura
 
 ```
 src/
-├── App.jsx                 # Sequenza sezioni + ErrorBoundary
-├── main.jsx
-├── index.css               # @import tailwindcss + @theme + @layer base/components
+├── App.tsx                    # BrowserRouter + Routes + layout globali + initLenis
+├── main.tsx                   # render + import Geist + index.css
+├── index.css                  # @import tailwindcss + @theme + @layer base/components
+├── pages/
+│   ├── HomePage.tsx           # 7 sezioni in ordine
+│   └── ProductsPage.tsx       # catalogo PDF in 4 categorie
+├── sections/
+│   ├── HeroSistema.tsx        # 1 — split + scheda dati stagger
+│   ├── ISistemi.tsx           # 2 — 5 schede + manifesto card + BrandsStrip
+│   ├── ComeLavoriamo.tsx      # 3 — 4 step con GSAP scrub, mobile = reveal
+│   ├── Casi.tsx               # 4 — 4 righe editoriali alternate
+│   ├── SistemaIacono.tsx      # 5 — count-up "20+" + timeline orizzontale GSAP
+│   ├── Verdetti.tsx           # 6 — recensione fullwidth + nav 01/04
+│   └── Briefing.tsx           # 7 — contatti + form + mappa Leaflet
 ├── components/
-│   ├── Header.jsx          # fixed, trasparente→bianco su scroll
-│   ├── MobileDrawer.jsx    # drawer destro per nav mobile
-│   ├── Hero.jsx            # split 60/40, sfondo scuro, 3 badge + 2 CTA
-│   ├── Stats.jsx           # 4 counter animati su sfondo scuro
-│   ├── Services.jsx        # 8 card, bordo sx blu, hover lift
-│   ├── WhyUs.jsx           # 3 colonne con icone grandi
-│   ├── About.jsx           # immagine + testo + 2 badge
-│   ├── Brands.jsx          # 2 card Carrier/MAXA su scuro
-│   ├── ServiceArea.jsx     # 21 pill comuni
-│   ├── Testimonials.jsx    # 3 card recensioni
-│   ├── ContactForm.jsx     # form + info colonna
-│   ├── Footer.jsx          # 3 colonne + bottom bar
-│   ├── WhatsAppFab.jsx     # FAB fisso con pulse
-│   ├── ErrorBoundary.jsx
+│   ├── Header.tsx             # sticky, glass on scroll, drawer mobile
+│   ├── Footer.tsx             # navy 3 colonne
+│   ├── WhatsAppFab.tsx        # arancione (NON verde — coerenza brand)
+│   ├── BrandsStrip.tsx        # marquee "Altri marchi disponibili"
+│   ├── BriefingMap.tsx        # Leaflet wrapper, dynamic import
 │   └── ui/
-│       ├── Reveal.jsx      # Reveal, RevealGroup, RevealItem (tutti rispettano prefers-reduced-motion)
-│       ├── SectionTitle.jsx
-│       ├── Badge.jsx
-│       ├── Button.jsx      # primary/outline con anchor smooth-scroll integrato
-│       ├── ImagePlaceholder.jsx  # fallback con nome file se img manca
-│       └── Icon.jsx        # SVG inline set (home, store, factory, tool, …)
+│       ├── Tag.tsx            # tag IDE-style monospace, varianti per Sistemi/Nicchie
+│       ├── CountUp.tsx        # wrapper react-countup + IO triggerOnce
+│       ├── Reveal.tsx         # Framer fade+translateY w/ useReducedMotion + variants stagger
+│       ├── Button.tsx         # primary arancione / outline navy / ghost / link
+│       ├── SectionLabel.tsx   # eyebrow `[xx / NOME]` + linea + label
+│       └── DisplayHeading.tsx # h1/h2/h3 con scale tipografica predefinita
 ├── data/
-│   ├── site.js             # telefono, whatsapp, email, indirizzo, nav, orari
-│   ├── services.js         # 8 servizi
-│   ├── stats.js            # 4 numeri
-│   ├── reasons.js          # 3 perché sceglierci
-│   ├── comuni.js           # 21 comuni
-│   └── testimonials.js     # 3 recensioni
+│   ├── site.ts                # contatti, indirizzo (geo), nav, certificazioni
+│   ├── sistemi.ts             # 5 categorie + manifesto
+│   ├── steps.ts               # 4 step processo
+│   ├── casi.ts                # 4 casi (HoReCa/Condominio/Residenziale/Commerciale)
+│   ├── timeline.ts            # 5 tappe storia azienda
+│   ├── verdetti.ts            # 4 recensioni placeholder
+│   ├── brands.ts              # primary [Carrier, MAXA] + secondary [Daikin, Sinclair, HSD]
+│   └── prodotti.ts            # 12 PDF cataloghi → /prodotti
 ├── lib/
-│   ├── cn.js               # clsx wrapper
-│   └── smoothScroll.js     # handleAnchorClick + smoothScrollTo
+│   ├── cn.ts                  # clsx + twMerge
+│   ├── lenis.ts               # singleton init, scrollTo helper, raf loop
+│   └── gsap.ts                # registerPlugin(ScrollTrigger)
 └── hooks/
-    └── useCountUp.js       # counter animato via framer-motion animate()
+    └── useInView.ts           # wrapper react-intersection-observer triggerOnce
 ```
 
 ## Convenzioni
 
-- **Mobile-first**: parti dai 375px, poi scala. Ogni section ha `padding-block: 4rem` mobile → `6rem` desktop (classe `.section-y`).
-- **Container**: `.container-x` max-width 1200px, padding orizzontale responsive.
-- **Anchor scroll**: ogni bottone `Button` con `href` che inizia con `#` passa attraverso `handleAnchorClick` (offset header 72px).
-- **Animazioni**: usa `<Reveal>` per elementi singoli, `<RevealGroup>`+`<RevealItem>` per stagger. **Non** usare `whileInView` direttamente nei nuovi componenti — il wrapper gestisce già `prefers-reduced-motion`.
-- **Icone**: solo SVG inline da `ui/Icon.jsx`. Se serve un glifo nuovo, aggiungi la path dentro il dict `ICONS`.
-- **Immagini**: metti i JPG in `public/images/` con i nomi già referenziati in `<ImagePlaceholder name="…">`. Finché non ci sono, il componente mostra un placeholder blu con nome file.
-
-## Nomi immagine attesi in `public/images/`
-
-`hero-bg.jpg`, `chi-siamo-team.jpg`. (Le altre referenziate nel brief — `installazione-01.jpg`, `installazione-02.jpg`, `showroom.jpg`, `unita-esterna.jpg`, `comfort-casa.jpg`, `hero-team.jpg` — non sono attualmente usate in questa build; drop-in futuro.)
+- **Mobile-first tecnico, desktop full-width reale**: parti dai 375px, poi `lg:` (1024px) attiva layout editoriale a colonne. Niente "mobile allargato" su 1440px.
+- **Container**: `.container-x` max-width 1440px, padding orizzontale che cresce coi breakpoint. Per testi narrativi `.container-narrow` 1120px.
+- **Sezioni**: id sempre lower-kebab (`#i-sistemi`, `#come-lavoriamo`, `#sistema-iacono`, `#briefing`...).
+- **Anchor scroll**: gestito da Lenis (`scrollTo` helper in `src/lib/lenis.ts`), offset header -80px.
+- **Reveal**: usa `<Reveal>` per blocchi singoli, `stagger`/`staggerItem` da `Reveal.tsx` per gruppi (Hero scheda dati). Niente `whileInView` ad-hoc nei nuovi componenti.
+- **Tag IDE-style**: solo via `<Tag variant="...">`. Per aggiungere una nicchia/categoria, aggiungere variant in `ui/Tag.tsx`.
+- **Animazioni GSAP**: confinate a 2 sezioni (`ComeLavoriamo`, `SistemaIacono`). Sempre con cleanup `ScrollTrigger.kill()` su unmount/resize. Su mobile `<1024px` il pinning è disattivato.
+- **prefers-reduced-motion**: rispettato a 3 livelli — CSS global (`*` transition-duration: 0.001ms), Lenis non si inizializza, `<Reveal>`/`<CountUp>` skip animation via `useReducedMotion()`.
+- **Immagini**: tutte in `public/images/`, formato `.jpeg` per le foto del concept (hero-detail, step-*, caso-*, showroom-interno, team-titolare). Loghi brand `.png` o `.svg`.
 
 ## Script
 
 ```bash
-npm run dev      # http://localhost:5173
-npm run build    # bundle produzione in dist/
-npm run preview  # preview del build
-npm run lint
+npm run dev        # http://localhost:5173
+npm run build      # tsc -b && vite build → dist/
+npm run preview    # preview del build
+npm run lint       # eslint
+npm run typecheck  # tsc --noEmit
 ```
+
+## Deploy
+
+- Push su `main` → deploy automatico Vercel.
+- `vercel.json` configura SPA rewrite: tutte le route che non sono `api|docs|images|favicon|robots|sitemap|icons|assets` vengono servite da `/index.html`.
+- Mai committare `.env` o chiavi API.
 
 ## Regole
 
-- Tutto il testo del sito è in **italiano**.
-- **Mai** link a pagine inesistenti: ogni anchor corrisponde a un `id` presente.
-- Il form **non** invia davvero — stato locale + AnimatePresence per il success state.
-- Numeri telefono: `tel:+390931441616` per chiamate, `https://wa.me/393356511087` per WhatsApp.
-- `prefers-reduced-motion` è rispettato: disabilita animazioni tramite CSS global + `useReducedMotion()` di framer-motion nei componenti.
+- Tutto il testo del sito è **in italiano**.
+- **Mai** link a pagine inesistenti: ogni anchor corrisponde a un `id` montato.
+- Il form Briefing **non** invia davvero — `AnimatePresence` per success state, nessuna network call.
+- Numeri telefono: `tel:+390931441616` per chiamate, `https://wa.me/393356511087` (primario) o `393356511287` (secondario) per WhatsApp.
+- WhatsApp FAB è **arancione**, non verde standard — coerenza con la palette di brand.
+- Headline hero attuale: "Impianti che durano vent'anni. Come noi." — alternative commentate in `data/site.ts`. Cambiare con il cliente.
+- Coordinate showroom in `data/site.ts > address.geo` da verificare via OSM Nominatim prima del go-live.
