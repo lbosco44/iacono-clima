@@ -199,10 +199,12 @@ export function Header() {
         <a
           href={`tel:${site.phoneTel}`}
           aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
-          className="shrink-0 inline-flex items-center gap-2 h-10 px-4 bg-[var(--color-accent)] text-white font-semibold text-[13.5px] rounded-[5px] hover:bg-[var(--color-accent-deep)] transition-colors"
+          className="btn-fly shrink-0 inline-flex items-center gap-2 h-10 px-4 bg-[var(--color-accent)] text-white font-semibold text-[13.5px] rounded-[5px] shadow-[0_4px_16px_-4px_rgba(232,118,58,0.4)] hover:shadow-[0_6px_20px_-4px_rgba(232,118,58,0.6)] active:scale-[0.98] transition-shadow"
         >
-          <Phone size={14} strokeWidth={2.5} aria-hidden="true" />
-          {site.phone}
+          <span className="btn-icon">
+            <Phone size={14} strokeWidth={2.5} aria-hidden="true" />
+          </span>
+          <span className="btn-text">{site.phone}</span>
         </a>
       </motion.div>
 

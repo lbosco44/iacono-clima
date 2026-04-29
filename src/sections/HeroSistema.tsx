@@ -40,15 +40,16 @@ export function HeroSistema() {
           </p>
 
           <div className="mt-9 lg:mt-11 flex flex-col sm:flex-row gap-3">
-            <Button
+            <a
               href={`tel:${site.phoneTel}`}
-              variant="primary"
-              size="lg"
               aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
+              className="btn-fly inline-flex items-center gap-2 h-14 px-7 text-base font-body font-semibold tracking-tight bg-[var(--color-accent)] text-white rounded-[3px] shadow-[0_8px_24px_-8px_rgba(232,118,58,0.5)] hover:shadow-[0_12px_28px_-8px_rgba(232,118,58,0.65)] active:scale-[0.98] transition-shadow focus-visible:outline-2 focus-visible:outline-offset-3"
             >
-              <Phone size={16} strokeWidth={2.5} aria-hidden="true" />
-              Chiama {site.phone}
-            </Button>
+              <span className="btn-icon">
+                <Phone size={16} strokeWidth={2.5} aria-hidden="true" />
+              </span>
+              <span className="btn-text">Chiama {site.phone}</span>
+            </a>
             <Button
               href={site.whatsapp1Link}
               variant="outline"

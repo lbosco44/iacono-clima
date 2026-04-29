@@ -264,10 +264,12 @@ export function Briefing() {
                       <button
                         type="submit"
                         aria-describedby="briefing-privacy"
-                        className="inline-flex items-center justify-center gap-2 h-14 px-7 bg-[var(--color-accent)] text-white font-semibold tracking-tight rounded-[3px] hover:bg-[var(--color-accent-deep)] transition-colors"
+                        className="btn-fly inline-flex items-center gap-2 h-14 px-7 bg-[var(--color-accent)] text-white font-semibold tracking-tight rounded-[3px] shadow-[0_8px_24px_-8px_rgba(232,118,58,0.5)] hover:shadow-[0_12px_28px_-8px_rgba(232,118,58,0.65)] active:scale-[0.98] transition-shadow"
                       >
-                        Richiedi preventivo
-                        <ArrowRight size={16} strokeWidth={2.5} aria-hidden="true" />
+                        <span className="btn-icon">
+                          <ArrowRight size={16} strokeWidth={2.5} aria-hidden="true" />
+                        </span>
+                        <span className="btn-text">Richiedi preventivo</span>
                       </button>
                     </div>
                   </motion.form>

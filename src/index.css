@@ -171,6 +171,31 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 
+/* ── Btn animated fly ────────────────────────────────── */
+@keyframes fly-1 {
+  from { transform: translateY(0.1em); }
+  to   { transform: translateY(-0.1em); }
+}
+.btn-fly {
+  overflow: hidden;
+}
+.btn-fly .btn-icon {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+.btn-fly .btn-text {
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+.btn-fly:hover .btn-icon {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+  transform: translateX(1.2em);
+}
+.btn-fly:hover .btn-text {
+  transform: translateX(5em);
+}
+
 /* ── WhatsApp pulse — palette arancione ────────────────── */
 @keyframes wa-pulse {
   0%, 100% {
