@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { cn } from "@/lib/cn";
 
 export type StickyScrollItem = {
@@ -16,60 +16,70 @@ export function StickyScroll({
   contentClassName?: string;
 }) {
   const [activeCard, setActiveCard] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
-    container: ref,
-    offset: ["start start", "end start"],
+    target: sectionRef,
+    offset: ["start start", "end end"],
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const breakpoints = content.map((_, i) => i / content.length);
-    const closest = breakpoints.reduce((acc, bp, i) =>
-      Math.abs(latest - bp) < Math.abs(latest - breakpoints[acc]) ? i : acc, 0
-    );
-    setActiveCard(closest);
+    setActiveCard(Math.min(
+      Math.floor(latest * content.length),
+      content.length - 1
+    ));
   });
 
   return (
-    <div
-      ref={ref}
-      className="h-[32rem] lg:h-[36rem] overflow-y-auto flex gap-10 lg:gap-16 rounded-[4px]"
-    >
-      {/* Left — scrolling text */}
-      <div className="relative flex-1 flex items-start px-1">
-        <div className="w-full">
-          {content.map((item, i) => (
-            <div key={i} className="my-16 first:mt-4 last:mb-0">
-              <motion.h3
-                animate={{ opacity: activeCard === i ? 1 : 0.25 }}
-                transition={{ duration: 0.3 }}
-                className="font-display font-bold text-[1.5rem] lg:text-[1.85rem] leading-snug tracking-tight text-[var(--color-ink)]"
-              >
+    <div ref={sectionRef} className="relative lg:flex lg:gap-16 lg:items-start">
+
+      {/* Left — text items, scorrono normalmente */}
+      <div className="flex-1">
+        {content.map((item, i) => (
+          <div
+            key={i}
+            className="min-h-[60vh] lg:min-h-screen flex flex-col justify-center py-16 lg:py-24 border-t border-[var(--color-line)] first:border-t-0"
+          >
+            <motion.div
+              animate={{ opacity: activeCard === i ? 1 : 0.3 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className="font-display font-bold text-[1.65rem] lg:text-[2.25rem] leading-[1.1] tracking-tight text-[var(--color-ink)]">
                 {item.title}
-              </motion.h3>
-              <motion.div
-                animate={{ opacity: activeCard === i ? 1 : 0.25 }}
-                transition={{ duration: 0.3 }}
-                className="mt-4 text-[15px] leading-relaxed text-[var(--color-mute)]"
-              >
+              </h3>
+              <div className="mt-5">
                 {item.description}
-              </motion.div>
-            </div>
-          ))}
-          <div className="h-20" />
+              </div>
+            </motion.div>
+
+            {/* Immagine visibile solo su mobile */}
+            {item.content && (
+              <div className="lg:hidden mt-8 aspect-[4/3] overflow-hidden rounded-[4px]">
+                {item.content}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Right — immagine sticky (solo desktop) */}
+      <div className="hidden lg:block w-[45%] shrink-0">
+        <div className={cn("sticky top-[12vh] h-[76vh] overflow-hidden rounded-[4px]", contentClassName)}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCard}
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full h-full"
+            >
+              {content[activeCard]?.content}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* Right — sticky image */}
-      <div
-        className={cn(
-          "hidden lg:block sticky top-0 self-start h-full w-[42%] shrink-0 overflow-hidden rounded-[4px]",
-          contentClassName
-        )}
-      >
-        {content[activeCard]?.content}
-      </div>
     </div>
   );
 }
