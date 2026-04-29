@@ -29,7 +29,7 @@ export const site = {
     city: "Siracusa",
     province: "SR",
     full: "Via Filisto 71/73, 96100 Siracusa (SR)",
-    geo: { lat: 37.0656, lng: 15.2842 }, // verifica via OSM Nominatim prima del go-live
+    geo: { lat: 37.085077, lng: 15.292039 }, // verificato via OSM Nominatim (Grottasanta, Siracusa)
   },
 
   hours: [
