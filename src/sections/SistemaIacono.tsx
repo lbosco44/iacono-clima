@@ -26,13 +26,13 @@ export function SistemaIacono() {
             </div>
           </div>
           <div className="lg:col-span-5">
-            <p
+            <h2
               id="sistema-iacono-heading"
               className="font-display text-[1.25rem] lg:text-[1.75rem] leading-snug text-[var(--color-bg)]/85"
             >
               Oltre 20 anni di interventi tra Siracusa, Ortigia, Tisia e provincia.
               Una squadra che firma ogni intervento e torna ogni anno per la manutenzione.
-            </p>
+            </h2>
           </div>
         </div>
       </div>

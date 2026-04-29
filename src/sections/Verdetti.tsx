@@ -21,7 +21,7 @@ export function Verdetti() {
           </div>
           <div className="lg:col-span-8 max-w-3xl">
             <h2 className="font-display text-[1.75rem] lg:text-[2.25rem] leading-tight font-bold text-[var(--color-ink)]">
-              Quattro persone, quattro impianti, una sola opinione.
+              Clienti Siracusa: quattro impianti, una sola opinione.
             </h2>
           </div>
         </div>

@@ -7,10 +7,60 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
+const BASE_URL = "https://www.iaconoclim.it";
+
+function injectItemListSchema() {
+  const existing = document.getElementById("ld-products");
+  if (existing) existing.remove();
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Catalogo climatizzatori Iacono Clima — Siracusa",
+    "description": "Climatizzatori residenziali e commerciali installati a Siracusa: Carrier, MAXA, Olimpia Splendid. Monosplit, multisplit, cassetta, VRF, monoblocco, idronica.",
+    "url": `${BASE_URL}/prodotti`,
+    "numberOfItems": prodotti.length,
+    "itemListElement": prodotti.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "Product",
+        "@id": `${BASE_URL}/prodotti#${p.slug}`,
+        "name": p.nome,
+        "description": p.descrizione,
+        "brand": { "@type": "Brand", "name": p.brand },
+        "category": p.categoria,
+        ...(p.image ? { "image": `${BASE_URL}${p.image}` } : {}),
+        "offers": {
+          "@type": "Offer",
+          "seller": { "@id": `${BASE_URL}/#business` },
+          "availability": "https://schema.org/InStock",
+          "areaServed": { "@type": "AdministrativeArea", "name": "Siracusa" },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "EUR",
+            "description": "Prezzo su preventivo dopo sopralluogo gratuito"
+          }
+        }
+      }
+    }))
+  };
+  const script = document.createElement("script");
+  script.id = "ld-products";
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(schema);
+  document.head.appendChild(script);
+}
+
+function removeItemListSchema() {
+  document.getElementById("ld-products")?.remove();
+}
+
 export function ProductsPage() {
   useEffect(() => {
-    document.title = "Prodotti — Catalogo Iacono Clima | Carrier · MAXA";
+    document.title = "Catalogo Climatizzatori Siracusa — Iacono Clima | Carrier · MAXA";
     window.scrollTo(0, 0);
+    injectItemListSchema();
+    return () => removeItemListSchema();
   }, []);
 
   return (
@@ -82,7 +132,7 @@ export function ProductsPage() {
                   const reverse = i % 2 === 1;
                   return (
                     <Reveal key={p.slug}>
-                      <article aria-label={p.nome} className="border-t border-[var(--color-line)] py-10 lg:py-16">
+                      <article id={p.slug} aria-label={p.nome} className="border-t border-[var(--color-line)] py-10 lg:py-16">
                         <div className="grid lg:grid-cols-12 gap-y-6 lg:gap-x-10 items-center">
                           <div className={`lg:col-span-7 ${reverse ? "lg:order-2" : ""}`}>
                             <div className="flex items-center gap-3 mb-4">
@@ -115,7 +165,7 @@ export function ProductsPage() {
                               <div className="aspect-[4/3] bg-[var(--color-bg)] border border-[var(--color-line)] flex items-center justify-center p-6 lg:p-10">
                                 <img
                                   src={p.image}
-                                  alt={`Immagine del prodotto ${p.nome}`}
+                                  alt={`Climatizzatore ${p.nome} — ${p.brand}`}
                                   loading="lazy"
                                   className="max-w-full max-h-full object-contain"
                                 />
