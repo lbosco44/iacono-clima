@@ -1,14 +1,25 @@
 import { motion } from "framer-motion";
-import { Phone } from "lucide-react";
+import { Phone, CalendarDays, Layers2, ShieldCheck, MapPin } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { site } from "@/data/site";
 import { Button } from "@/components/ui/Button";
+import { CountUp } from "@/components/ui/CountUp";
 import { stagger, staggerItem } from "@/components/ui/reveal-variants";
 
-const schedaDati: Array<{ key: string; value: string }> = [
-  { key: "Esperienza", value: "20+ anni di attività" },
-  { key: "Scala", value: "multisplit fino a 9 unità" },
-  { key: "Brand", value: "Carrier · MAXA · F-GAS" },
-  { key: "Copertura", value: "Siracusa e provincia" },
+type Dato = {
+  icon: LucideIcon;
+  label: string;
+  count?: number;
+  suffix?: string;
+  text?: string;
+  sub?: string;
+};
+
+const schedaDati: Dato[] = [
+  { icon: CalendarDays, count: 20, suffix: "+", label: "anni di attività" },
+  { icon: Layers2,      count: 9,  suffix: " unità", label: "interni multisplit max" },
+  { icon: ShieldCheck,  text: "Carrier · MAXA", sub: "F-GAS cert.", label: "brand certificati" },
+  { icon: MapPin,       text: "Siracusa", sub: "+ provincia SR", label: "zona di copertura" },
 ];
 
 export function HeroSistema() {
@@ -95,16 +106,42 @@ export function HeroSistema() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-10% 0px" }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 border-t border-[var(--color-line-strong)] pt-10 lg:pt-12"
+            className="grid grid-cols-2 lg:grid-cols-4"
           >
             {schedaDati.map((row) => (
-              <motion.div key={row.key} variants={staggerItem} className="flex flex-col gap-2">
-                <dt className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-[var(--color-mute)]">
-                  {row.key}
-                </dt>
-                <dd className="font-display font-bold text-[1.5rem] lg:text-[1.75rem] leading-tight tracking-tight text-[var(--color-ink)]">
-                  {row.value}
+              <motion.div
+                key={row.label}
+                variants={staggerItem}
+                className="flex flex-col gap-4 px-0 py-8 lg:px-8 lg:py-6
+                           border-t-2 border-[var(--color-accent)]
+                           lg:border-t-0 lg:border-l-2 lg:first:border-l-0
+                           [&:nth-child(-n+2)]:lg:border-t-2"
+              >
+                <row.icon
+                  size={18}
+                  strokeWidth={1.8}
+                  className="text-[var(--color-accent)]"
+                  aria-hidden="true"
+                />
+                <dd className="font-display font-bold leading-none tracking-tight text-[var(--color-ink)]">
+                  {row.count !== undefined ? (
+                    <CountUp
+                      end={row.count}
+                      suffix={row.suffix ?? ""}
+                      className="text-[2.75rem] lg:text-[3.25rem]"
+                    />
+                  ) : (
+                    <span className="text-[2rem] lg:text-[2.5rem]">{row.text}</span>
+                  )}
+                  {row.sub && (
+                    <span className="block mt-1 font-mono text-[11px] font-medium tracking-[0.1em] uppercase text-[var(--color-accent)]">
+                      {row.sub}
+                    </span>
+                  )}
                 </dd>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-mute)]">
+                  {row.label}
+                </dt>
               </motion.div>
             ))}
           </motion.dl>
