@@ -8,7 +8,7 @@ const button = cva(
     variants: {
       variant: {
         primary:
-          "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-deep)] active:scale-[0.98] shadow-[0_8px_24px_-8px_rgba(232,118,58,0.5)] hover:shadow-[0_12px_28px_-8px_rgba(232,118,58,0.65)]",
+          "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-deep)] active:scale-[0.98] shadow-[0_8px_24px_-8px_rgba(0,102,204,0.5)] hover:shadow-[0_12px_28px_-8px_rgba(0,102,204,0.65)]",
         outline:
           "bg-transparent text-[var(--color-ink)] border border-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-[var(--color-bg)] active:scale-[0.98]",
         ghost:

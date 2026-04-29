@@ -43,7 +43,7 @@ export function HeroSistema() {
             <a
               href={`tel:${site.phoneTel}`}
               aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
-              className="btn-fly inline-flex items-center gap-2 h-14 px-7 text-base font-body font-semibold tracking-tight bg-[var(--color-accent)] text-white rounded-[3px] shadow-[0_8px_24px_-8px_rgba(232,118,58,0.5)] hover:shadow-[0_12px_28px_-8px_rgba(232,118,58,0.65)] active:scale-[0.98] transition-shadow focus-visible:outline-2 focus-visible:outline-offset-3"
+              className="btn-fly inline-flex items-center gap-2 h-14 px-7 text-base font-body font-semibold tracking-tight bg-[var(--color-accent)] text-white rounded-[3px] shadow-[0_8px_24px_-8px_rgba(0,102,204,0.5)] hover:shadow-[0_12px_28px_-8px_rgba(0,102,204,0.65)] active:scale-[0.98] transition-shadow focus-visible:outline-2 focus-visible:outline-offset-3"
             >
               <span className="btn-icon">
                 <Phone size={16} strokeWidth={2.5} aria-hidden="true" />

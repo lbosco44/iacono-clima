@@ -264,7 +264,7 @@ export function Briefing() {
                       <button
                         type="submit"
                         aria-describedby="briefing-privacy"
-                        className="btn-fly inline-flex items-center gap-2 h-14 px-7 bg-[var(--color-accent)] text-white font-semibold tracking-tight rounded-[3px] shadow-[0_8px_24px_-8px_rgba(232,118,58,0.5)] hover:shadow-[0_12px_28px_-8px_rgba(232,118,58,0.65)] active:scale-[0.98] transition-shadow"
+                        className="btn-fly inline-flex items-center gap-2 h-14 px-7 bg-[var(--color-accent)] text-white font-semibold tracking-tight rounded-[3px] shadow-[0_8px_24px_-8px_rgba(0,102,204,0.5)] hover:shadow-[0_12px_28px_-8px_rgba(0,102,204,0.65)] active:scale-[0.98] transition-shadow"
                       >
                         <span className="btn-icon">
                           <ArrowRight size={16} strokeWidth={2.5} aria-hidden="true" />

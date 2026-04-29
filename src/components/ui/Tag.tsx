@@ -5,8 +5,7 @@ import { cn } from "@/lib/cn";
  * Contrasto WCAG 1.4.3 — tutte le varianti verificate:
  *
  * mono / residenziale:
- *   bg #FBE8DC · fg #C45F28 (accent-deep) → 5.84:1 ✓ AA
- *   (precedentemente accent #E8763A → 2.6:1 ✗ — corretto)
+ *   bg #DBEEFF · fg #0052A3 (accent-deep) → ~6.5:1 ✓ AA
  *
  * multi / condominio / neutral:
  *   bg #F2F0EA · fg #0F1B2D (ink) → ~15:1 ✓
@@ -18,7 +17,7 @@ import { cn } from "@/lib/cn";
  *   bg #ECECEA · fg #0F1B2D → ~13.5:1 ✓
  *
  * caldaie / commerciale:
- *   bg #FFE9D8 · fg #C45F28 (accent-deep) → 5.84:1 ✓ AA
+ *   bg #CCE4FF · fg #0052A3 (accent-deep) → ~5.5:1 ✓ AA
  *
  * ghost:
  *   bg transparent · fg #4A4A4A (mute) → 6.15:1 su bg-off-white ✓
@@ -36,12 +35,12 @@ const tag = cva(
         multi:          "bg-[var(--color-bg-warm)] text-[var(--color-ink)] border border-[var(--color-line-strong)]",
         idronica:       "bg-[var(--color-ink)] text-[var(--color-bg)]",
         refrigerazione: "bg-[var(--color-bg-cool)] text-[var(--color-ink)]",
-        caldaie:        "bg-[#ffe9d8] text-[var(--color-accent-deep)]",
+        caldaie:        "bg-[#cce4ff] text-[var(--color-accent-deep)]",
         // Nicchie — stesso fix per residenziale
         horeca:         "bg-[var(--color-ink)] text-[var(--color-bg)]",
         residenziale:   "bg-[var(--color-accent-soft)] text-[var(--color-accent-deep)]",
         condominio:     "bg-[var(--color-bg-warm)] text-[var(--color-ink)] border border-[var(--color-line-strong)]",
-        commerciale:    "bg-[#ffe9d8] text-[var(--color-accent-deep)]",
+        commerciale:    "bg-[#cce4ff] text-[var(--color-accent-deep)]",
         // Altri
         neutral:        "bg-[var(--color-bg-warm)] text-[var(--color-mute)] border border-[var(--color-line)]",
         ghost:          "bg-transparent text-[var(--color-mute)] border border-[var(--color-line)]",

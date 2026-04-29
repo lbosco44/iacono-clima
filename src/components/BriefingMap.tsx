@@ -40,18 +40,18 @@ export function BriefingMap() {
         },
       ).addTo(map);
 
-      const orangeIcon = L.divIcon({
+      const blueIcon = L.divIcon({
         className: "iacono-pin",
         html: `<div style="
           width: 26px; height: 26px; border-radius: 50%;
-          background: #E8763A; border: 4px solid #0F1B2D;
+          background: #0066CC; border: 4px solid #0F1B2D;
           box-shadow: 0 4px 12px rgba(15,27,45,0.35);
         " role="presentation"></div>`,
         iconSize: [26, 26],
         iconAnchor: [13, 13],
       });
 
-      L.marker([lat, lng], { icon: orangeIcon, alt: "Iacono Clima — Via Filisto 71/73, Siracusa" })
+      L.marker([lat, lng], { icon: blueIcon, alt: "Iacono Clima — Via Filisto 71/73, Siracusa" })
         .addTo(map)
         .bindPopup(
           `<div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.5;">

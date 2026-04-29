@@ -5,15 +5,15 @@
   /* ── Palette esatta dal brief ─────────────────────────── */
   --color-bg: #f8f8f6;            /* off-white sfondo principale */
   --color-ink: #0f1b2d;            /* navy notte sezioni scure / testi forti */
-  --color-accent: #e8763a;         /* arancione tramonto siciliano */
+  --color-accent: #0066cc;         /* blu tecnologico */
   --color-mute: #4a4a4a;           /* grigio testi tecnici secondari */
 
   /* Derivati funzionali ─────────────────────────────────── */
   --color-ink-soft: #1a2842;       /* card/superfici su scuro */
   --color-bg-warm: #f2f0ea;        /* sezione alternata calda */
   --color-bg-cool: #ececea;        /* hover bg debole */
-  --color-accent-soft: #fbe8dc;    /* tag bg tenue */
-  --color-accent-deep: #c45f28;    /* hover accent — AA su accent-soft (5.84:1) e su bianco (4.63:1) */
+  --color-accent-soft: #dbeeff;    /* tag bg tenue */
+  --color-accent-deep: #0052a3;    /* hover accent — AA su accent-soft e su bianco */
   --color-line: #e5e2da;           /* bordi sottili */
   --color-line-strong: #c9c4b6;    /* divisori */
 
@@ -80,7 +80,7 @@
 
   /*
    * Focus ring accessibile (WCAG 2.4.7, 2.4.11).
-   * Arancione #E8763A su sfondi chiari: rapporto 4.35:1 vs sfondo bianco/off-white
+   * Blu #0066CC su sfondi chiari: rapporto ~4.5:1 vs sfondo bianco/off-white
    * — supera la soglia 3:1 per componenti UI non-testo (WCAG 1.4.11).
    * Su sfondi navy usiamo off-white che garantisce >17:1.
    */
@@ -227,10 +227,10 @@
 /* ── WhatsApp pulse — palette arancione ────────────────── */
 @keyframes wa-pulse {
   0%, 100% {
-    box-shadow: 0 8px 24px rgba(232, 118, 58, 0.35), 0 0 0 0 rgba(232, 118, 58, 0.45);
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.35), 0 0 0 0 rgba(0, 102, 204, 0.45);
   }
   50% {
-    box-shadow: 0 8px 24px rgba(232, 118, 58, 0.35), 0 0 0 14px rgba(232, 118, 58, 0);
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.35), 0 0 0 14px rgba(0, 102, 204, 0);
   }
 }
 .wa-pulse {

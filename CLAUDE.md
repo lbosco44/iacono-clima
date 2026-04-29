@@ -22,12 +22,12 @@ Tutti i token vivono in `src/index.css` dentro `@theme`:
 |---|---|---|
 | `--color-bg` | `#F8F8F6` | Off-white sfondo principale |
 | `--color-ink` | `#0F1B2D` | Navy notte — sezioni scure / testi forti |
-| `--color-accent` | `#E8763A` | Arancione tramonto siciliano — CTA, link, accenti |
+| `--color-accent` | `#0066CC` | Blu tecnologico — CTA, link, accenti |
 | `--color-mute` | `#4A4A4A` | Grigio testi tecnici secondari |
 | `--color-ink-soft` | `#1A2842` | Card su sfondo scuro |
 | `--color-bg-warm` | `#F2F0EA` | Sezioni alternate |
-| `--color-accent-soft` | `#FBE8DC` | Tag bg tenue |
-| `--color-accent-deep` | `#C45F28` | Hover accent |
+| `--color-accent-soft` | `#DBEEFF` | Tag bg tenue |
+| `--color-accent-deep` | `#0052A3` | Hover accent |
 | `--color-line` | `#E5E2DA` | Bordi sottili |
 | `--color-line-strong` | `#C9C4B6` | Divisori |
 
