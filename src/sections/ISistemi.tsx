@@ -1,4 +1,5 @@
 import { CheckCircle2 } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { sistemi } from "@/data/sistemi";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -13,6 +14,75 @@ const tagLabel: Record<string, string> = {
 };
 
 const certifications = ["F-GAS Certificati", "Partner Carrier", "Partner MAXA"];
+
+const ease = [0.22, 1, 0.36, 1] as const;
+const vp = { once: true, margin: "-10% 0px" };
+
+function PhotoReveal() {
+  const reduce = useReducedMotion();
+  if (reduce) {
+    return (
+      <div className="relative">
+        <div className="overflow-hidden rounded-[4px] aspect-[4/5]">
+          <img src="/images/hero-detail.jpeg" alt="Showroom Iacono Clima" className="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <FloatingCard />
+      </div>
+    );
+  }
+  return (
+    <div className="relative">
+      {/* Curtain reveal sul container */}
+      <motion.div
+        className="overflow-hidden rounded-[4px] aspect-[4/5]"
+        initial={{ clipPath: "inset(0 100% 0 0 round 4px)" }}
+        whileInView={{ clipPath: "inset(0 0% 0 0 round 4px)" }}
+        viewport={vp}
+        transition={{ duration: 1.0, ease, delay: 0.1 }}
+      >
+        {/* Leggero zoom-out durante il reveal */}
+        <motion.img
+          src="/images/hero-detail.jpeg"
+          alt="Showroom Iacono Clima — climatizzatori Carrier e MAXA a Siracusa"
+          className="w-full h-full object-cover"
+          loading="lazy"
+          initial={{ scale: 1.08 }}
+          whileInView={{ scale: 1 }}
+          viewport={vp}
+          transition={{ duration: 1.3, ease, delay: 0.1 }}
+        />
+      </motion.div>
+
+      {/* Card appare dopo il reveal */}
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={vp}
+        transition={{ duration: 0.5, ease, delay: 0.75 }}
+      >
+        <FloatingCard />
+      </motion.div>
+    </div>
+  );
+}
+
+function FloatingCard() {
+  return (
+    <div className="absolute -bottom-5 -left-5 lg:-left-10 bg-white rounded-[4px] shadow-[0_8px_32px_rgba(15,27,45,0.12)] border border-[var(--color-line)] p-4 lg:p-5">
+      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-mute)] mb-3">
+        Certificazioni
+      </p>
+      <ul className="space-y-2">
+        {certifications.map((cert) => (
+          <li key={cert} className="flex items-center gap-2">
+            <CheckCircle2 size={13} className="text-emerald-500 shrink-0" aria-hidden="true" />
+            <span className="font-body text-[13px] font-medium text-[var(--color-ink)]">{cert}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function ISistemi() {
   return (
@@ -67,33 +137,7 @@ export function ISistemi() {
           </Reveal>
 
           {/* ── Right — foto + floating card ── */}
-          <Reveal direction="left" delay={0.12}>
-            <div className="relative">
-              <div className="overflow-hidden rounded-[4px] aspect-[4/5]">
-                <img
-                  src="/images/hero-detail.jpeg"
-                  alt="Showroom Iacono Clima — climatizzatori Carrier e MAXA a Siracusa"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Floating certification card */}
-              <div className="absolute -bottom-5 -left-5 lg:-left-10 bg-white rounded-[4px] shadow-[0_8px_32px_rgba(15,27,45,0.12)] border border-[var(--color-line)] p-4 lg:p-5">
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-mute)] mb-3">
-                  Certificazioni
-                </p>
-                <ul className="space-y-2">
-                  {certifications.map((cert) => (
-                    <li key={cert} className="flex items-center gap-2">
-                      <CheckCircle2 size={13} className="text-emerald-500 shrink-0" aria-hidden="true" />
-                      <span className="font-body text-[13px] font-medium text-[var(--color-ink)]">{cert}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Reveal>
+          <PhotoReveal />
 
         </div>
       </div>
