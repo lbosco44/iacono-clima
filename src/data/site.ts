@@ -45,7 +45,6 @@ export const site = {
     { label: "Casi", href: "/#casi" },
     { label: "Sistema Iacono", href: "/#sistema-iacono" },
     { label: "Verdetti", href: "/#verdetti" },
-    { label: "Prodotti", href: "/prodotti" },
     { label: "Briefing", href: "/#briefing" },
   ],
 

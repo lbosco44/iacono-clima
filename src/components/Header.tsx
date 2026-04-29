@@ -19,14 +19,20 @@ function getFocusable(container: HTMLElement): HTMLElement[] {
   );
 }
 
-function NavItems({
+type NavItem = { label: string; href: string };
+
+function NavGroup({
+  items,
   onItemClick,
   currentPath,
   floated = true,
+  startIndex = 0,
 }: {
+  items: NavItem[];
   onItemClick?: () => void;
   currentPath: string;
   floated?: boolean;
+  startIndex?: number;
 }) {
   const [hovered, setHovered] = useState<number | null>(null);
   const location = useLocation();
@@ -40,29 +46,30 @@ function NavItems({
     setTimeout(() => scrollTo(`#${id}`, -80), 60);
   }
 
+  const linkClass = `relative px-3.5 py-2 font-body text-[13.5px] font-medium transition-colors ${floated ? "text-[var(--color-ink)]" : "text-white"}`;
+
   return (
-    <div
-      onMouseLeave={() => setHovered(null)}
-      className="hidden lg:flex items-center"
-    >
-      {site.nav.map((item, idx) =>
-        !item.href.startsWith("/#") ? (
+    <div onMouseLeave={() => setHovered(null)} className="flex items-center">
+      {items.map((item, i) => {
+        const idx = startIndex + i;
+        const pill = floated && hovered === idx && (
+          <motion.div
+            layoutId="nav-hovered"
+            className="absolute inset-0 rounded-[5px] bg-[var(--color-bg-warm)]"
+            transition={{ type: "spring", stiffness: 300, damping: 40 }}
+            aria-hidden="true"
+          />
+        );
+        return !item.href.startsWith("/#") ? (
           <Link
             key={item.href}
             to={item.href}
             onMouseEnter={() => setHovered(idx)}
             onClick={onItemClick}
             aria-current={currentPath === item.href ? "page" : undefined}
-            className={`relative px-3.5 py-2 font-body text-[13.5px] font-medium transition-colors ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
+            className={linkClass}
           >
-            {floated && hovered === idx && (
-              <motion.div
-                layoutId="nav-hovered"
-                className="absolute inset-0 rounded-[5px] bg-[var(--color-bg-warm)]"
-                transition={{ type: "spring", stiffness: 300, damping: 40 }}
-                aria-hidden="true"
-              />
-            )}
+            {pill}
             <span className="relative z-10">{item.label}</span>
           </Link>
         ) : (
@@ -71,20 +78,13 @@ function NavItems({
             href={item.href}
             onMouseEnter={() => setHovered(idx)}
             onClick={(e) => handleAnchor(e, item.href)}
-            className={`relative px-3.5 py-2 font-body text-[13.5px] font-medium transition-colors ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
+            className={linkClass}
           >
-            {floated && hovered === idx && (
-              <motion.div
-                layoutId="nav-hovered"
-                className="absolute inset-0 rounded-[5px] bg-[var(--color-bg-warm)]"
-                transition={{ type: "spring", stiffness: 300, damping: 40 }}
-                aria-hidden="true"
-              />
-            )}
+            {pill}
             <span className="relative z-10">{item.label}</span>
           </a>
-        )
-      )}
+        );
+      })}
     </div>
   );
 }
@@ -183,36 +183,54 @@ export function Header() {
         }}
         transition={{ type: "spring", stiffness: 190, damping: 48 }}
         style={{ maxWidth: 1440 }}
-        className="hidden lg:flex items-center justify-between px-6 xl:px-10 h-[72px]"
+        className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] items-center px-6 xl:px-10 h-[72px]"
       >
+        {/* Sinistra — prime 3 voci */}
+        <nav aria-label="Navigazione principale sinistra">
+          <NavGroup
+            items={site.nav.slice(0, 3)}
+            currentPath={location.pathname}
+            floated={floated}
+            startIndex={0}
+          />
+        </nav>
+
+        {/* Centro — logo */}
         <Link
           to="/"
           onClick={() => window.scrollTo({ top: 0 })}
-          className={`font-display text-[21px] font-bold tracking-tight shrink-0 transition-colors ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
+          className={`font-display text-[21px] font-bold tracking-tight transition-colors px-6 ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
           aria-label="Iacono Clima — torna alla home"
         >
           Iacono<span className="text-[var(--color-accent)]" aria-hidden="true">.</span>Clima
         </Link>
 
-        <nav aria-label="Navigazione principale">
-          <NavItems currentPath={location.pathname} floated={floated} />
-        </nav>
-
-        <a
-          href={`tel:${site.phoneTel}`}
-          aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
-          className="btn-fly shrink-0 inline-flex items-center gap-2 h-10 px-4 bg-[var(--color-accent)] text-white font-semibold text-[13.5px] rounded-[5px] shadow-[0_4px_16px_-4px_rgba(0,102,204,0.4)] hover:shadow-[0_6px_20px_-4px_rgba(0,102,204,0.6)] active:scale-[0.98] transition-shadow"
-        >
-          <span className="btn-icon">
-            <Phone size={14} strokeWidth={2.5} aria-hidden="true" />
-          </span>
-          <span className="btn-text">{site.phone}</span>
-          <span className="btn-icon-center" aria-hidden="true">
-            <span className="btn-icon-bob">
-              <Phone size={16} strokeWidth={2.5} />
+        {/* Destra — ultime 3 voci + bottone telefono */}
+        <div className="flex items-center justify-end gap-2">
+          <nav aria-label="Navigazione principale destra">
+            <NavGroup
+              items={site.nav.slice(3)}
+              currentPath={location.pathname}
+              floated={floated}
+              startIndex={3}
+            />
+          </nav>
+          <a
+            href={`tel:${site.phoneTel}`}
+            aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
+            className="btn-fly shrink-0 inline-flex items-center gap-2 h-10 px-4 bg-[var(--color-accent)] text-white font-semibold text-[13.5px] rounded-[5px] shadow-[0_4px_16px_-4px_rgba(0,102,204,0.4)] hover:shadow-[0_6px_20px_-4px_rgba(0,102,204,0.6)] active:scale-[0.98] transition-shadow"
+          >
+            <span className="btn-icon">
+              <Phone size={14} strokeWidth={2.5} aria-hidden="true" />
             </span>
-          </span>
-        </a>
+            <span className="btn-text">{site.phone}</span>
+            <span className="btn-icon-center" aria-hidden="true">
+              <span className="btn-icon-bob">
+                <Phone size={16} strokeWidth={2.5} />
+              </span>
+            </span>
+          </a>
+        </div>
       </motion.div>
 
       {/* ── Mobile nav bar ── */}
