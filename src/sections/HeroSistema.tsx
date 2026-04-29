@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { Button } from "@/components/ui/Button";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { stagger, staggerItem } from "@/components/ui/reveal-variants";
 
 const schedaDati: Array<{ key: string; value: string }> = [
@@ -17,29 +16,50 @@ export function HeroSistema() {
     <section
       id="sistema"
       aria-labelledby="hero-heading"
-      className="relative pt-[68px] lg:pt-[80px] overflow-hidden bg-[var(--color-bg)]"
     >
-      <div className="container-x grid lg:grid-cols-12 gap-y-12 lg:gap-x-12 py-12 lg:py-24 min-h-[calc(100svh-80px)]">
-        {/* Sinistra — copy + CTA */}
-        <div className="lg:col-span-7 flex flex-col justify-center">
-          <SectionLabel index="01" label="Sistema" />
+      {/* ── Hero fullscreen ─────────────────────────────────── */}
+      <div className="relative min-h-svh flex flex-col pt-[68px] lg:pt-[80px]">
+        {/* Background image */}
+        <img
+          src="/images/hero3.jpeg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
+        />
 
-          <h1
-            id="hero-heading"
-            className="mt-7 lg:mt-9 font-display font-bold text-[2.75rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.25rem] xl:text-[6.5rem] leading-[0.98] tracking-[-0.03em] text-[var(--color-ink)]"
-          >
-            Impianti che durano
-            <br />
-            <span className="text-[var(--color-accent)]">vent'anni.</span>{" "}
-            <span className="whitespace-nowrap">Come noi.</span>
-          </h1>
+        {/* Overlay scuro per leggibilità del testo */}
+        <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
 
-          <p className="mt-7 lg:mt-9 max-w-[34rem] text-[17px] lg:text-[19px] leading-[1.55] text-[var(--color-mute)]">
-            Climatizzatori Carrier e MAXA installati a regola d'arte a Siracusa e provincia.
-            Sopralluogo gratuito, preventivo chiaro, manutenzione che non dimentichiamo.
-          </p>
+        {/* Gradient bottom — sfuma verso bg-warm di ISistemi con tint blu */}
+        <div
+          className="absolute bottom-0 inset-x-0 h-[40%] pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent 0%, rgba(0,102,204,0.08) 55%, #f2f0ea 100%)",
+          }}
+        />
 
-          <div className="mt-9 lg:mt-11 flex flex-col sm:flex-row gap-3">
+        {/* Contenuto — heading in alto, bottoni in basso */}
+        <div className="relative z-10 flex flex-col flex-1 items-center justify-between pb-16 lg:pb-24 px-6 text-center">
+
+          {/* TOP — heading */}
+          <div className="flex flex-col items-center pt-12 lg:pt-20">
+            <h1
+              id="hero-heading"
+              className="font-display font-bold text-[3rem] sm:text-[4.5rem] lg:text-[6.5rem] xl:text-[8rem] leading-[0.98] tracking-[-0.03em] text-white"
+            >
+              Fresco perfetto.
+              <br />
+              Silenzio assoluto.
+            </h1>
+          </div>
+
+          {/* BOTTOM — bottoni */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href={`tel:${site.phoneTel}`}
               aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
@@ -57,7 +77,7 @@ export function HeroSistema() {
             </a>
             <Button
               href={site.whatsapp1Link}
-              variant="outline"
+              variant="invert"
               size="lg"
               target="_blank"
               rel="noreferrer noopener"
@@ -67,86 +87,30 @@ export function HeroSistema() {
             </Button>
           </div>
         </div>
+      </div>
 
-        {/* Destra — scheda dati azienda */}
-        <motion.div
-          className="lg:col-span-5 flex items-center"
-          variants={stagger}
-          initial="hidden"
-          animate="show"
-        >
-          <div className="relative w-full">
-            {/* Foto di sfondo decorativa */}
-            <div className="absolute inset-0 -z-10 rounded-[6px] overflow-hidden" aria-hidden="true">
-              <img
-                src="/images/hero-detail.jpeg"
-                alt=""
-                aria-hidden="true"
-                className="w-full h-full object-cover opacity-[0.55] saturate-[0.6] contrast-[1.05]"
-                loading="eager"
-                fetchPriority="high"
-                decoding="sync"
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(248,248,246,0.15) 0%, rgba(248,248,246,0.45) 100%)",
-                }}
-              />
-            </div>
-
-            <div
-              className="relative bg-white/80 border border-[var(--color-line)] backdrop-blur-md p-6 lg:p-9 rounded-[6px]"
-              role="region"
-              aria-label="Scheda informativa Iacono Clima"
-            >
-              <motion.div
-                variants={staggerItem}
-                className="flex items-baseline justify-between border-b border-[var(--color-line)] pb-4 mb-5"
-                aria-hidden="true"
-              >
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-[var(--color-mute)]">
-                  iacono.clima / scheda
-                </span>
-                <span className="font-mono text-[10.5px] text-[var(--color-accent)]">
-                  v{new Date().getFullYear()}
-                </span>
+      {/* ── Data strip — reveal sullo scroll ────────────────── */}
+      <div className="bg-[var(--color-bg-warm)] py-14 lg:py-20">
+        <div className="container-x">
+          <motion.dl
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-10% 0px" }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 border-t border-[var(--color-line-strong)] pt-10 lg:pt-12"
+          >
+            {schedaDati.map((row) => (
+              <motion.div key={row.key} variants={staggerItem} className="flex flex-col gap-2">
+                <dt className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-[var(--color-mute)]">
+                  {row.key}
+                </dt>
+                <dd className="font-display font-bold text-[1.5rem] lg:text-[1.75rem] leading-tight tracking-tight text-[var(--color-ink)]">
+                  {row.value}
+                </dd>
               </motion.div>
-
-              <dl className="space-y-4 lg:space-y-5">
-                {schedaDati.map((row) => (
-                  <motion.div
-                    key={row.key}
-                    variants={staggerItem}
-                    className="flex flex-col gap-1"
-                  >
-                    <dt className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-[var(--color-mute)]">
-                      {row.key}
-                    </dt>
-                    <dd className="font-display text-[1.5rem] lg:text-[1.75rem] leading-tight text-[var(--color-ink)] font-medium tracking-tight">
-                      {row.value}
-                    </dd>
-                  </motion.div>
-                ))}
-              </dl>
-
-              <motion.div
-                variants={staggerItem}
-                className="mt-7 pt-4 border-t border-[var(--color-line)] flex items-center justify-between font-mono text-[11px]"
-              >
-                <span aria-hidden="true" className="text-[var(--color-mute)]">→ briefing</span>
-                <a
-                  href="#briefing"
-                  className="text-[var(--color-accent)] hover:underline underline-offset-4"
-                  aria-label="Vai al modulo di richiesta sopralluogo"
-                >
-                  apri il modulo
-                </a>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
+            ))}
+          </motion.dl>
+        </div>
       </div>
     </section>
   );
