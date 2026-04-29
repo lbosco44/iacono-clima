@@ -59,11 +59,11 @@ export function HeroSistema() {
           <div className="flex flex-col items-center pt-12 lg:pt-20">
             <h1
               id="hero-heading"
-              className="font-display font-bold text-[3rem] sm:text-[4.5rem] lg:text-[6.5rem] xl:text-[8rem] leading-[0.98] tracking-[-0.03em] text-white"
+              className="font-display font-bold text-[3rem] sm:text-[4.5rem] lg:text-[6.5rem] xl:text-[8rem] leading-[0.98] tracking-[-0.03em] text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.45),0_8px_32px_rgba(0,0,0,0.3)]"
             >
-              Fresco <em className="italic text-[var(--color-accent)]">perfetto</em>.
+              Fresco <em className="italic bg-gradient-to-br from-sky-300 to-[var(--color-accent)] bg-clip-text text-transparent">perfetto</em>.
               <br />
-              Silenzio <em className="italic text-[var(--color-accent)]">assoluto</em>.
+              Silenzio <em className="italic bg-gradient-to-br from-sky-300 to-[var(--color-accent)] bg-clip-text text-transparent">assoluto</em>.
             </h1>
           </div>
 
