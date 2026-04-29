@@ -22,9 +22,11 @@ function getFocusable(container: HTMLElement): HTMLElement[] {
 function NavItems({
   onItemClick,
   currentPath,
+  floated = true,
 }: {
   onItemClick?: () => void;
   currentPath: string;
+  floated?: boolean;
 }) {
   const [hovered, setHovered] = useState<number | null>(null);
   const location = useLocation();
@@ -51,12 +53,12 @@ function NavItems({
             onMouseEnter={() => setHovered(idx)}
             onClick={onItemClick}
             aria-current={currentPath === item.href ? "page" : undefined}
-            className="relative px-3.5 py-2 font-body text-[13.5px] font-medium text-[var(--color-ink)]"
+            className={`relative px-3.5 py-2 font-body text-[13.5px] font-medium transition-colors ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
           >
             {hovered === idx && (
               <motion.div
                 layoutId="nav-hovered"
-                className="absolute inset-0 rounded-[5px] bg-[var(--color-bg-warm)]"
+                className={`absolute inset-0 rounded-[5px] ${floated ? "bg-[var(--color-bg-warm)]" : "bg-white/15"}`}
                 transition={{ type: "spring", stiffness: 300, damping: 40 }}
                 aria-hidden="true"
               />
@@ -69,12 +71,12 @@ function NavItems({
             href={item.href}
             onMouseEnter={() => setHovered(idx)}
             onClick={(e) => handleAnchor(e, item.href)}
-            className="relative px-3.5 py-2 font-body text-[13.5px] font-medium text-[var(--color-ink)]"
+            className={`relative px-3.5 py-2 font-body text-[13.5px] font-medium transition-colors ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
           >
             {hovered === idx && (
               <motion.div
                 layoutId="nav-hovered"
-                className="absolute inset-0 rounded-[5px] bg-[var(--color-bg-warm)]"
+                className={`absolute inset-0 rounded-[5px] ${floated ? "bg-[var(--color-bg-warm)]" : "bg-white/15"}`}
                 transition={{ type: "spring", stiffness: 300, damping: 40 }}
                 aria-hidden="true"
               />
@@ -186,14 +188,14 @@ export function Header() {
         <Link
           to="/"
           onClick={() => window.scrollTo({ top: 0 })}
-          className="font-display text-[21px] font-bold tracking-tight text-[var(--color-ink)] shrink-0"
+          className={`font-display text-[21px] font-bold tracking-tight shrink-0 transition-colors ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
           aria-label="Iacono Clima — torna alla home"
         >
           Iacono<span className="text-[var(--color-accent)]" aria-hidden="true">.</span>Clima
         </Link>
 
         <nav aria-label="Navigazione principale">
-          <NavItems currentPath={location.pathname} />
+          <NavItems currentPath={location.pathname} floated={floated} />
         </nav>
 
         <a
