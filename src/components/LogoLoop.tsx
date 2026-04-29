@@ -188,7 +188,7 @@ export const LogoLoop = memo(function LogoLoop({
 
   const [seqWidth, setSeqWidth] = useState(0);
   const [seqHeight, setSeqHeight] = useState(0);
-  const [copyCount, setCopyCount] = useState(ANIMATION_CONFIG.MIN_COPIES);
+  const [copyCount, setCopyCount] = useState<number>(ANIMATION_CONFIG.MIN_COPIES);
   const [isHovered, setIsHovered] = useState(false);
 
   const effectiveHoverSpeed = useMemo(() => {
