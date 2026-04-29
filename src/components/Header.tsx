@@ -55,10 +55,10 @@ function NavItems({
             aria-current={currentPath === item.href ? "page" : undefined}
             className={`relative px-3.5 py-2 font-body text-[13.5px] font-medium transition-colors ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
           >
-            {hovered === idx && (
+            {floated && hovered === idx && (
               <motion.div
                 layoutId="nav-hovered"
-                className={`absolute inset-0 rounded-[5px] ${floated ? "bg-[var(--color-bg-warm)]" : "bg-white/15"}`}
+                className="absolute inset-0 rounded-[5px] bg-[var(--color-bg-warm)]"
                 transition={{ type: "spring", stiffness: 300, damping: 40 }}
                 aria-hidden="true"
               />
@@ -73,10 +73,10 @@ function NavItems({
             onClick={(e) => handleAnchor(e, item.href)}
             className={`relative px-3.5 py-2 font-body text-[13.5px] font-medium transition-colors ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
           >
-            {hovered === idx && (
+            {floated && hovered === idx && (
               <motion.div
                 layoutId="nav-hovered"
-                className={`absolute inset-0 rounded-[5px] ${floated ? "bg-[var(--color-bg-warm)]" : "bg-white/15"}`}
+                className="absolute inset-0 rounded-[5px] bg-[var(--color-bg-warm)]"
                 transition={{ type: "spring", stiffness: 300, damping: 40 }}
                 aria-hidden="true"
               />
