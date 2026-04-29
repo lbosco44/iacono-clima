@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+﻿import { cn } from "@/lib/cn";
 import type { ElementType, ReactNode } from "react";
 
 type Size = "xs" | "sm" | "md" | "lg" | "xl" | "hero";
@@ -32,7 +32,7 @@ export function DisplayHeading({
       className={cn(
         "font-display font-bold leading-[1.02] tracking-[-0.025em]",
         sizes[size],
-        invert ? "text-[--color-bg]" : "text-[--color-ink]",
+        invert ? "text-[var(--color-bg)]" : "text-[var(--color-ink)]",
         className,
       )}
     >

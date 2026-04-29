@@ -1,4 +1,4 @@
-import { cva, type VariantProps } from "class-variance-authority";
+﻿import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/cn";
 
 const tag = cva(
@@ -7,20 +7,20 @@ const tag = cva(
     variants: {
       variant: {
         // Sistemi
-        mono: "bg-[--color-accent-soft] text-[--color-accent]",
-        multi: "bg-[--color-bg-warm] text-[--color-ink] border border-[--color-line-strong]",
-        idronica: "bg-[--color-ink] text-[--color-bg]",
-        refrigerazione: "bg-[--color-bg-cool] text-[--color-ink]",
-        caldaie: "bg-[#ffe9d8] text-[--color-accent-deep]",
+        mono: "bg-[var(--color-accent-soft)] text-[var(--color-accent)]",
+        multi: "bg-[var(--color-bg-warm)] text-[var(--color-ink)] border border-[var(--color-line-strong)]",
+        idronica: "bg-[var(--color-ink)] text-[var(--color-bg)]",
+        refrigerazione: "bg-[var(--color-bg-cool)] text-[var(--color-ink)]",
+        caldaie: "bg-[#ffe9d8] text-[var(--color-accent-deep)]",
         // Nicchie
-        horeca: "bg-[--color-ink] text-[--color-bg]",
-        residenziale: "bg-[--color-accent-soft] text-[--color-accent]",
-        condominio: "bg-[--color-bg-warm] text-[--color-ink] border border-[--color-line-strong]",
-        commerciale: "bg-[#ffe9d8] text-[--color-accent-deep]",
+        horeca: "bg-[var(--color-ink)] text-[var(--color-bg)]",
+        residenziale: "bg-[var(--color-accent-soft)] text-[var(--color-accent)]",
+        condominio: "bg-[var(--color-bg-warm)] text-[var(--color-ink)] border border-[var(--color-line-strong)]",
+        commerciale: "bg-[#ffe9d8] text-[var(--color-accent-deep)]",
         // Altri
-        neutral: "bg-[--color-bg-warm] text-[--color-mute] border border-[--color-line]",
-        ghost: "bg-transparent text-[--color-mute] border border-[--color-line]",
-        invert: "bg-[--color-bg]/10 text-[--color-bg] border border-[--color-bg]/20",
+        neutral: "bg-[var(--color-bg-warm)] text-[var(--color-mute)] border border-[var(--color-line)]",
+        ghost: "bg-transparent text-[var(--color-mute)] border border-[var(--color-line)]",
+        invert: "bg-[var(--color-bg)]/10 text-[var(--color-bg)] border border-[var(--color-bg)]/20",
       },
     },
     defaultVariants: { variant: "mono" },

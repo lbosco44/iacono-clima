@@ -1,11 +1,11 @@
-import { secondaryBrands } from "@/data/brands";
+﻿import { secondaryBrands } from "@/data/brands";
 
 export function BrandsStrip() {
   const items = [...secondaryBrands, ...secondaryBrands];
   return (
     <div className="container-x">
-      <div className="border-t border-[--color-line] pt-8">
-        <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-[--color-mute] mb-5 text-center">
+      <div className="border-t border-[var(--color-line)] pt-8">
+        <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-[var(--color-mute)] mb-5 text-center">
           Altri marchi disponibili
         </div>
         <div className="brand-marquee">

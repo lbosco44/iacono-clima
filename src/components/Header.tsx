@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
@@ -41,17 +41,17 @@ export function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled || open
-          ? "bg-[--color-bg]/85 backdrop-blur-md border-b border-[--color-line]"
+          ? "bg-[var(--color-bg)]/85 backdrop-blur-md border-b border-[var(--color-line)]"
           : "bg-transparent",
       )}
     >
       <div className="container-x flex items-center justify-between h-[68px] lg:h-[80px]">
         <Link
           to="/"
-          className="font-display text-[20px] lg:text-[22px] font-bold tracking-tight text-[--color-ink]"
+          className="font-display text-[20px] lg:text-[22px] font-bold tracking-tight text-[var(--color-ink)]"
           aria-label="Iacono Clima — torna alla home"
         >
-          Iacono<span className="text-[--color-accent]">.</span>Clima
+          Iacono<span className="text-[var(--color-accent)]">.</span>Clima
         </Link>
 
         {/* Desktop nav */}
@@ -62,7 +62,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleAnchor(e, item.href)}
-                className="font-mono text-[12px] uppercase tracking-[0.12em] text-[--color-ink] hover:text-[--color-accent] transition-colors"
+                className="font-body text-[13.5px] font-medium text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors"
               >
                 {item.label}
               </a>
@@ -70,7 +70,7 @@ export function Header() {
               <Link
                 key={item.href}
                 to={item.href}
-                className="font-mono text-[12px] uppercase tracking-[0.12em] text-[--color-ink] hover:text-[--color-accent] transition-colors"
+                className="font-body text-[13.5px] font-medium text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors"
               >
                 {item.label}
               </Link>
@@ -81,7 +81,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href={`tel:${site.phoneTel}`}
-            className="hidden md:inline-flex items-center gap-2 h-11 px-4 bg-[--color-accent] text-white font-semibold text-sm rounded-[3px] hover:bg-[--color-accent-deep] transition-colors"
+            className="hidden md:inline-flex items-center gap-2 h-11 px-4 bg-[var(--color-accent)] text-white font-semibold text-sm rounded-[3px] hover:bg-[var(--color-accent-deep)] transition-colors"
           >
             <Phone size={15} strokeWidth={2.5} />
             {site.phone}
@@ -92,7 +92,7 @@ export function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Chiudi menu" : "Apri menu"}
             aria-expanded={open}
-            className="lg:hidden h-11 w-11 inline-flex items-center justify-center text-[--color-ink] hover:bg-[--color-bg-warm] rounded-[3px] transition-colors"
+            className="lg:hidden h-11 w-11 inline-flex items-center justify-center text-[var(--color-ink)] hover:bg-[var(--color-bg-warm)] rounded-[3px] transition-colors"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -107,7 +107,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden fixed inset-x-0 top-[68px] bottom-0 bg-[--color-bg] border-t border-[--color-line] overflow-auto"
+            className="lg:hidden fixed inset-x-0 top-[68px] bottom-0 bg-[var(--color-bg)] border-t border-[var(--color-line)] overflow-auto"
           >
             <div className="container-x py-8 flex flex-col gap-1">
               {site.nav.map((item, i) =>
@@ -116,9 +116,9 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={(e) => handleAnchor(e, item.href)}
-                    className="block py-4 border-b border-[--color-line] font-display text-[28px] tracking-tight text-[--color-ink]"
+                    className="block py-4 border-b border-[var(--color-line)] font-display text-[28px] tracking-tight text-[var(--color-ink)]"
                   >
-                    <span className="font-mono text-[11px] text-[--color-mute] mr-3 align-middle">
+                    <span className="font-mono text-[11px] text-[var(--color-mute)] mr-3 align-middle">
                       0{i + 1}
                     </span>
                     {item.label}
@@ -128,9 +128,9 @@ export function Header() {
                     key={item.href}
                     to={item.href}
                     onClick={closeDrawer}
-                    className="block py-4 border-b border-[--color-line] font-display text-[28px] tracking-tight text-[--color-ink]"
+                    className="block py-4 border-b border-[var(--color-line)] font-display text-[28px] tracking-tight text-[var(--color-ink)]"
                   >
-                    <span className="font-mono text-[11px] text-[--color-mute] mr-3 align-middle">
+                    <span className="font-mono text-[11px] text-[var(--color-mute)] mr-3 align-middle">
                       0{i + 1}
                     </span>
                     {item.label}
@@ -141,7 +141,7 @@ export function Header() {
               <div className="mt-8 flex flex-col gap-3">
                 <a
                   href={`tel:${site.phoneTel}`}
-                  className="inline-flex items-center justify-center gap-2 h-14 bg-[--color-accent] text-white font-semibold rounded-[3px]"
+                  className="inline-flex items-center justify-center gap-2 h-14 bg-[var(--color-accent)] text-white font-semibold rounded-[3px]"
                 >
                   <Phone size={16} strokeWidth={2.5} />
                   Chiama {site.phone}
@@ -150,7 +150,7 @@ export function Header() {
                   href={site.whatsapp1Link}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center h-14 bg-transparent text-[--color-ink] border border-[--color-ink] font-semibold rounded-[3px]"
+                  className="inline-flex items-center justify-center h-14 bg-transparent text-[var(--color-ink)] border border-[var(--color-ink)] font-semibold rounded-[3px]"
                 >
                   Apri WhatsApp · {site.whatsapp1}
                 </a>

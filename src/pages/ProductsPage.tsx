@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Download, ArrowRight } from "lucide-react";
 import { categorie, prodotti } from "@/data/prodotti";
@@ -14,9 +14,9 @@ export function ProductsPage() {
   }, []);
 
   return (
-    <main className="bg-[--color-bg]">
+    <main className="bg-[var(--color-bg)]">
       {/* Hero piccola */}
-      <section className="pt-[68px] lg:pt-[80px] section-y border-b border-[--color-line]">
+      <section className="pt-[68px] lg:pt-[80px] section-y border-b border-[var(--color-line)]">
         <div className="container-x">
           <div className="grid lg:grid-cols-12 gap-y-8 lg:gap-x-12 items-end">
             <div className="lg:col-span-6">
@@ -26,14 +26,14 @@ export function ProductsPage() {
               </DisplayHeading>
             </div>
             <div className="lg:col-span-6">
-              <p className="text-[16px] lg:text-[17px] leading-relaxed text-[--color-mute] max-w-xl">
+              <p className="text-[16px] lg:text-[17px] leading-relaxed text-[var(--color-mute)] max-w-xl">
                 Ogni scheda è disponibile in PDF: dati tecnici, dimensioni,
                 consumi, classe energetica. Per scegliere il modello giusto,
                 però, parte sempre da un sopralluogo.
               </p>
               <Link
                 to="/#briefing"
-                className="mt-6 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-[--color-accent] hover:gap-3 transition-all"
+                className="mt-6 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-[var(--color-accent)] hover:gap-3 transition-all"
               >
                 Apri il briefing
                 <ArrowRight size={14} />
@@ -50,20 +50,20 @@ export function ProductsPage() {
         return (
           <section
             key={cat}
-            className={`section-y ${idx % 2 === 1 ? "bg-[--color-bg-warm]" : "bg-[--color-bg]"}`}
+            className={`section-y ${idx % 2 === 1 ? "bg-[var(--color-bg-warm)]" : "bg-[var(--color-bg)]"}`}
           >
             <div className="container-x">
               <div className="grid lg:grid-cols-12 gap-y-6 lg:gap-x-12 mb-12 lg:mb-16">
                 <div className="lg:col-span-4">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[--color-accent]">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-accent)]">
                     / categoria 0{idx + 1}
                   </div>
-                  <h2 className="mt-5 font-display text-[2rem] lg:text-[3rem] leading-tight font-bold text-[--color-ink]">
+                  <h2 className="mt-5 font-display text-[2rem] lg:text-[3rem] leading-tight font-bold text-[var(--color-ink)]">
                     {cat}
                   </h2>
                 </div>
                 <div className="lg:col-span-8 flex items-end">
-                  <p className="font-mono text-[12px] text-[--color-mute] tracking-wide">
+                  <p className="font-mono text-[12px] text-[var(--color-mute)] tracking-wide">
                     {items.length} {items.length === 1 ? "modello" : "modelli"}
                   </p>
                 </div>
@@ -74,19 +74,19 @@ export function ProductsPage() {
                   const reverse = i % 2 === 1;
                   return (
                     <Reveal key={p.slug}>
-                      <article className="border-t border-[--color-line] py-10 lg:py-16">
+                      <article className="border-t border-[var(--color-line)] py-10 lg:py-16">
                         <div className="grid lg:grid-cols-12 gap-y-6 lg:gap-x-10 items-center">
                           <div className={`lg:col-span-7 ${reverse ? "lg:order-2" : ""}`}>
                             <div className="flex items-center gap-3 mb-4">
                               <Tag variant="neutral">{p.brand}</Tag>
-                              <span className="font-mono text-[11px] text-[--color-mute] tracking-wide">
+                              <span className="font-mono text-[11px] text-[var(--color-mute)] tracking-wide">
                                 {p.spec}
                               </span>
                             </div>
-                            <h3 className="font-display text-[1.65rem] lg:text-[2.25rem] leading-tight font-bold text-[--color-ink]">
+                            <h3 className="font-display text-[1.65rem] lg:text-[2.25rem] leading-tight font-bold text-[var(--color-ink)]">
                               {p.nome}
                             </h3>
-                            <p className="mt-4 text-[15.5px] leading-relaxed text-[--color-mute] max-w-2xl">
+                            <p className="mt-4 text-[15.5px] leading-relaxed text-[var(--color-mute)] max-w-2xl">
                               {p.descrizione}
                             </p>
                             <a
@@ -94,7 +94,7 @@ export function ProductsPage() {
                               download
                               target="_blank"
                               rel="noreferrer"
-                              className="mt-7 inline-flex items-center gap-2 h-12 px-5 bg-[--color-ink] text-[--color-bg] hover:bg-[--color-accent] transition-colors font-semibold rounded-[3px] text-sm"
+                              className="mt-7 inline-flex items-center gap-2 h-12 px-5 bg-[var(--color-ink)] text-[var(--color-bg)] hover:bg-[var(--color-accent)] transition-colors font-semibold rounded-[3px] text-sm"
                             >
                               <Download size={16} strokeWidth={2.5} />
                               Scarica scheda PDF
@@ -103,7 +103,7 @@ export function ProductsPage() {
 
                           {p.image ? (
                             <div className={`lg:col-span-5 ${reverse ? "lg:order-1" : ""}`}>
-                              <div className="aspect-[4/3] bg-[--color-bg] border border-[--color-line] flex items-center justify-center p-6 lg:p-10">
+                              <div className="aspect-[4/3] bg-[var(--color-bg)] border border-[var(--color-line)] flex items-center justify-center p-6 lg:p-10">
                                 <img
                                   src={p.image}
                                   alt={p.nome}
@@ -125,19 +125,19 @@ export function ProductsPage() {
       })}
 
       {/* CTA finale */}
-      <section className="bg-[--color-ink] text-[--color-bg] py-20 lg:py-32">
+      <section className="bg-[var(--color-ink)] text-[var(--color-bg)] py-20 lg:py-32">
         <div className="container-narrow text-center">
           <SectionLabel index="∞" label="Briefing" invert className="justify-center" />
           <h2 className="mt-7 font-display text-[2rem] lg:text-[3.5rem] leading-tight font-bold">
             Hai bisogno di aiuto a scegliere?
           </h2>
-          <p className="mt-5 text-[--color-bg]/70 text-lg max-w-xl mx-auto">
+          <p className="mt-5 text-[var(--color-bg)]/70 text-lg max-w-xl mx-auto">
             Il modello giusto dipende dai metri cubi, dall'isolamento e dall'uso reale.
             Parlane con noi: sopralluogo gratuito.
           </p>
           <Link
             to="/#briefing"
-            className="mt-9 inline-flex items-center gap-2 h-14 px-7 bg-[--color-accent] text-white font-semibold rounded-[3px] hover:bg-[--color-accent-deep] transition-colors"
+            className="mt-9 inline-flex items-center gap-2 h-14 px-7 bg-[var(--color-accent)] text-white font-semibold rounded-[3px] hover:bg-[var(--color-accent-deep)] transition-colors"
           >
             Apri il briefing
             <ArrowRight size={18} strokeWidth={2.5} />

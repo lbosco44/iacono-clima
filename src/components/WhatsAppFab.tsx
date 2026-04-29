@@ -1,4 +1,4 @@
-import { site } from "@/data/site";
+﻿import { site } from "@/data/site";
 
 export function WhatsAppFab() {
   return (
@@ -7,7 +7,7 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noreferrer"
       aria-label="Apri WhatsApp"
-      className="wa-pulse fixed bottom-5 right-5 lg:bottom-7 lg:right-7 z-40 inline-flex items-center justify-center w-14 h-14 lg:w-[60px] lg:h-[60px] rounded-full bg-[--color-accent] hover:bg-[--color-accent-deep] text-white transition-colors duration-200"
+      className="wa-pulse fixed bottom-5 right-5 lg:bottom-7 lg:right-7 z-40 inline-flex items-center justify-center w-14 h-14 lg:w-[60px] lg:h-[60px] rounded-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-deep)] text-white transition-colors duration-200"
     >
       <svg
         viewBox="0 0 32 32"

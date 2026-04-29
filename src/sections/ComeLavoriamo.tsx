@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { steps } from "@/data/steps";
@@ -81,7 +81,7 @@ export function ComeLavoriamo() {
   }, [reduce]);
 
   return (
-    <section id="come-lavoriamo" className="bg-[--color-bg] section-y" ref={wrapperRef}>
+    <section id="come-lavoriamo" className="bg-[var(--color-bg)] section-y" ref={wrapperRef}>
       <div className="container-x">
         <div className="grid lg:grid-cols-12 gap-y-8 lg:gap-x-12 mb-16 lg:mb-24">
           <div className="lg:col-span-4">
@@ -90,7 +90,7 @@ export function ComeLavoriamo() {
           <div className="lg:col-span-8">
             <DisplayHeading size="md">
               Quattro passaggi.{" "}
-              <span className="text-[--color-mute]">Niente improvvisazione.</span>
+              <span className="text-[var(--color-mute)]">Niente improvvisazione.</span>
             </DisplayHeading>
           </div>
         </div>
@@ -106,7 +106,7 @@ export function ComeLavoriamo() {
               >
                 {/* Numero gigante */}
                 <div className={`lg:col-span-3 ${reverse ? "lg:order-3" : ""}`}>
-                  <div className="font-mono font-medium text-[--color-accent-soft] text-[7rem] sm:text-[8rem] lg:text-[12rem] xl:text-[14rem] leading-[0.85] select-none">
+                  <div className="font-display font-bold text-[var(--color-accent-soft)] text-[7rem] sm:text-[8rem] lg:text-[12rem] xl:text-[14rem] leading-[0.85] select-none">
                     {step.number}
                   </div>
                 </div>
@@ -114,10 +114,10 @@ export function ComeLavoriamo() {
                 {/* Testo */}
                 <div className={`lg:col-span-4 ${reverse ? "lg:order-2" : ""}`} data-step-text>
                   <Reveal>
-                    <h3 className="font-display text-[2rem] lg:text-[2.5rem] leading-[1.05] tracking-tight font-bold text-[--color-ink]">
+                    <h3 className="font-display text-[2rem] lg:text-[2.5rem] leading-[1.05] tracking-tight font-bold text-[var(--color-ink)]">
                       {step.title}
                     </h3>
-                    <p className="mt-5 text-[16px] leading-relaxed text-[--color-mute] max-w-md">
+                    <p className="mt-5 text-[16px] leading-relaxed text-[var(--color-mute)] max-w-md">
                       {step.description}
                     </p>
                   </Reveal>
@@ -126,14 +126,14 @@ export function ComeLavoriamo() {
                 {/* Immagine */}
                 <div className={`lg:col-span-5 ${reverse ? "lg:order-1" : ""}`} data-step-image>
                   <Reveal direction={reverse ? "right" : "left"}>
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-[4px] bg-[--color-bg-warm] border border-[--color-line]">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-[4px] bg-[var(--color-bg-warm)] border border-[var(--color-line)]">
                       <img
                         src={step.image}
                         alt={step.alt}
                         loading="lazy"
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute top-4 left-4 font-mono text-[10.5px] uppercase tracking-[0.16em] text-[--color-bg] bg-[--color-ink]/80 backdrop-blur px-2 py-1 rounded-[3px]">
+                      <div className="absolute top-4 left-4 font-mono text-[10.5px] uppercase tracking-[0.16em] text-[var(--color-bg)] bg-[var(--color-ink)]/80 backdrop-blur px-2 py-1 rounded-[3px]">
                         {step.number} · {step.title}
                       </div>
                     </div>

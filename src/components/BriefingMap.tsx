@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import { site } from "@/data/site";
 
 export function BriefingMap() {
@@ -65,15 +65,15 @@ export function BriefingMap() {
 
   return (
     <div className="relative">
-      <div className="absolute top-5 left-5 z-10 inline-flex items-center gap-2 px-3 py-2 bg-[--color-bg] rounded-[3px] shadow-md">
-        <span className="w-1.5 h-1.5 rounded-full bg-[--color-accent]" />
-        <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[--color-ink]">
+      <div className="absolute top-5 left-5 z-10 inline-flex items-center gap-2 px-3 py-2 bg-[var(--color-bg)] rounded-[3px] shadow-md">
+        <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" />
+        <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--color-ink)]">
           Showroom · Via Filisto 71/73
         </span>
       </div>
       <div
         ref={ref}
-        className="w-full h-[360px] lg:h-[480px] bg-[--color-bg-warm]"
+        className="w-full h-[360px] lg:h-[480px] bg-[var(--color-bg-warm)]"
         aria-label="Mappa con la posizione dello showroom Iacono Clima a Siracusa"
         role="region"
       />

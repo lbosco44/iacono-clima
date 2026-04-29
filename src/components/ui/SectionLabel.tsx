@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+﻿import { cn } from "@/lib/cn";
 
 type Props = {
   index: string;
@@ -12,14 +12,14 @@ export function SectionLabel({ index, label, className, invert }: Props) {
     <div
       className={cn(
         "flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em]",
-        invert ? "text-[--color-bg]/65" : "text-[--color-mute]",
+        invert ? "text-[var(--color-bg)]/65" : "text-[var(--color-mute)]",
         className,
       )}
     >
-      <span className={cn(invert ? "text-[--color-accent]" : "text-[--color-accent]")}>
+      <span className={cn(invert ? "text-[var(--color-accent)]" : "text-[var(--color-accent)]")}>
         [{index}]
       </span>
-      <span aria-hidden className={cn("h-px w-8", invert ? "bg-[--color-bg]/30" : "bg-[--color-line-strong]")} />
+      <span aria-hidden className={cn("h-px w-8", invert ? "bg-[var(--color-bg)]/30" : "bg-[var(--color-line-strong)]")} />
       <span>{label}</span>
     </div>
   );
