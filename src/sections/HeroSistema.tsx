@@ -112,10 +112,7 @@ export function HeroSistema() {
               <motion.div
                 key={row.label}
                 variants={staggerItem}
-                className="flex flex-col gap-4 px-0 py-8 lg:px-8 lg:py-6
-                           border-t-2 border-[var(--color-accent)]
-                           lg:border-t-0 lg:border-l-2 lg:first:border-l-0
-                           [&:nth-child(-n+2)]:lg:border-t-2"
+                className="flex flex-col gap-4 px-0 py-8 lg:px-8 lg:py-6"
               >
                 <row.icon
                   size={18}
