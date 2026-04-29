@@ -1,8 +1,5 @@
 /* Inter e JetBrains Mono caricati via <link> in index.html (non @import — evita render-blocking) */
 @import "tailwindcss";
-@plugin "flyonui";
-@import "./node_modules/flyonui/variants.css";
-@source "./node_modules/flyonui/dist/accordion.js";
 
 @theme {
   /* ── Palette esatta dal brief ─────────────────────────── */
