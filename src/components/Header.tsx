@@ -171,6 +171,7 @@ export function Header() {
       <motion.div
         animate={{
           width: floated ? "88%" : "100%",
+          maxWidth: floated ? 860 : 1440,
           y: floated ? 14 : 0,
           borderRadius: floated ? "10px" : "0px",
           backgroundColor: floated
@@ -182,31 +183,28 @@ export function Header() {
             : "0 0 0 0 transparent",
         }}
         transition={{ type: "spring", stiffness: 190, damping: 48 }}
-        style={{ maxWidth: 1440 }}
-        className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] items-center px-6 xl:px-10 h-[72px]"
+        className="hidden lg:flex items-center justify-center relative px-6 xl:px-10 h-[72px]"
       >
-        {/* Sinistra — prime 3 voci */}
-        <nav aria-label="Navigazione principale sinistra">
-          <NavGroup
-            items={site.nav.slice(0, 3)}
-            currentPath={location.pathname}
-            floated={floated}
-            startIndex={0}
-          />
-        </nav>
+        {/* Gruppo centrato: nav sx + logo + nav dx */}
+        <div className="flex items-center">
+          <nav aria-label="Navigazione principale sinistra">
+            <NavGroup
+              items={site.nav.slice(0, 3)}
+              currentPath={location.pathname}
+              floated={floated}
+              startIndex={0}
+            />
+          </nav>
 
-        {/* Centro — logo */}
-        <Link
-          to="/"
-          onClick={() => window.scrollTo({ top: 0 })}
-          className={`font-display text-[21px] font-bold tracking-tight transition-colors px-6 ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
-          aria-label="Iacono Clima — torna alla home"
-        >
-          Iacono<span className="text-[var(--color-accent)]" aria-hidden="true">.</span>Clima
-        </Link>
+          <Link
+            to="/"
+            onClick={() => window.scrollTo({ top: 0 })}
+            className={`font-display text-[21px] font-bold tracking-tight transition-colors px-5 ${floated ? "text-[var(--color-ink)]" : "text-white"}`}
+            aria-label="Iacono Clima — torna alla home"
+          >
+            Iacono<span className="text-[var(--color-accent)]" aria-hidden="true">.</span>Clima
+          </Link>
 
-        {/* Destra — ultime 3 voci + bottone telefono */}
-        <div className="flex items-center justify-end gap-2">
           <nav aria-label="Navigazione principale destra">
             <NavGroup
               items={site.nav.slice(3)}
@@ -215,6 +213,10 @@ export function Header() {
               startIndex={3}
             />
           </nav>
+        </div>
+
+        {/* Bottone telefono — ancorato a destra */}
+        <div className="absolute right-6 xl:right-10">
           <a
             href={`tel:${site.phoneTel}`}
             aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
