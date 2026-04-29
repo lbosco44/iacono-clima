@@ -61,9 +61,9 @@ export function HeroSistema() {
               id="hero-heading"
               className="font-display font-bold text-[3rem] sm:text-[4.5rem] lg:text-[6.5rem] xl:text-[8rem] leading-[0.98] tracking-[-0.03em] text-white"
             >
-              Fresco perfetto.
+              Fresco <em className="italic text-[var(--color-accent)]">perfetto</em>.
               <br />
-              Silenzio assoluto.
+              Silenzio <em className="italic text-[var(--color-accent)]">assoluto</em>.
             </h1>
           </div>
 
