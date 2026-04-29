@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@fontsource-variable/geist";
-import "leaflet/dist/leaflet.css";
+// leaflet.css viene iniettato dinamicamente da BriefingMap al momento del lazy-load
 import "./index.css";
 import App from "./App";
 

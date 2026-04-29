@@ -1,4 +1,4 @@
-﻿import { useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Download, ArrowRight } from "lucide-react";
 import { categorie, prodotti } from "@/data/prodotti";
@@ -14,14 +14,17 @@ export function ProductsPage() {
   }, []);
 
   return (
-    <main className="bg-[var(--color-bg)]">
+    <main id="main-content" tabIndex={-1} className="bg-[var(--color-bg)]">
       {/* Hero piccola */}
-      <section className="pt-[68px] lg:pt-[80px] section-y border-b border-[var(--color-line)]">
+      <section
+        aria-labelledby="prodotti-heading"
+        className="pt-[68px] lg:pt-[80px] section-y border-b border-[var(--color-line)]"
+      >
         <div className="container-x">
           <div className="grid lg:grid-cols-12 gap-y-8 lg:gap-x-12 items-end">
             <div className="lg:col-span-6">
               <SectionLabel index="00" label="Catalogo" />
-              <DisplayHeading size="lg" className="mt-7">
+              <DisplayHeading id="prodotti-heading" size="lg" className="mt-7">
                 Catalogo prodotti.
               </DisplayHeading>
             </div>
@@ -36,7 +39,7 @@ export function ProductsPage() {
                 className="mt-6 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-[var(--color-accent)] hover:gap-3 transition-all"
               >
                 Apri il briefing
-                <ArrowRight size={14} />
+                <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -47,9 +50,11 @@ export function ProductsPage() {
       {categorie.map((cat, idx) => {
         const items = prodotti.filter((p) => p.categoria === cat);
         if (!items.length) return null;
+        const headingId = `cat-heading-${idx}`;
         return (
           <section
             key={cat}
+            aria-labelledby={headingId}
             className={`section-y ${idx % 2 === 1 ? "bg-[var(--color-bg-warm)]" : "bg-[var(--color-bg)]"}`}
           >
             <div className="container-x">
@@ -58,7 +63,10 @@ export function ProductsPage() {
                   <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-accent)]">
                     / categoria 0{idx + 1}
                   </div>
-                  <h2 className="mt-5 font-display text-[2rem] lg:text-[3rem] leading-tight font-bold text-[var(--color-ink)]">
+                  <h2
+                    id={headingId}
+                    className="mt-5 font-display text-[2rem] lg:text-[3rem] leading-tight font-bold text-[var(--color-ink)]"
+                  >
                     {cat}
                   </h2>
                 </div>
@@ -74,7 +82,7 @@ export function ProductsPage() {
                   const reverse = i % 2 === 1;
                   return (
                     <Reveal key={p.slug}>
-                      <article className="border-t border-[var(--color-line)] py-10 lg:py-16">
+                      <article aria-label={p.nome} className="border-t border-[var(--color-line)] py-10 lg:py-16">
                         <div className="grid lg:grid-cols-12 gap-y-6 lg:gap-x-10 items-center">
                           <div className={`lg:col-span-7 ${reverse ? "lg:order-2" : ""}`}>
                             <div className="flex items-center gap-3 mb-4">
@@ -93,10 +101,11 @@ export function ProductsPage() {
                               href={p.pdf}
                               download
                               target="_blank"
-                              rel="noreferrer"
+                              rel="noreferrer noopener"
+                              aria-label={`Scarica scheda PDF di ${p.nome}`}
                               className="mt-7 inline-flex items-center gap-2 h-12 px-5 bg-[var(--color-ink)] text-[var(--color-bg)] hover:bg-[var(--color-accent)] transition-colors font-semibold rounded-[3px] text-sm"
                             >
-                              <Download size={16} strokeWidth={2.5} />
+                              <Download size={16} strokeWidth={2.5} aria-hidden="true" />
                               Scarica scheda PDF
                             </a>
                           </div>
@@ -106,7 +115,7 @@ export function ProductsPage() {
                               <div className="aspect-[4/3] bg-[var(--color-bg)] border border-[var(--color-line)] flex items-center justify-center p-6 lg:p-10">
                                 <img
                                   src={p.image}
-                                  alt={p.nome}
+                                  alt={`Immagine del prodotto ${p.nome}`}
                                   loading="lazy"
                                   className="max-w-full max-h-full object-contain"
                                 />
@@ -125,10 +134,16 @@ export function ProductsPage() {
       })}
 
       {/* CTA finale */}
-      <section className="bg-[var(--color-ink)] text-[var(--color-bg)] py-20 lg:py-32">
+      <section
+        aria-labelledby="prodotti-cta-heading"
+        className="bg-[var(--color-ink)] text-[var(--color-bg)] py-20 lg:py-32"
+      >
         <div className="container-narrow text-center">
           <SectionLabel index="∞" label="Briefing" invert className="justify-center" />
-          <h2 className="mt-7 font-display text-[2rem] lg:text-[3.5rem] leading-tight font-bold">
+          <h2
+            id="prodotti-cta-heading"
+            className="mt-7 font-display text-[2rem] lg:text-[3.5rem] leading-tight font-bold"
+          >
             Hai bisogno di aiuto a scegliere?
           </h2>
           <p className="mt-5 text-[var(--color-bg)]/70 text-lg max-w-xl mx-auto">
@@ -140,7 +155,7 @@ export function ProductsPage() {
             className="mt-9 inline-flex items-center gap-2 h-14 px-7 bg-[var(--color-accent)] text-white font-semibold rounded-[3px] hover:bg-[var(--color-accent-deep)] transition-colors"
           >
             Apri il briefing
-            <ArrowRight size={18} strokeWidth={2.5} />
+            <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
           </Link>
         </div>
       </section>

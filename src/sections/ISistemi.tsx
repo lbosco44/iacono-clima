@@ -7,7 +7,7 @@ import { BrandsStrip } from "@/components/BrandsStrip";
 
 export function ISistemi() {
   return (
-    <section id="i-sistemi" className="bg-[var(--color-bg-warm)] overflow-hidden">
+    <section id="i-sistemi" aria-labelledby="i-sistemi-heading" className="bg-[var(--color-bg-warm)] overflow-hidden">
       {/* Header sezione */}
       <div className="container-x pt-24 lg:pt-36 pb-16 lg:pb-20">
         <div className="grid lg:grid-cols-12 gap-y-8 lg:gap-x-12">
@@ -15,7 +15,10 @@ export function ISistemi() {
             <SectionLabel index="02" label="I Sistemi" />
           </div>
           <div className="lg:col-span-8">
-            <h2 className="font-display font-bold text-[2.5rem] lg:text-[4rem] xl:text-[5rem] leading-[1.0] tracking-[-0.03em] text-[var(--color-ink)]">
+            <h2
+              id="i-sistemi-heading"
+              className="font-display font-bold text-[2.5rem] lg:text-[4rem] xl:text-[5rem] leading-[1.0] tracking-[-0.03em] text-[var(--color-ink)]"
+            >
               Cinque categorie.{" "}
               <span className="text-[var(--color-accent)]">Una sola filosofia</span>:{" "}
               <em className="not-italic text-[var(--color-mute)]">durata</em>.
@@ -24,26 +27,27 @@ export function ISistemi() {
         </div>
       </div>
 
-      {/* Lista categorie — grande, editoriale */}
+      {/* Lista categorie */}
       <div className="container-x">
         <div className="border-t border-[var(--color-line-strong)]">
           {sistemi.map((s, i) => (
             <Reveal key={s.id} delay={i * 0.05}>
               <a
                 href="#briefing"
+                aria-label={`Richiedi un preventivo per ${s.title} — vai al modulo briefing`}
                 className="group block border-b border-[var(--color-line)] py-10 lg:py-14 hover:bg-white/60 transition-colors duration-300"
               >
                 <div className="grid lg:grid-cols-12 gap-y-5 lg:gap-x-12 items-center">
                   {/* Numero */}
                   <div className="lg:col-span-1">
-                    <span className="font-mono text-[11px] text-[var(--color-mute)] tracking-[0.16em]">
+                    <span aria-hidden="true" className="font-mono text-[11px] text-[var(--color-mute)] tracking-[0.16em]">
                       0{i + 1}
                     </span>
                   </div>
 
                   {/* Tag */}
                   <div className="lg:col-span-2">
-                    <Tag variant={s.id}>{s.tag}</Tag>
+                    <Tag variant={s.id} aria-hidden="true">{s.tag}</Tag>
                   </div>
 
                   {/* Titolo */}
@@ -63,8 +67,8 @@ export function ISistemi() {
                     </div>
                   </div>
 
-                  {/* Arrow */}
-                  <div className="hidden lg:flex lg:col-span-1 justify-end">
+                  {/* Arrow decorativa */}
+                  <div aria-hidden="true" className="hidden lg:flex lg:col-span-1 justify-end">
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[var(--color-line)] text-[var(--color-mute)] group-hover:border-[var(--color-accent)] group-hover:text-[var(--color-accent)] group-hover:bg-[var(--color-accent-soft)] transition-all duration-300">
                       <ArrowRight size={16} />
                     </span>

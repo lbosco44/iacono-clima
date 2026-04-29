@@ -1,5 +1,4 @@
 import Lenis from "lenis";
-import { ScrollTrigger } from "./gsap";
 
 let lenisInstance: Lenis | null = null;
 
@@ -19,7 +18,14 @@ export function initLenis(): Lenis | null {
     touchMultiplier: 1.4,
   });
 
-  lenisInstance.on("scroll", ScrollTrigger.update);
+  // Notifica ScrollTrigger (GSAP) se è caricato nel bundle — import dinamico
+  // per evitare che GSAP finisca nel bundle main anche quando non usato
+  lenisInstance.on("scroll", () => {
+    // ScrollTrigger può essere iniettato da sezioni che lo usano
+    // tramite window.__lenis_scrolltrigger_update se presente
+    const fn = (window as unknown as Record<string, unknown>).__lenis_st_update;
+    if (typeof fn === "function") fn();
+  });
 
   function raf(time: number) {
     lenisInstance?.raf(time);

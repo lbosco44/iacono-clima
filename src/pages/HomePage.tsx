@@ -20,7 +20,7 @@ export function HomePage() {
   }, [hash]);
 
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <HeroSistema />
       <ISistemi />
       <ComeLavoriamo />

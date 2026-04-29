@@ -40,9 +40,36 @@
     <meta name="twitter:description" content="20+ anni. Carrier · MAXA · F-GAS. Sopralluogo gratuito." />
     <meta name="twitter:image" content="https://www.iaconoclim.it/images/hero-detail.jpeg" />
 
-    <!-- Font preconnect (Inter + JetBrains Mono via @import in index.css) -->
+    <!-- LCP: preload hero image — fetchpriority=high bypassa la coda di discovery -->
+    <link
+      rel="preload"
+      href="/images/hero-detail.jpeg"
+      as="image"
+      fetchpriority="high"
+    />
+
+    <!-- Google Fonts — Inter (body) + JetBrains Mono (mono) -->
+    <!-- Preconnect prima, poi load non-bloccante con media trick -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap"
+      />
+    </noscript>
+
+    <!-- Preconnect CartoCDN — tile Leaflet (mappa in #briefing) -->
+    <link rel="preconnect" href="https://basemaps.cartocdn.com" crossorigin />
+
+    <!-- DNS prefetch fallback per browser che non supportano preconnect -->
+    <link rel="dns-prefetch" href="https://basemaps.cartocdn.com" />
 
     <!-- TODO: sostituire con Typekit project ID per Neue Haas Grotesk Display Pro
          Finché lo stub è commentato, il font fallback è Geist (già caricato via @fontsource-variable/geist).

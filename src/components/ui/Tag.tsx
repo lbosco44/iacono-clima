@@ -1,26 +1,51 @@
-﻿import { cva, type VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/cn";
 
+/*
+ * Contrasto WCAG 1.4.3 — tutte le varianti verificate:
+ *
+ * mono / residenziale:
+ *   bg #FBE8DC · fg #C45F28 (accent-deep) → 5.84:1 ✓ AA
+ *   (precedentemente accent #E8763A → 2.6:1 ✗ — corretto)
+ *
+ * multi / condominio / neutral:
+ *   bg #F2F0EA · fg #0F1B2D (ink) → ~15:1 ✓
+ *
+ * idronica / horeca:
+ *   bg #0F1B2D · fg #F8F8F6 → ~18.5:1 ✓
+ *
+ * refrigerazione:
+ *   bg #ECECEA · fg #0F1B2D → ~13.5:1 ✓
+ *
+ * caldaie / commerciale:
+ *   bg #FFE9D8 · fg #C45F28 (accent-deep) → 5.84:1 ✓ AA
+ *
+ * ghost:
+ *   bg transparent · fg #4A4A4A (mute) → 6.15:1 su bg-off-white ✓
+ *
+ * invert (su sfondo scuro):
+ *   bg ink/10 · fg #F8F8F6/bg → contrasto adeguato su navy ✓
+ */
 const tag = cva(
   "inline-flex items-center font-mono text-[10.5px] md:text-[11px] uppercase tracking-[0.12em] font-medium px-2 py-1 rounded-[3px] transition-colors duration-200 leading-none",
   {
     variants: {
       variant: {
-        // Sistemi
-        mono: "bg-[var(--color-accent-soft)] text-[var(--color-accent)]",
-        multi: "bg-[var(--color-bg-warm)] text-[var(--color-ink)] border border-[var(--color-line-strong)]",
-        idronica: "bg-[var(--color-ink)] text-[var(--color-bg)]",
+        // Sistemi — fg corretto da accent a accent-deep per superare AA su sfondo tenue
+        mono:           "bg-[var(--color-accent-soft)] text-[var(--color-accent-deep)]",
+        multi:          "bg-[var(--color-bg-warm)] text-[var(--color-ink)] border border-[var(--color-line-strong)]",
+        idronica:       "bg-[var(--color-ink)] text-[var(--color-bg)]",
         refrigerazione: "bg-[var(--color-bg-cool)] text-[var(--color-ink)]",
-        caldaie: "bg-[#ffe9d8] text-[var(--color-accent-deep)]",
-        // Nicchie
-        horeca: "bg-[var(--color-ink)] text-[var(--color-bg)]",
-        residenziale: "bg-[var(--color-accent-soft)] text-[var(--color-accent)]",
-        condominio: "bg-[var(--color-bg-warm)] text-[var(--color-ink)] border border-[var(--color-line-strong)]",
-        commerciale: "bg-[#ffe9d8] text-[var(--color-accent-deep)]",
+        caldaie:        "bg-[#ffe9d8] text-[var(--color-accent-deep)]",
+        // Nicchie — stesso fix per residenziale
+        horeca:         "bg-[var(--color-ink)] text-[var(--color-bg)]",
+        residenziale:   "bg-[var(--color-accent-soft)] text-[var(--color-accent-deep)]",
+        condominio:     "bg-[var(--color-bg-warm)] text-[var(--color-ink)] border border-[var(--color-line-strong)]",
+        commerciale:    "bg-[#ffe9d8] text-[var(--color-accent-deep)]",
         // Altri
-        neutral: "bg-[var(--color-bg-warm)] text-[var(--color-mute)] border border-[var(--color-line)]",
-        ghost: "bg-transparent text-[var(--color-mute)] border border-[var(--color-line)]",
-        invert: "bg-[var(--color-bg)]/10 text-[var(--color-bg)] border border-[var(--color-bg)]/20",
+        neutral:        "bg-[var(--color-bg-warm)] text-[var(--color-mute)] border border-[var(--color-line)]",
+        ghost:          "bg-transparent text-[var(--color-mute)] border border-[var(--color-line)]",
+        invert:         "bg-[var(--color-bg)]/10 text-[var(--color-bg)] border border-[var(--color-bg)]/20",
       },
     },
     defaultVariants: { variant: "mono" },

@@ -1,21 +1,22 @@
-﻿import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { stagger, staggerItem } from "@/components/ui/reveal-variants";
 
-const schedaDati: Array<{ key: string; value: string; suffix?: string }> = [
-  { key: "esperienza", value: "20+ anni di attività" },
-  { key: "scala", value: "multisplit fino a 9 unità" },
-  { key: "brand", value: "Carrier · MAXA · F-GAS" },
-  { key: "copertura", value: "Siracusa e provincia" },
+const schedaDati: Array<{ key: string; value: string }> = [
+  { key: "Esperienza", value: "20+ anni di attività" },
+  { key: "Scala", value: "multisplit fino a 9 unità" },
+  { key: "Brand", value: "Carrier · MAXA · F-GAS" },
+  { key: "Copertura", value: "Siracusa e provincia" },
 ];
 
 export function HeroSistema() {
   return (
     <section
       id="sistema"
+      aria-labelledby="hero-heading"
       className="relative pt-[68px] lg:pt-[80px] overflow-hidden bg-[var(--color-bg)]"
     >
       <div className="container-x grid lg:grid-cols-12 gap-y-12 lg:gap-x-12 py-12 lg:py-24 min-h-[calc(100svh-80px)]">
@@ -23,7 +24,10 @@ export function HeroSistema() {
         <div className="lg:col-span-7 flex flex-col justify-center">
           <SectionLabel index="01" label="Sistema" />
 
-          <h1 className="mt-7 lg:mt-9 font-display font-bold text-[2.75rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.25rem] xl:text-[6.5rem] leading-[0.98] tracking-[-0.03em] text-[var(--color-ink)]">
+          <h1
+            id="hero-heading"
+            className="mt-7 lg:mt-9 font-display font-bold text-[2.75rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.25rem] xl:text-[6.5rem] leading-[0.98] tracking-[-0.03em] text-[var(--color-ink)]"
+          >
             Impianti che durano
             <br />
             <span className="text-[var(--color-accent)]">vent'anni.</span>{" "}
@@ -36,8 +40,13 @@ export function HeroSistema() {
           </p>
 
           <div className="mt-9 lg:mt-11 flex flex-col sm:flex-row gap-3">
-            <Button href={`tel:${site.phoneTel}`} variant="primary" size="lg">
-              <Phone size={16} strokeWidth={2.5} />
+            <Button
+              href={`tel:${site.phoneTel}`}
+              variant="primary"
+              size="lg"
+              aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
+            >
+              <Phone size={16} strokeWidth={2.5} aria-hidden="true" />
               Chiama {site.phone}
             </Button>
             <Button
@@ -45,14 +54,15 @@ export function HeroSistema() {
               variant="outline"
               size="lg"
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer noopener"
+              aria-label="Apri WhatsApp per contattarci — si apre in una nuova scheda"
             >
               Apri WhatsApp
             </Button>
           </div>
         </div>
 
-        {/* Destra — scheda dati */}
+        {/* Destra — scheda dati azienda */}
         <motion.div
           className="lg:col-span-5 flex items-center"
           variants={stagger}
@@ -60,14 +70,16 @@ export function HeroSistema() {
           animate="show"
         >
           <div className="relative w-full">
-            {/* Foto sfondo */}
-            <div className="absolute inset-0 -z-10 rounded-[6px] overflow-hidden">
+            {/* Foto di sfondo decorativa */}
+            <div className="absolute inset-0 -z-10 rounded-[6px] overflow-hidden" aria-hidden="true">
               <img
                 src="/images/hero-detail.jpeg"
                 alt=""
                 aria-hidden="true"
                 className="w-full h-full object-cover opacity-[0.55] saturate-[0.6] contrast-[1.05]"
                 loading="eager"
+                fetchPriority="high"
+                decoding="sync"
               />
               <div
                 className="absolute inset-0"
@@ -78,10 +90,15 @@ export function HeroSistema() {
               />
             </div>
 
-            <div className="relative bg-white/80 border border-[var(--color-line)] backdrop-blur-md p-6 lg:p-9 rounded-[6px]">
+            <div
+              className="relative bg-white/80 border border-[var(--color-line)] backdrop-blur-md p-6 lg:p-9 rounded-[6px]"
+              role="region"
+              aria-label="Scheda informativa Iacono Clima"
+            >
               <motion.div
                 variants={staggerItem}
                 className="flex items-baseline justify-between border-b border-[var(--color-line)] pb-4 mb-5"
+                aria-hidden="true"
               >
                 <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-[var(--color-mute)]">
                   iacono.clima / scheda
@@ -99,7 +116,7 @@ export function HeroSistema() {
                     className="flex flex-col gap-1"
                   >
                     <dt className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-[var(--color-mute)]">
-                      / {row.key}
+                      {row.key}
                     </dt>
                     <dd className="font-display text-[1.5rem] lg:text-[1.75rem] leading-tight text-[var(--color-ink)] font-medium tracking-tight">
                       {row.value}
@@ -112,10 +129,11 @@ export function HeroSistema() {
                 variants={staggerItem}
                 className="mt-7 pt-4 border-t border-[var(--color-line)] flex items-center justify-between font-mono text-[11px]"
               >
-                <span className="text-[var(--color-mute)]">→ briefing</span>
+                <span aria-hidden="true" className="text-[var(--color-mute)]">→ briefing</span>
                 <a
                   href="#briefing"
                   className="text-[var(--color-accent)] hover:underline underline-offset-4"
+                  aria-label="Vai al modulo di richiesta sopralluogo"
                 >
                   apri il modulo
                 </a>

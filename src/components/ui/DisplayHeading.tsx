@@ -1,4 +1,4 @@
-﻿import { cn } from "@/lib/cn";
+import { cn } from "@/lib/cn";
 import type { ElementType, ReactNode } from "react";
 
 type Size = "xs" | "sm" | "md" | "lg" | "xl" | "hero";
@@ -18,6 +18,7 @@ type Props = {
   className?: string;
   children: ReactNode;
   invert?: boolean;
+  id?: string;
 };
 
 export function DisplayHeading({
@@ -26,9 +27,11 @@ export function DisplayHeading({
   className,
   children,
   invert,
+  id,
 }: Props) {
   return (
     <Tag
+      id={id}
       className={cn(
         "font-display font-bold leading-[1.02] tracking-[-0.025em]",
         sizes[size],

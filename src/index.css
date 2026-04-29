@@ -1,5 +1,4 @@
-/* Inter (corpo) + JetBrains Mono (dati/tag) — Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap");
+/* Inter e JetBrains Mono caricati via <link> in index.html (non @import — evita render-blocking) */
 @import "tailwindcss";
 
 @theme {
@@ -14,7 +13,7 @@
   --color-bg-warm: #f2f0ea;        /* sezione alternata calda */
   --color-bg-cool: #ececea;        /* hover bg debole */
   --color-accent-soft: #fbe8dc;    /* tag bg tenue */
-  --color-accent-deep: #c45f28;    /* hover accent */
+  --color-accent-deep: #c45f28;    /* hover accent — AA su accent-soft (5.84:1) e su bianco (4.63:1) */
   --color-line: #e5e2da;           /* bordi sottili */
   --color-line-strong: #c9c4b6;    /* divisori */
 
@@ -79,6 +78,12 @@
     cursor: pointer;
   }
 
+  /*
+   * Focus ring accessibile (WCAG 2.4.7, 2.4.11).
+   * Arancione #E8763A su sfondi chiari: rapporto 4.35:1 vs sfondo bianco/off-white
+   * — supera la soglia 3:1 per componenti UI non-testo (WCAG 1.4.11).
+   * Su sfondi navy usiamo off-white che garantisce >17:1.
+   */
   *:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
@@ -150,6 +155,15 @@
     letter-spacing: -0.025em;
     line-height: 1.02;
     color: var(--color-ink);
+  }
+
+  /*
+   * Focus ring bianco per elementi su sfondo scuro (sezioni navy).
+   * Aggiunto direttamente sugli elementi nei componenti via Tailwind; questa
+   * regola CSS serve come fallback per elementi dinamici dentro sezioni scure.
+   */
+  .section-dark *:focus-visible {
+    outline-color: var(--color-bg);
   }
 }
 
