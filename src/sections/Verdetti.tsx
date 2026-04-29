@@ -37,25 +37,27 @@ export function Verdetti() {
 
           <div className="relative max-w-4xl mx-auto pt-10 lg:pt-20">
             <AnimatePresence mode="wait">
-              <motion.blockquote
-                key={current.text}
+              <motion.div
+                key={index}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="relative"
               >
-                <p className="font-display text-[1.5rem] sm:text-[1.85rem] lg:text-[2.5rem] leading-[1.25] text-[var(--color-ink)] tracking-tight">
-                  {current.text}
-                </p>
-                <footer className="mt-9 font-mono text-[12px] uppercase tracking-[0.16em] text-[var(--color-mute)]">
-                  <span className="text-[var(--color-ink)]">{current.author}</span>
-                  <span className="mx-2 text-[var(--color-line-strong)]">·</span>
-                  <span>{current.context}</span>
-                  <span className="mx-2 text-[var(--color-line-strong)]">·</span>
-                  <span>{current.year}</span>
-                </footer>
-              </motion.blockquote>
+                <blockquote>
+                  <p className="font-display text-[1.5rem] sm:text-[1.85rem] lg:text-[2.5rem] leading-[1.25] text-[var(--color-ink)] tracking-tight">
+                    {current.text}
+                  </p>
+                  <footer className="mt-9 font-mono text-[12px] uppercase tracking-[0.16em] text-[var(--color-mute)]">
+                    <span className="text-[var(--color-ink)]">{current.author}</span>
+                    <span className="mx-2 text-[var(--color-line-strong)]">·</span>
+                    <span>{current.context}</span>
+                    <span className="mx-2 text-[var(--color-line-strong)]">·</span>
+                    <span>{current.year}</span>
+                  </footer>
+                </blockquote>
+              </motion.div>
             </AnimatePresence>
           </div>
 
