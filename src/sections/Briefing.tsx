@@ -270,6 +270,11 @@ export function Briefing() {
                           <ArrowRight size={16} strokeWidth={2.5} aria-hidden="true" />
                         </span>
                         <span className="btn-text">Richiedi preventivo</span>
+                        <span className="btn-icon-center" aria-hidden="true">
+                          <span className="btn-icon-bob">
+                            <ArrowRight size={18} strokeWidth={2.5} />
+                          </span>
+                        </span>
                       </button>
                     </div>
                   </motion.form>

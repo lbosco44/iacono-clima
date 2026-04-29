@@ -49,6 +49,11 @@ export function HeroSistema() {
                 <Phone size={16} strokeWidth={2.5} aria-hidden="true" />
               </span>
               <span className="btn-text">Chiama {site.phone}</span>
+              <span className="btn-icon-center" aria-hidden="true">
+                <span className="btn-icon-bob">
+                  <Phone size={18} strokeWidth={2.5} />
+                </span>
+              </span>
             </a>
             <Button
               href={site.whatsapp1Link}

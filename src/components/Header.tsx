@@ -205,6 +205,11 @@ export function Header() {
             <Phone size={14} strokeWidth={2.5} aria-hidden="true" />
           </span>
           <span className="btn-text">{site.phone}</span>
+          <span className="btn-icon-center" aria-hidden="true">
+            <span className="btn-icon-bob">
+              <Phone size={16} strokeWidth={2.5} />
+            </span>
+          </span>
         </a>
       </motion.div>
 
