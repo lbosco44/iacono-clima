@@ -218,7 +218,7 @@ export function Header() {
                       0{i + 1}
                     </span>
                     {item.label}
-                  </Link>
+                  </a>
                 )
               )}
 

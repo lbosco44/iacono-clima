@@ -21,13 +21,8 @@ export function CountUp({ end, duration = 1.4, suffix = "", prefix = "", classNa
   const started = useRef(false);
 
   useEffect(() => {
-    if (!inView || started.current) return;
+    if (reduce || !inView || started.current) return;
     started.current = true;
-
-    if (reduce) {
-      setValue(end);
-      return;
-    }
 
     const startTime = performance.now();
     const ms = duration * 1000;
@@ -43,6 +38,10 @@ export function CountUp({ end, duration = 1.4, suffix = "", prefix = "", classNa
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [inView, end, duration, reduce]);
+
+  if (reduce) {
+    return <span className={className}>{prefix}{end}{suffix}</span>;
+  }
 
   return (
     <span ref={ref} className={className}>
