@@ -183,10 +183,13 @@ export function Header() {
             : "0 0 0 0 transparent",
         }}
         transition={{ type: "spring", stiffness: 190, damping: 48 }}
-        className="hidden lg:flex items-center justify-center relative px-6 xl:px-10 h-[72px]"
+        className="hidden lg:flex items-center px-5 xl:px-8 h-[72px]"
       >
+        {/* Spacer invisibile — bilancia il bottone a destra */}
+        <div className="w-9 shrink-0" aria-hidden="true" />
+
         {/* Gruppo centrato: nav sx + logo + nav dx */}
-        <div className="flex items-center">
+        <div className="flex-1 flex items-center justify-center">
           <nav aria-label="Navigazione principale sinistra">
             <NavGroup
               items={site.nav.slice(0, 3)}
@@ -215,16 +218,14 @@ export function Header() {
           </nav>
         </div>
 
-        {/* Bottone telefono — ancorato a destra */}
-        <div className="absolute right-6 xl:right-10">
-          <a
-            href={`tel:${site.phoneTel}`}
-            aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
-            className="inline-flex items-center justify-center w-9 h-9 bg-[var(--color-accent)] text-white rounded-[5px] shadow-[0_4px_16px_-4px_rgba(0,102,204,0.4)] hover:shadow-[0_6px_20px_-4px_rgba(0,102,204,0.6)] hover:scale-105 active:scale-95 transition-all"
-          >
-            <Phone size={15} strokeWidth={2.5} aria-hidden="true" />
-          </a>
-        </div>
+        {/* Bottone telefono */}
+        <a
+          href={`tel:${site.phoneTel}`}
+          aria-label={`Chiama Iacono Clima al numero ${site.phone}`}
+          className="shrink-0 inline-flex items-center justify-center w-9 h-9 bg-[var(--color-accent)] text-white rounded-[5px] shadow-[0_4px_16px_-4px_rgba(0,102,204,0.4)] hover:shadow-[0_6px_20px_-4px_rgba(0,102,204,0.6)] hover:scale-105 active:scale-95 transition-all"
+        >
+          <Phone size={15} strokeWidth={2.5} aria-hidden="true" />
+        </a>
       </motion.div>
 
       {/* ── Mobile nav bar ── */}
