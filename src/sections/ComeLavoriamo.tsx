@@ -58,12 +58,6 @@ export function ComeLavoriamo() {
                         loading="lazy"
                         className="w-full h-full object-cover"
                       />
-                      <div
-                        aria-hidden="true"
-                        className="absolute top-4 left-4 font-mono text-[10.5px] uppercase tracking-[0.16em] text-[var(--color-bg)] bg-[var(--color-ink)]/80 backdrop-blur px-2 py-1 rounded-[3px]"
-                      >
-                        {step.number} · {step.title}
-                      </div>
                     </div>
                   </Reveal>
                 </div>
