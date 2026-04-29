@@ -1,0 +1,11 @@
+.animated-gradient-text {
+  position: relative;
+  display: inline;
+}
+
+.animated-gradient-text .text-content {
+  display: inline;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, CalendarDays, Layers2, ShieldCheck, MapPin } from "lucide-react";
+import { GradientText } from "@/components/ui/GradientText";
 import type { LucideIcon } from "lucide-react";
 import { site } from "@/data/site";
 import { Button } from "@/components/ui/Button";
@@ -61,9 +62,9 @@ export function HeroSistema() {
               id="hero-heading"
               className="font-display font-bold text-[3rem] sm:text-[4.5rem] lg:text-[6.5rem] xl:text-[8rem] leading-[0.98] tracking-[-0.03em] text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.45),0_8px_32px_rgba(0,0,0,0.3)]"
             >
-              Fresco <em className="italic bg-gradient-to-br from-sky-300 to-[var(--color-accent)] bg-clip-text text-transparent">perfetto</em>.
+              Fresco <GradientText colors={["#0066CC", "#00c8ff", "#ffffff", "#00c8ff", "#0066CC"]} animationSpeed={3} className="italic">perfetto</GradientText>.
               <br />
-              Silenzio <em className="italic bg-gradient-to-br from-sky-300 to-[var(--color-accent)] bg-clip-text text-transparent">assoluto</em>.
+              Silenzio <GradientText colors={["#0066CC", "#00c8ff", "#ffffff", "#00c8ff", "#0066CC"]} animationSpeed={3} className="italic">assoluto</GradientText>.
             </h1>
           </div>
 
